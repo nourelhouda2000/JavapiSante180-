@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterRDV">
+   <children>
+      <TableView layoutX="15.0" layoutY="154.0" prefHeight="200.0" prefWidth="569.0">
+        <columns>
+          <TableColumn fx:id="date_rA" prefWidth="75.0" text="Date" />
+          <TableColumn fx:id="heurA" prefWidth="75.0" text="Heur" />
+        </columns>
+      </TableView>
+      <Pane layoutX="1.0" layoutY="87.0" prefHeight="3.0" prefWidth="600.0" style="-fx-background-color: green;" />
+      <Text layoutX="22.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rendez-vous Details" wrappingWidth="347.7366638183594">
+         <font>
+            <Font name="Bauhaus 93" size="22.0" />
+         </font>
+      </Text>
+      <Icon content="CLOSE" layoutX="562.0" layoutY="30.0" />
+   </children>
+</AnchorPane>

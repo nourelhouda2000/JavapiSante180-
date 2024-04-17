@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.TextField?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RapportControllers">
+  <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <AnchorPane layoutX="11.0" layoutY="12.0" prefHeight="380.0" prefWidth="581.0" stylesheets="@java.css">
+               <styleClass>
+                  <String fx:value="add-btn" />
+                  <String fx:value="shadow" />
+               </styleClass>
+               <children>
+                  <AnchorPane layoutX="9.0" layoutY="11.0" prefHeight="358.0" prefWidth="563.0" stylesheets="@java.css">
+                     <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <children>
+                        <Text fill="#2d402d" layoutX="229.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rapport:" wrappingWidth="131.6636962890625">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="Rapport_Ajou" layoutX="318.0" layoutY="141.0" prefHeight="24.0" prefWidth="230.0" styleClass="textfield" stylesheets="@java.css" />
+                        <Button fx:id="Ajouter_rapport" layoutX="261.0" layoutY="209.0" mnemonicParsing="false" onAction="#AjouterRapp" prefHeight="30.0" prefWidth="270.0" styleClass="add-btn" stylesheets="@java.css" text="ADD" />
+                        <ImageView fitHeight="341.0" fitWidth="200.0" layoutX="14.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@rappp.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
