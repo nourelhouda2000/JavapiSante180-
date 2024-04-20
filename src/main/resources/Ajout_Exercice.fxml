@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="549.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjoutExercice">
+    <children>
+        <Button layoutX="125.0" layoutY="455.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="36.0" prefWidth="230.0" text="Ajouter nouveau exercice" textFill="#323631">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Button>
+        <Label layoutX="152.0" layoutY="95.0" text="Nom">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Label>
+        <Label layoutX="104.0" layoutY="147.0" prefHeight="23.0" prefWidth="103.0" text="Description">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Label>
+        <Label layoutX="49.0" layoutY="212.0" text="Nombre Repetition">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Label>
+        <Label layoutX="144.0" layoutY="315.0" text="Niveau">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Label>
+        <TextField fx:id="idName" layoutX="217.0" layoutY="90.0" prefHeight="26.0" prefWidth="202.0" />
+        <TextField fx:id="iddescription" layoutX="217.0" layoutY="134.0" prefHeight="50.0" prefWidth="202.0" />
+        <TextField fx:id="idrepetition" layoutX="217.0" layoutY="211.0" prefHeight="26.0" prefWidth="202.0" />
+      <Label layoutX="142.0" layoutY="263.0" prefHeight="23.0" prefWidth="59.0" text="Likes">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Label>
+      <TextField fx:id="idlikes" layoutX="217.0" layoutY="262.0" prefHeight="26.0" prefWidth="202.0" />
+        <ComboBox fx:id="idniveau" layoutX="217.0" layoutY="311.0" prefHeight="32.0" prefWidth="202.0" promptText="choisir un niveau">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Facile" />
+                    <String fx:value="Modére" />
+                    <String fx:value="Difficile" />
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <Label layoutX="133.0" layoutY="389.0" prefHeight="23.0" prefWidth="68.0" text="Activité" textFill="#1f1f20">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Label>
+        <ComboBox fx:id="activiteComboBox" layoutX="217.0" layoutY="383.0" prefHeight="30.0" prefWidth="211.0" promptText="Sélectionner une activité" />
+      <Button layoutX="383.0" layoutY="455.0" mnemonicParsing="false" onAction="#consulterExercices" prefHeight="26.0" prefWidth="162.0" text="Annuler">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Button>
+      <Label layoutX="172.0" layoutY="14.0" prefHeight="35.0" prefWidth="324.0" text="Ajouter Un Exercice" textAlignment="CENTER" textFill="#3922ac" textOverrun="CENTER_WORD_ELLIPSIS">
+         <font>
+            <Font name="Constantia Italic" size="36.0" />
+         </font>
+      </Label>
+
+    </children>
+
+</AnchorPane>

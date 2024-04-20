@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherActivite">
+    <HBox spacing="10">
+        <!-- Partie pour la liste des activités (environ 2/3 de la largeur) -->
+        <ScrollPane HBox.hgrow="ALWAYS">
+            <VBox fx:id="activiteContainer" spacing="10.0" prefWidth="200.0">
+                <Label text="Liste des activites" />
+                <FlowPane hgap="10.0" vgap="10.0">
+                    <!-- Placeholder pour les lignes de cartes d'activités -->
+                    <!-- Les cartes d'activités seront ajoutées dynamiquement depuis le contrôleur -->
+                </FlowPane>
+            </VBox>
+        </ScrollPane>
+
+        <!-- Partie pour les statistiques (centre de l'autre partie) -->
+        <AnchorPane HBox.hgrow="ALWAYS">
+            <!-- BarChart pour afficher les statistiques -->
+            <BarChart fx:id="activiteBarChart" prefHeight="200.0" prefWidth="400.0" layoutX="100.0" layoutY="100.0">
+                <xAxis>
+                    <CategoryAxis fx:id="Axissss" label="xAxis" />
+                </xAxis>
+                <yAxis>
+                    <NumberAxis fx:id="nombre" label="yAxis" />
+                </yAxis>
+            </BarChart>
+
+            <!-- Bouton pour déclencher l'affichage des statistiques -->
+            <Button fx:id="butnstat" layoutX="220.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleActiviteStatsButtonAction" text=" Cliquez pour voir les statistiques" textFill="WHITE" />
+        </AnchorPane>
+    </HBox>
+</AnchorPane>

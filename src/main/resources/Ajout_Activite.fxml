@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="543.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjoutActivite">
+   <children>
+
+      <Button layoutX="101.0" layoutY="398.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="26.0" prefWidth="170.0" text="Ajouter">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Button>
+      <Label layoutX="129.0" layoutY="104.0" text="Nom">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Label>
+      <Label layoutX="103.0" layoutY="154.0" text="Description">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Label>
+      <Label layoutX="111.0" layoutY="248.0" text="Categorie">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Label>
+      <Label layoutX="140.0" layoutY="309.0" text="Niveau">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Label>
+      <TextField fx:id="idnomactivite" layoutX="216.0" layoutY="103.0" prefHeight="26.0" prefWidth="194.0" />
+      <TextField fx:id="iddescriptionactivite" layoutX="216.0" layoutY="153.0" prefHeight="63.0" prefWidth="194.0" />
+      <TextField fx:id="idcategorieactivite" layoutX="216.0" layoutY="247.0" prefHeight="26.0" prefWidth="194.0" />
+      <ComboBox fx:id="niveauact" layoutX="216.0" layoutY="305.0" prefHeight="32.0" prefWidth="194.0" promptText="Choisir votre niveau">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Debutant" />
+               <String fx:value="Intermédiare" />
+               <String fx:value="Avancée" />
+            </FXCollections>
+         </items>
+      </ComboBox>
+      <Button fx:id="idconsulter" layoutX="319.0" layoutY="397.0" mnemonicParsing="false" onAction="#consulterActivite" prefHeight="36.0" prefWidth="278.0" text="consulter la liste des activités">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Button>
+      <Label layoutX="228.0" layoutY="14.0" prefHeight="43.0" prefWidth="278.0" text="Ajouter Activié" textAlignment="CENTER" textFill="#2a13a1">
+         <font>
+            <Font name="Constantia Italic" size="36.0" />
+         </font>
+      </Label>
+
+
+   </children>
+   <stylesheets>
+      <String fx:value="Styles.css" />
+   </stylesheets>
+</AnchorPane>

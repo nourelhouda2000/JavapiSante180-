@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="547.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifierActivite">
+    <children>
+
+
+        <Label layoutX="178.0" layoutY="78.0" text="Nom">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Label>
+        <Label layoutX="136.0" layoutY="130.0" text="Description">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Label>
+        <Label layoutX="154.0" layoutY="262.0" text="Niveau">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Label>
+        <TextField fx:id="idnoma" layoutX="243.0" layoutY="77.0" prefHeight="26.0" prefWidth="195.0" />
+        <TextField fx:id="iddesa" layoutX="242.0" layoutY="118.0" prefHeight="58.0" prefWidth="195.0" />
+        <TextField fx:id="idcata" layoutX="243.0" layoutY="197.0" prefHeight="26.0" prefWidth="195.0" />
+        <ComboBox fx:id="idniva" layoutX="242.0" layoutY="261.0" prefHeight="26.0" prefWidth="230.0" promptText="Sélectionner le niveau de l'activite">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Débutant" />
+                    <String fx:value="Intermédiare" />
+                    <String fx:value="Avancée" />
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <Label layoutX="136.0" layoutY="198.0" prefHeight="23.0" prefWidth="92.0" text="Categorie">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Label>
+        <Button layoutX="83.0" layoutY="325.0" mnemonicParsing="false" onAction="#saveActiviteData" prefHeight="30.0" prefWidth="162.0" style="-fx-background-color: turquoise; -fx-font-size: 14px; -fx-text-fill: white; -fx-background-radius: 5px;" text="Enregistrer">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Button>
+        <Button layoutX="287.0" layoutY="325.0" mnemonicParsing="false" onAction="#retournerAffichage" prefHeight="30.0" prefWidth="262.0" style="-fx-background-color: turquoise; -fx-font-size: 14px; -fx-text-fill: white; -fx-background-radius: 5px;" text=" Retourner à la liste des activités">
+         <font>
+            <Font name="Constantia" size="18.0" />
+         </font></Button>
+      <Label layoutX="186.0" layoutY="23.0" prefHeight="18.0" prefWidth="201.0" text="Modifier Activité" textAlignment="CENTER">
+         <font>
+            <Font name="Constantia Italic" size="24.0" />
+         </font>
+      </Label>
+    </children>
+
+</AnchorPane>
