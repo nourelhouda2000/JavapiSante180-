@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #00CC99;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ViewAnalyses">
+   <children>
+      <AnchorPane layoutX="38.0" layoutY="38.0" prefHeight="321.0" prefWidth="524.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="322.0" fitWidth="288.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../xampp/htdocs/First/public/FrontEnd/images/teamm.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="263.0" layoutY="23.0" prefHeight="52.0" prefWidth="259.0" text="Votre Analyse" textAlignment="CENTER" textFill="#ae3291">
+               <font>
+                  <Font name="Bell MT" size="43.0" />
+               </font>
+            </Label>
+            <Line endX="100.0" layoutX="393.0" layoutY="82.0" startX="-100.0" />
+            <Label layoutX="303.0" layoutY="147.0" prefHeight="23.0" prefWidth="74.0" text="Taille : " textFill="#df1c1c">
+               <font>
+                  <Font name="System Bold Italic" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="303.0" layoutY="230.0" prefHeight="28.0" prefWidth="154.0" text="Taux de graisse : " textFill="#df1c1c">
+               <font>
+                  <Font name="System Bold Italic" size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="poidsa" layoutX="443.0" layoutY="124.0" prefHeight="28.0" prefWidth="90.0">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="taiilea" layoutX="443.0" layoutY="147.0" prefHeight="28.0" prefWidth="90.0">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="poidsia" layoutX="443.0" layoutY="174.0" prefHeight="28.0" prefWidth="90.0">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="imca" layoutX="443.0" layoutY="202.0" prefHeight="28.0" prefWidth="90.0">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="tauxa" layoutX="443.0" layoutY="230.0" prefHeight="28.0" prefWidth="90.0">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="santea" layoutX="443.0" layoutY="258.0" prefHeight="28.0" prefWidth="90.0">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="303.0" layoutY="124.0" prefHeight="23.0" prefWidth="74.0" text="Poids : " textFill="#df1c1c">
+               <font>
+                  <Font name="System Bold Italic" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="303.0" layoutY="174.0" prefHeight="28.0" prefWidth="130.0" text="Poids Ideale : " textFill="#df1c1c">
+               <font>
+                  <Font name="System Bold Italic" size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="303.0" layoutY="202.0" prefHeight="23.0" prefWidth="74.0" text="IMC : " textFill="#df1c1c">
+               <font>
+                  <Font name="System Bold Italic" size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
