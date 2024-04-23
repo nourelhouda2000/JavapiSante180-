@@ -81,8 +81,8 @@ public class User {
 
     public void setRole(int role) {
         this.role = role;
+        initializeRoleAsString(); // Appel pour initialiser roleAsString
     }
-
 
     public String getRoleAsString() {
         return roleAsString;
@@ -91,7 +91,22 @@ public class User {
     public void setRoleAsString(String roleAsString) {
         this.roleAsString = roleAsString;
     }
-
+    private void initializeRoleAsString() {
+        switch (role) {
+            case 0:
+                roleAsString = "Admin";
+                break;
+            case 1:
+                roleAsString = "Doctor";
+                break;
+            case 2:
+                roleAsString = "Patient";
+                break;
+            default:
+                roleAsString = "Unknown";
+                break;
+        }
+    }
     @Override
     public String toString() {
         return "User{" +

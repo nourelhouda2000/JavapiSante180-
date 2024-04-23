@@ -29,7 +29,7 @@ public class UserServices implements IservicesUser <User>{
 
     // Méthode pour valider le rôle de l'utilisateur
     private boolean isValidRole(int role) {
-        return role >= 0 && role <= 2; // Suppose que les rôles valides sont 0 pour 'admin', 1 pour 'doctor' et 2 pour 'patient'
+        return role >= 0 && role <= 2;
     }
 
     private boolean isValidSexe(String sexe) {
@@ -129,7 +129,12 @@ public class UserServices implements IservicesUser <User>{
             successAlert.showAndWait();
            // System.out.println("Utilisateur ajouté avec succès");
         } catch (SQLException e) {
-            System.out.println("Erreur lors de l'ajout de l'utilisateur : " + e.getMessage());
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Information Message");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Erreur lors de l'ajout de l'utilisateur : " + e.getMessage());
+            successAlert.showAndWait();
+           // System.out.println("Erreur lors de l'ajout de l'utilisateur : " + e.getMessage());
         }
     }
 

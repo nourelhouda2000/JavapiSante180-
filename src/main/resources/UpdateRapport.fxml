@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.TextField?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RapportControllers">
+  <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <AnchorPane layoutX="3.0" layoutY="6.0" prefHeight="588.0" prefWidth="790.0" stylesheets="@java.css">
+               <styleClass>
+                  <String fx:value="update-btn" />
+                  <String fx:value="shadow" />
+               </styleClass>
+               <children>
+                  <AnchorPane layoutX="9.0" layoutY="11.0" prefHeight="570.0" prefWidth="774.0" stylesheets="@java.css">
+                     <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <children>
+                        <TextField fx:id="IDRDVRapport" layoutX="272.0" layoutY="81.0" prefHeight="24.0" prefWidth="230.0" styleClass="textfield" stylesheets="@java.css" />
+                        <ImageView fitHeight="553.0" fitWidth="602.0" layoutX="212.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@slider-img.jpg" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="Ajouter_rapport" layoutX="43.0" layoutY="243.0" mnemonicParsing="false" onAction="#AjouterRapport" prefHeight="38.0" prefWidth="239.0" stylesheets="@java.css" text="ADD">
+                           <styleClass>
+                              <String fx:value="nav-form" />
+                              <String fx:value="nav-Select" />
+                           </styleClass></Button>
+                        <TextField fx:id="Rapport_Ajou" layoutX="124.0" layoutY="153.0" prefHeight="31.0" prefWidth="218.0" styleClass="textfield" stylesheets="@java.css" />
+                        <Text fill="#41c741" layoutX="43.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rapport:" wrappingWidth="146.86367797851562">
+                           <font>
+                              <Font name="System Italic" size="21.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#2d402d" layoutX="30.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add new report :" wrappingWidth="458.8636474609375">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
