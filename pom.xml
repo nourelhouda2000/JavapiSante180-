@@ -76,6 +76,7 @@
         </dependency>
 
 
+
         <dependency>
             <groupId>de.jensd</groupId>
             <artifactId>fontawesomefx-fontawesome</artifactId>

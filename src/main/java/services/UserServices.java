@@ -185,7 +185,7 @@ public class UserServices implements IservicesUser <User>{
             }
 
             // Préparation de la requête SQL pour la mise à jour des informations de l'utilisateur
-            String query = "UPDATE user SET nomuser = ?, prenomuser = ?, ageuser = ?, sexe = ?, email = ?, mdp = ?, role = ? WHERE id_user = ?";
+            String query = "UPDATE user SET nomuser = ?, prenomuser = ?, ageuser = ?, sexe = ?, email = ?, role = ? WHERE id_user = ?";
             PreparedStatement pst = MyDB.getInstance().getConnection().prepareStatement(query);
 
             // Paramètres pour la mise à jour
@@ -194,9 +194,9 @@ public class UserServices implements IservicesUser <User>{
             pst.setString(3, user.getAgeuser());
             pst.setString(4, user.getSexe());
             pst.setString(5, user.getEmail());
-            pst.setString(6, user.getMdp());
-            pst.setInt(7, user.getRole());
-            pst.setInt(8, user.getIdUser());
+
+            pst.setInt(6, user.getRole());
+            pst.setInt(7, user.getIdUser());
 
             // Exécution de la requête
             int rowsUpdated = pst.executeUpdate();
@@ -231,6 +231,57 @@ public class UserServices implements IservicesUser <User>{
     }
 
 
+
+    public boolean updateUserpwdprofil1(User user) {
+        try {
+            String query = "UPDATE user SET nomuser = ?, prenomuser = ?, mdp = ? WHERE id_user = ?";
+            PreparedStatement pst = MyDB.getInstance().getConnection().prepareStatement(query);
+
+            // Paramètres pour la mise à jour
+            pst.setString(1, user.getNomuser());
+            pst.setString(2, user.getPrenomuser());
+            pst.setString(3, user.getMdp());
+
+            pst.setInt(4, user.getIdUser());
+
+            // Exécution de la requête
+            int rowsUpdated = pst.executeUpdate();
+
+            // Vérification si la mise à jour a réussi
+            if (rowsUpdated > 0) {
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Information Message");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("user mis à jour avec succès !");
+                successAlert.showAndWait();
+                // System.out.println("user mis à jour avec succès !");
+                return true;
+            } else {
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Information Message");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Aucun user mis à jour.");
+                successAlert.showAndWait();
+                // System.out.println("Aucun user mis à jour.");
+                return false;
+            }
+        } catch (SQLException e) {
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Information Message");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Erreur lors de la mise à jour de l'utilisateur : " + e.getMessage());
+            successAlert.showAndWait();
+            //System.out.println("Erreur lors de la mise à jour de l'utilisateur : " + e.getMessage());
+            return false;
+        }
+    }
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(title);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
 
     public boolean deleteUser(User user) {
@@ -315,40 +366,70 @@ public class UserServices implements IservicesUser <User>{
 
 
 
-    public boolean loginUser(String email, String password) {
+    public boolean loginUser(String email, String mdp) {
         try {
-            // Requête SQL pour vérifier les informations de connexion
+            // Query to verify login credentials
             String query = "SELECT * FROM user WHERE email = ? AND mdp = ?";
-            PreparedStatement pst = MyDB.getInstance().getConnection().prepareStatement(query);
-            pst.setString(1, email);
-            pst.setString(2, password);
-            ResultSet rs = pst.executeQuery();
-
-            // Si un utilisateur correspondant est trouvé, la connexion est réussie
-            if (rs.next()) {
-                // Vous pouvez ajouter du code supplémentaire ici si vous souhaitez effectuer des actions spécifiques après la connexion réussie
-                // Par exemple, vous pourriez charger les informations de l'utilisateur connecté dans une session.
-                return true;
-            } else {
-                // Aucun utilisateur correspondant trouvé
-                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                successAlert.setTitle("Information Message");
-                successAlert.setHeaderText(null);
-                successAlert.setContentText("Identifiants invalides. Veuillez vérifier votre email et votre mot de passe.");
-                successAlert.showAndWait();
-                return false;
+            try (PreparedStatement pst = MyDB.getInstance().getConnection().prepareStatement(query)) {
+                pst.setString(1, email);
+                pst.setString(2, mdp);
+                try (ResultSet rs = pst.executeQuery()) {
+                    if (rs.next()) {
+                        // User authenticated successfully
+                        return true;
+                    } else {
+                        // Invalid credentials
+                        return false;
+                    }
+                }
             }
         } catch (SQLException e) {
-            // Gérer les exceptions SQL
-            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-            successAlert.setTitle("Information Message");
-            successAlert.setHeaderText(null);
-            successAlert.setContentText("Erreur lors de la connexion : " + e.getMessage());
-            successAlert.showAndWait();
+            // Handle SQL exceptions
+            e.printStackTrace(); // Log the exception for debugging
+            // Display a generic error message to the user
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("Error");
+            errorAlert.setHeaderText(null);
+            errorAlert.setContentText("An error occurred while logging in. Please try again later.");
+            errorAlert.showAndWait();
             return false;
         }
     }
 
+    // Method to get the name of the user based on email
+    public User getUserByEmail(String email) {
+        try {
+            // Query to retrieve the user based on email
+            String query = "SELECT id_user, nomuser, prenomuser, ageuser, sexe, email, mdp, role FROM user WHERE email = ?";
+            PreparedStatement pst = MyDB.getInstance().getConnection().prepareStatement(query);
+            pst.setString(1, email);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                User user = new User();
+                user.setIdUser(rs.getInt("id_user"));
+                user.setNomuser(rs.getString("nomuser"));
+                user.setPrenomuser(rs.getString("prenomuser"));
+                user.setAgeuser(rs.getString("ageuser"));
+                user.setSexe(rs.getString("sexe"));
+                user.setEmail(rs.getString("email"));
+                user.setMdp(rs.getString("mdp"));
+                user.setRole(rs.getInt("role"));
+                return user;
+            } else {
+                return null; // If no user corresponding to the email is found, return null
+            }
+        } catch (SQLException e) {
+            // Handle SQL exceptions
+            e.printStackTrace(); // Log the exception for debugging
+            // Display a generic error message to the user
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("Error");
+            errorAlert.setHeaderText(null);
+            errorAlert.setContentText("An error occurred while retrieving user information. Please try again later.");
+            errorAlert.showAndWait();
+            return null;
+        }
+    }
 
 
 
