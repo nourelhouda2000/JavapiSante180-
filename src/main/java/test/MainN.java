@@ -1,7 +1,6 @@
 package test;
 
 
-import entities.Rendezvous;
 import entities.User;
 import services.UserServices;
 import utils.MyDB;

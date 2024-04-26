@@ -286,7 +286,7 @@ public class RendezvousServices implements IservicesRendezvous<Rendezvous> {
             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
             successAlert.setTitle("Information Message");
             successAlert.setHeaderText(null);
-            successAlert.setContentText("Erreur lors de la mise à jour du rendez-vous : " + e.getMessage());
+            successAlert.setContentText("Il n'est pas autorisé de supprimer tous les rendez-vous avec des rapports et tous les rendez-vous avec rapport enregistré ");
             successAlert.showAndWait();
 
         }

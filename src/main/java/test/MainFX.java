@@ -15,19 +15,13 @@ public class MainFX extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Rendezvous.fxml"));
-        try {
-            Parent root = loader.load();
+        Parent root = loader.load();
 
-            Scene sc = new Scene(root);
-            primaryStage.setScene(sc);
-            primaryStage.show();
-
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        Scene sc = new Scene(root);
+        primaryStage.setScene(sc);
+        primaryStage.show();
 
 
     }

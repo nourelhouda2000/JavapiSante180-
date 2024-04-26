@@ -3,6 +3,7 @@
 <?import com.gluonhq.charm.glisten.control.TextField?>
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,34 +21,35 @@
                   <String fx:value="shadow" />
                </styleClass>
                <children>
-                  <AnchorPane layoutX="9.0" layoutY="11.0" prefHeight="570.0" prefWidth="774.0" stylesheets="@java.css">
+                  <AnchorPane layoutX="9.0" layoutY="11.0" prefHeight="570.0" prefWidth="764.0" stylesheets="@java.css">
                      <styleClass>
                         <String fx:value="white-bg" />
                         <String fx:value="shadow" />
                      </styleClass>
                      <children>
-                        <TextField fx:id="IDRDVRapport" layoutX="272.0" layoutY="81.0" prefHeight="24.0" prefWidth="230.0" styleClass="textfield" stylesheets="@java.css" />
-                        <ImageView fitHeight="553.0" fitWidth="602.0" layoutX="212.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="566.0" fitWidth="612.0" layoutX="181.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@slider-img.jpg" />
+                              <Image url="@slider-img.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="Ajouter_rapport" layoutX="43.0" layoutY="243.0" mnemonicParsing="false" onAction="#AjouterRapport" prefHeight="38.0" prefWidth="239.0" stylesheets="@java.css" text="ADD">
-                           <styleClass>
-                              <String fx:value="nav-form" />
-                              <String fx:value="nav-Select" />
-                           </styleClass></Button>
-                        <TextField fx:id="Rapport_Ajou" layoutX="124.0" layoutY="153.0" prefHeight="31.0" prefWidth="218.0" styleClass="textfield" stylesheets="@java.css" />
+                        <Text fill="#2d402d" layoutX="30.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update report :" wrappingWidth="458.8636474609375">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="IDRDVRapport" disable="true" layoutX="111.0" layoutY="99.0" prefHeight="24.0" prefWidth="230.0" styleClass="textfield" stylesheets="@java.css" visible="false" />
                         <Text fill="#41c741" layoutX="43.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rapport:" wrappingWidth="146.86367797851562">
                            <font>
                               <Font name="System Italic" size="21.0" />
                            </font>
                         </Text>
-                        <Text fill="#2d402d" layoutX="30.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add new report :" wrappingWidth="458.8636474609375">
-                           <font>
-                              <Font size="32.0" />
-                           </font>
-                        </Text>
+                        <TextField fx:id="Rapport_Update" layoutX="124.0" layoutY="153.0" prefHeight="31.0" prefWidth="218.0" styleClass="textfield" stylesheets="@java.css" />
+                        <Button fx:id="Update_rapport_btn" layoutX="43.0" layoutY="243.0" mnemonicParsing="false" onAction="#updateRapport" prefHeight="43.0" prefWidth="239.0" stylesheets="@java.css" text="Update">
+                           <styleClass>
+                              <String fx:value="nav-form" />
+                              <String fx:value="nav-Select" />
+                           </styleClass></Button>
+                        <Label fx:id="saisie_update" layoutX="149.0" layoutY="193.0" prefHeight="28.0" prefWidth="183.0" textFill="red" />
                      </children>
                   </AnchorPane>
                </children>

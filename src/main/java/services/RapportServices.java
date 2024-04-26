@@ -1,7 +1,7 @@
 package services;
 
 import entities.Rapport;
-import entities.Rendezvous;
+import javafx.scene.control.Alert;
 import utils.MyDB;
 
 import java.sql.PreparedStatement;
@@ -26,12 +26,11 @@ public class RapportServices implements IservicesRapport<Rapport> {
             return false;
         }
     }
-    public boolean entityExistsInRendezvous(Rapport rapport, int idRendezvous) {
+    public boolean entityExistsInRendezvous(int idRendezvous) {
         try {
-            String requete = "SELECT * FROM Rapport WHERE rapport = ? AND idR = ?";
+            String requete = "SELECT * FROM Rapport WHERE idR = ?";
             PreparedStatement pst = MyDB.getInstance().getConnection().prepareStatement(requete);
-            pst.setString(1, rapport.getRapport());
-            pst.setInt(2, idRendezvous);
+            pst.setInt(1, idRendezvous);
             ResultSet rs = pst.executeQuery();
             return rs.next();
         } catch (SQLException e) {
@@ -39,6 +38,7 @@ public class RapportServices implements IservicesRapport<Rapport> {
             return false;
         }
     }
+
 
     public int getIdRapportFromDatabase(Rapport rapport) {
         int id_rapport = -1;
@@ -63,9 +63,19 @@ public class RapportServices implements IservicesRapport<Rapport> {
             pst.setInt(1, idRapport);
             pst.setInt(2, idR);
             pst.executeUpdate();
-            System.out.println("Rendezvous mis à jour avec l'ID du rapport !");
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Information Message");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Rendezvous mis à jour avec l'ID du rapport !");
+            successAlert.showAndWait();
+           // System.out.println("Rendezvous mis à jour avec l'ID du rapport !");
         } catch (SQLException e) {
-            System.out.println("Erreur lors de la mise à jour du rendezvous avec l'ID du rapport : " + e.getMessage());
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Information Message");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Erreur lors de la mise à jour du rendezvous avec l'ID du rapport : " + e.getMessage());
+            successAlert.showAndWait();
+            //System.out.println("Erreur lors de la mise à jour du rendezvous avec l'ID du rapport : " + e.getMessage());
         }
     }
 
@@ -73,10 +83,10 @@ public class RapportServices implements IservicesRapport<Rapport> {
     public void addEntity2Rapport(Rapport rapport, int idR) {
         try {
             // Vérifier si le champ Rapport est vide
-            if (rapport.getRapport().isEmpty()) {
+           /* if (rapport.getRapport().isEmpty()) {
                 System.out.println("Le champ rapport fergh............");
                 return;
-            }
+            }*/
 
             if (entityExists(rapport)) {
                 System.out.println("Rapport mawjouuuuud .... ");
@@ -103,7 +113,6 @@ public class RapportServices implements IservicesRapport<Rapport> {
 
 
 
-
     public Rapport getRapportByRendezvousId(int idRendezvous) {
         Rapport rapport = null;
         try {
@@ -118,7 +127,12 @@ public class RapportServices implements IservicesRapport<Rapport> {
                 rapport.setIdR(rs.getInt("idR"));
             }
         } catch (SQLException e) {
-            System.out.println("Erreur lors de la récupération du rapport par identifiant de rendez-vous : " + e.getMessage());
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Information Message");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Erreur lors de la récupération du rapport par identifiant de rendez-vous : " + e.getMessage());
+            successAlert.showAndWait();
+            //System.out.println("Erreur lors de la récupération du rapport par identifiant de rendez-vous : " + e.getMessage());
         }
         return rapport;
     }
@@ -133,7 +147,61 @@ public class RapportServices implements IservicesRapport<Rapport> {
 
 
 
+    public boolean entityExistsById(int idRapport) {
+        try {
+            String requete = "SELECT * FROM Rapport WHERE id_rapport = ?";
+            PreparedStatement pst = MyDB.getInstance().getConnection().prepareStatement(requete);
+            pst.setInt(1, idRapport);
+            ResultSet rs = pst.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la vérification de l'existence du rapport par identifiant : " + e.getMessage());
+            return false;
+        }
+    }
 
+
+
+    public void updateRapport2(Rapport rapport, int idR) {
+        try {
+            // Vérifier si le rapport existe dans la base de données en utilisant l'identifiant fourni
+            if (!entityExistsById(idR)) {
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Erreur");
+                errorAlert.setHeaderText(null);
+                errorAlert.setContentText("Aucun rapport trouvé avec cet identifiant.");
+                errorAlert.showAndWait();
+                return;
+            }
+
+            // Mettre à jour le rapport dans la base de données
+            String requete = "UPDATE Rapport SET rapport=? WHERE id_rapport=?";
+            PreparedStatement pst = MyDB.getInstance().getConnection().prepareStatement(requete);
+            pst.setString(1, rapport.getRapport());
+            pst.setInt(2, idR);
+            int rowsAffected = pst.executeUpdate();
+
+            if (rowsAffected > 0) {
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Succès");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Rapport mis à jour avec succès !");
+                successAlert.showAndWait();
+            } else {
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Erreur");
+                errorAlert.setHeaderText(null);
+                errorAlert.setContentText("Erreur lors de la mise à jour du rapport.");
+                errorAlert.showAndWait();
+            }
+        } catch (SQLException e) {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("Erreur");
+            errorAlert.setHeaderText(null);
+            errorAlert.setContentText("Erreur lors de la mise à jour du rapport : " + e.getMessage());
+            errorAlert.showAndWait();
+        }
+    }
 
 
 
@@ -154,17 +222,37 @@ public class RapportServices implements IservicesRapport<Rapport> {
             int rowsAffected = pst.executeUpdate();
 
             if (rowsAffected > 0) {
-                System.out.println("Rapport mis à jour avec succès !");
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Information Message");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Rapport mis à jour avec succès !");
+                successAlert.showAndWait();
+               // System.out.println("Rapport mis à jour avec succès !");
             } else {
                 // Vérifier si le rapport existe dans la base de données avec l'identifiant donné
                 if (entityExists(rapport)) {
-                    System.out.println("Le rapport a déjà été mis à jour.");
+                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                    successAlert.setTitle("Information Message");
+                    successAlert.setHeaderText(null);
+                    successAlert.setContentText("Le rapport a déjà été mis à jour.");
+                    successAlert.showAndWait();
+                   // System.out.println("Le rapport a déjà été mis à jour.");
                 } else {
-                    System.out.println("Aucun rapport trouvé avec cet identifiant.");
+                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                    successAlert.setTitle("Information Message");
+                    successAlert.setHeaderText(null);
+                    successAlert.setContentText("Aucun rapport trouvé avec cet identifiant.");
+                    successAlert.showAndWait();
+                    //System.out.println("Aucun rapport trouvé avec cet identifiant.");
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erreur lors de la mise à jour du rapport : " + e.getMessage());
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Information Message");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Erreur lors de la mise à jour du rapport : " + e.getMessage());
+            successAlert.showAndWait();
+            //System.out.println("Erreur lors de la mise à jour du rapport : " + e.getMessage());
         }
     }
 
@@ -193,10 +281,19 @@ public class RapportServices implements IservicesRapport<Rapport> {
             PreparedStatement pstDeleteRapport = MyDB.getInstance().getConnection().prepareStatement(deleteRapportQuery);
             pstDeleteRapport.setInt(1, rapport.getId_rapport());
             pstDeleteRapport.executeUpdate();
-
-            System.out.println("Rapport supprimé avec succès !");
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Information Message");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Rapport supprimé avec succès !");
+            successAlert.showAndWait();
+           // System.out.println("Rapport supprimé avec succès !");
         } catch (SQLException e) {
-            System.out.println("Erreur lors de la suppression du rapport : " + e.getMessage());
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Information Message");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Erreur lors de la suppression du rapport : " + e.getMessage());
+            successAlert.showAndWait();
+            //System.out.println("Erreur lors de la suppression du rapport : " + e.getMessage());
         }
     }
 

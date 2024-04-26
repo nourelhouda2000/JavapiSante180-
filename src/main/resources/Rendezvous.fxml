@@ -1,14 +1,506 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RendezvousControllers">
+    <children>
+        <AnchorPane fx:id="main_form" prefHeight="348.0" prefWidth="506.0">
+            <children>
+                <BorderPane layoutX="7.0" layoutY="87.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <top>
+                        <AnchorPane prefHeight="45.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <AnchorPane layoutX="279.0" layoutY="2.0" prefHeight="37.0" prefWidth="1418.0" styleClass="label-info" stylesheets="@java.css" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                    <children>
+                                        <Button fx:id="minimize" layoutX="1291.0" layoutY="12.0" minWidth="37.0" mnemonicParsing="false" onAction="#minimize" prefHeight="22.0" prefWidth="62.0" styleClass="minimize" stylesheets="@java.css">
+                                            <graphic>
+                                                <FontAwesomeIconView glyphName="MINUS" styleClass="minimize" />
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="close" layoutX="1342.0" layoutY="12.0" minHeight="20.0" mnemonicParsing="false" onAction="#close" prefHeight="20.0" prefWidth="54.0" styleClass="close" stylesheets="@java.css">
+                                            <graphic>
+                                                <FontAwesomeIconView glyphName="CLOSE" />
+                                            </graphic>
+                                        </Button>
+                              <ImageView fitHeight="46.0" fitWidth="65.0" layoutX="21.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@logo.png" />
+                                 </image>
+                              </ImageView>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </top>
+                    <left>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <AnchorPane layoutX="6.0" layoutY="-4.0" prefHeight="654.0" prefWidth="217.0" styleClass="nav-form" stylesheets="@java.css" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="-23.0" AnchorPane.topAnchor="-4.0">
+                                    <children>
+                                        <Label layoutX="19.0" layoutY="83.0" prefHeight="35.0" prefWidth="165.0" text="Welcome ," textFill="#281a21">
+                                            <font>
+                                                <Font name="Bell MT Italic" size="24.0" />
+                                            </font>
+                                        </Label>
+                                        <Line endX="65.09999084472656" endY="-1.52587890625E-5" layoutX="122.0" layoutY="160.0" startX="-100.0" stroke="#0000000e" />
+                                        <Button fx:id="Home_page" layoutX="17.0" layoutY="219.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@java.css" text="Home">
+                                            <font>
+                                                <Font name="Berlin Sans FB" size="15.0" />
+                                            </font>
+                                            <graphic>
+                                                <FontAwesomeIconView glyphName="HOME" size="25" />
+                                            </graphic></Button>
+                                        <Button fx:id="user_page" layoutX="15.0" layoutY="263.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="174.0" styleClass="nav-btn" stylesheets="@java.css" text="User">
+                                            <font>
+                                                <Font name="Berlin Sans FB" size="15.0" />
+                                            </font>
+                                            <graphic>
+                                                <FontAwesomeIconView glyphName="USERS" size="25" />
+                                            </graphic></Button>
+                                        <Button fx:id="Rendezvouspage" layoutX="17.0" layoutY="310.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="173.0" styleClass="nav-btn" stylesheets="@java.css" text="Rendez-vous">
+                                            <font>
+                                                <Font name="Berlin Sans FB" size="15.0" />
+                                            </font>
+                                            <graphic>
+                                                <FontAwesomeIconView glyphName="PLUS" selectionFill="BLACK" size="25" tabSize="0" />
+                                            </graphic></Button>
+                                        <Button fx:id="logout" layoutX="20.0" layoutY="586.0" minWidth="39.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="54.0" styleClass="logout" stylesheets="@java.css">
+                                            <graphic>
+                                                <FontAwesomeIconView glyphName="SIGN_OUT" size="25" />
+                                            </graphic>
+                                 <textFill>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="1.0" green="1.0" blue="1.0" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </textFill>
+                                        </Button>
+                                        <Label layoutX="84.0" layoutY="595.0" text="Logout" textFill="#f2eeee" />
+                                        <Button fx:id="Reclamationpage" layoutX="15.0" layoutY="513.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="173.0" styleClass="nav-btn" stylesheets="@java.css" text="Reclamation">
+                                            <font>
+                                                <Font name="Berlin Sans FB" size="15.0" />
+                                            </font>
+                                            <graphic>
+                                                <FontAwesomeIconView glyphName="PENCIL" size="25" tabSize="0" />
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="Recettepage" layoutX="16.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="173.0" styleClass="nav-btn" stylesheets="@java.css" text="Recette">
+                                            <font>
+                                                <Font name="Berlin Sans FB" size="15.0" />
+                                            </font>
+                                            <graphic>
+                                                <FontAwesomeIconView glyphName="FILE" size="25" tabSize="0" />
+                                            </graphic>
+                                        </Button>
+                              <Label fx:id="NOMUSER" layoutX="84.0" layoutY="120.0" prefHeight="38.0" prefWidth="122.0" text="Label">
+                                 <font>
+                                    <Font name="Bookshelf Symbol 7" size="25.0" />
+                                 </font>
+                                 <textFill>
+                                    <LinearGradient endX="1.0" endY="1.0">
+                                       <stops>
+                                          <Stop>
+                                             <color>
+                                                <Color />
+                                             </color>
+                                          </Stop>
+                                          <Stop offset="1.0">
+                                             <color>
+                                                <Color red="0.31578946113586426" green="0.28070175647735596" blue="0.2982456088066101" />
+                                             </color>
+                                          </Stop>
+                                       </stops>
+                                    </LinearGradient>
+                                 </textFill></Label>
+                              <Button fx:id="Profil_page" layoutX="19.0" layoutY="170.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@java.css" text="Profile">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="15.0" />
+                                 </font>
+                                 <graphic>
+                                    <FontAwesomeIconView glyphName="USER" size="25" />
+                                 </graphic>
+                              </Button>
+                              <ImageView fitHeight="75.0" fitWidth="77.0" layoutX="64.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@3135715.png" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="Recettepage1" layoutX="15.0" layoutY="408.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="173.0" styleClass="nav-btn" stylesheets="@java.css" text="Activités">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="15.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="34.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@exercise.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="Recettepage11" layoutX="18.0" layoutY="462.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="173.0" styleClass="nav-btn" stylesheets="@java.css" text="Santé">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="15.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="29.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@sant-jordi.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </left>
+                    <center>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <AnchorPane prefHeight="550.0" prefWidth="898.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <AnchorPane fx:id="User_form" layoutX="107.0" layoutY="116.0" prefHeight="554.4" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <AnchorPane layoutX="31.0" layoutY="3.0" prefHeight="636.0" prefWidth="1161.0" stylesheets="@java.css">
+                                                    <children>
+                                                        <AnchorPane layoutX="487.0" layoutY="7.0" prefHeight="618.0" prefWidth="670.0" stylesheets="@java.css">
+                                                            <styleClass>
+                                                                <String fx:value="rose-bg" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass>
+                                                            <children>
+                                                                <TextField fx:id="Searchuser" layoutX="64.0" layoutY="35.0" prefHeight="26.0" prefWidth="233.0" promptText="seach" styleClass="search" stylesheets="@java.css" />
+                                                                <FontAwesomeIconView glyphName="SEARCH" layoutX="71.0" layoutY="53.0" />
+                                                <ListView fx:id="Listview_user" layoutX="12.0" layoutY="71.0" prefHeight="503.0" prefWidth="650.0" styleClass="update-btn" stylesheets="@java.css" />
+                                                <Button fx:id="Select_user" layoutX="9.0" layoutY="574.0" mnemonicParsing="false" onAction="#selectUser" prefHeight="36.0" prefWidth="660.0" styleClass="update-btn" stylesheets="@java.css" text="Select" textFill="#595757" />
+                                                            </children>
+                                                        </AnchorPane>
+                                                        <Text fill="#6b6568" layoutX="41.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :" wrappingWidth="79.99558448791504" />
+                                                        <Text fill="#6b6568" layoutX="33.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom :" wrappingWidth="71.4341049194336" />
+                                                        <Text fill="#6b6568" layoutX="42.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age :" wrappingWidth="79.37214088439941" />
+                                                        <TextField fx:id="nom_ajou" layoutX="139.0" layoutY="87.0" prefHeight="29.0" prefWidth="153.0" styleClass="label-info" stylesheets="@java.css" />
+                                                        <TextField fx:id="prenom_ajou" layoutX="138.0" layoutY="131.0" prefHeight="32.0" prefWidth="154.0" styleClass="label-info" stylesheets="@java.css" />
+                                                        <TextField fx:id="age_ajou" layoutX="138.0" layoutY="180.0" prefHeight="30.0" prefWidth="154.0" styleClass="label-info" stylesheets="@java.css" />
+                                                        <Text fill="#6b6568" layoutX="41.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sexe:" wrappingWidth="56.97214698791504" />
+                                                        <Text fill="#6b6568" layoutX="40.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role:" wrappingWidth="56.97214698791504" />
+                                                        <Text fill="#6b6568" layoutX="41.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email :" wrappingWidth="79.99558448791504" />
+                                                        <TextField fx:id="email_ajou" layoutX="138.0" layoutY="304.0" prefHeight="31.0" prefWidth="154.0" styleClass="label-info" stylesheets="@java.css" />
+                                                        <Button fx:id="ADD_user" layoutX="53.0" layoutY="493.0" mnemonicParsing="false" onAction="#addUser" prefHeight="36.0" prefWidth="102.0" styleClass="update-btn" stylesheets="@java.css" text="ADD" textFill="#595757" />
+                                                        <Button fx:id="Update_user" layoutX="197.0" layoutY="493.0" mnemonicParsing="false" onAction="#updateUser" prefHeight="36.0" prefWidth="102.0" styleClass="update-btn" stylesheets="@java.css" text="Update" textFill="#595757" />
+                                                        <Button fx:id="Delete_user" layoutX="325.0" layoutY="493.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="36.0" prefWidth="102.0" styleClass="update-btn" stylesheets="@java.css" text="Delete" textFill="#595757" />
+                                                        <Button fx:id="Clear_user" layoutX="49.0" layoutY="435.0" mnemonicParsing="false" onAction="#addUserReset" prefHeight="36.0" prefWidth="379.0" styleClass="update-btn" stylesheets="@java.css" text="Clear" textFill="#595757" />
+                                                        <TextField fx:id="sexe_ajou" layoutX="139.0" layoutY="233.0" prefHeight="32.0" prefWidth="154.0" promptText="Homme" styleClass="label-info" stylesheets="@java.css" />
+                                                        <TextField fx:id="role_ajou" layoutX="138.0" layoutY="358.0" prefHeight="32.0" prefWidth="154.0" promptText="doctor" styleClass="label-info" stylesheets="@java.css" />
+                                                        <TextField fx:id="ID_user" disable="true" layoutX="62.0" layoutY="32.0" prefHeight="30.0" prefWidth="154.0" styleClass="label-info" stylesheets="@java.css" visible="false" />
+                                                    </children>
+                                                    <styleClass>
+                                                        <String fx:value="rose-bg" />
+                                                        <String fx:value="shadow" />
+                                                    </styleClass>
+                                                </AnchorPane>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane fx:id="RDV_form" layoutX="28.0" layoutY="6.0" prefHeight="631.0" prefWidth="1171.0" stylesheets="@java.css">
+                                            <styleClass>
+                                                <String fx:value="rose-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <AnchorPane layoutX="519.0" layoutY="7.0" prefHeight="626.0" prefWidth="644.0" stylesheets="@java.css">
+                                                    <styleClass>
+                                                        <String fx:value="rose-bg" />
+                                                        <String fx:value="shadow" />
+                                                    </styleClass>
+                                                    <children>
+                                                        <TextField fx:id="Search_RDV" layoutX="73.0" layoutY="28.0" onAction="#rechercherRendezvous" prefHeight="26.0" prefWidth="254.0" promptText="search" styleClass="search" stylesheets="@java.css" />
+                                                        <FontAwesomeIconView glyphName="SEARCH" layoutX="80.0" layoutY="45.0" selectionEnd="0" size="10" wrappingWidth="15.7000093460083" />
+                                                        <ListView fx:id="Listview_RDV" accessibleRole="HYPERLINK" blendMode="SRC_ATOP" editable="true" layoutX="14.0" layoutY="65.0" prefHeight="522.0" prefWidth="625.0" stylesheets="@java.css">
+                                             <styleClass>
+                                                <String fx:value="nav-Select" />
+                                                <String fx:value="update-btn" />
+                                                <String fx:value="table-column" />
+                                             </styleClass>
+                                             <effect>
+                                                <Glow level="1.0">
+                                                   <input>
+                                                      <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
+                                                   </input>
+                                                </Glow>
+                                             </effect></ListView>
+                                          <Button fx:id="pdf_rdv" layoutX="479.0" layoutY="18.0" mnemonicParsing="false" onAction="#generatePDF11" prefHeight="36.0" prefWidth="117.0" styleClass="update-btn" stylesheets="@java.css" text="PDF" textFill="#595757" />
+                                          <Button fx:id="select_RDV" layoutY="587.0" mnemonicParsing="false" onAction="#selectRendezVous" prefHeight="36.0" prefWidth="642.0" styleClass="update-btn" stylesheets="@java.css" text="Select" textFill="#595757" />
+                                                    </children>
+                                                </AnchorPane>
+                                                <Text fill="#6b6568" layoutX="26.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date du Rendez-vous :" wrappingWidth="182.74530029296875">
+                                                    <font>
+                                                        <Font name="Berlin Sans FB" size="18.0" />
+                                                    </font>
+                                                </Text>
+                                                <TextField fx:id="heur_Ajou" layoutX="223.0" layoutY="97.0" prefHeight="29.0" prefWidth="221.0" promptText="HH:00 ou HH:30" styleClass="textfield" stylesheets="@java.css" />
+                                                <Text fill="#696667" fontSmoothingType="LCD" layoutX="26.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heur du rendez-vous :" wrappingWidth="175.5452880859375">
+                                                    <font>
+                                                        <Font name="Berlin Sans FB" size="18.0" />
+                                                    </font>
+                                                </Text>
+                                                <Button fx:id="ADD_RDV" layoutX="80.0" layoutY="245.0" minWidth="52.0" mnemonicParsing="false" onAction="#addRDV" prefHeight="38.0" prefWidth="110.0" styleClass="add-btn" stylesheets="@java.css" text="ADD" textFill="#bded91" />
+                                                <Button fx:id="Update_RDV" layoutX="316.0" layoutY="246.0" mnemonicParsing="false" onAction="#updateRDV" prefHeight="36.0" prefWidth="99.0" styleClass="update-btn" stylesheets="@java.css" text="Update " textFill="#595757" />
+                                                <Button fx:id="Delete_RDV" layoutX="202.0" layoutY="246.0" mnemonicParsing="false" onAction="#deleteRDV" prefHeight="36.0" prefWidth="102.0" styleClass="delete-btn" stylesheets="@java.css" text="Delete" textFill="#595757" />
+                                                <Button fx:id="Clear_RDV" layoutX="73.0" layoutY="363.0" mnemonicParsing="false" onAction="#addRDVReset" prefHeight="36.0" prefWidth="346.0" styleClass="clear-btn" stylesheets="@java.css" text="Clear" textFill="#c71515" />
+                                                <TextField fx:id="id_R" disable="true" layoutX="233.0" layoutY="511.0" prefHeight="0.0" prefWidth="155.0" promptText="1" styleClass="textfield" stylesheets="@java.css" visible="false" />
+                                                <Button fx:id="Ajouter_Rapport" layoutX="77.0" layoutY="300.0" mnemonicParsing="false" onAction="#ajouterRapport" prefHeight="39.0" prefWidth="116.0" styleClass="add-btn" stylesheets="@java.css" text="ADD Rapport" textFill="#595757" />
+                                                <TextField fx:id="R_Ajou" disable="true" layoutX="223.0" layoutY="151.0" promptText="Rapport" styleClass="textfield" stylesheets="@java.css" visible="false" />
+                                    <DatePicker fx:id="datePicker_RDV" layoutX="221.0" layoutY="42.0" prefHeight="32.0" prefWidth="220.0" styleClass="textfield" stylesheets="@java.css" />
+                                    <Button fx:id="Reff_RDV" layoutX="206.0" layoutY="303.0" mnemonicParsing="false" onAction="#addRDVShowListData" prefHeight="36.0" prefWidth="93.0" styleClass="clear-btn" stylesheets="@java.css" text="Ref" textFill="#595757" />
+                                    <Button fx:id="Updaterapport" layoutX="312.0" layoutY="301.0" mnemonicParsing="false" onAction="#Rapportupdate" prefHeight="38.0" prefWidth="106.0" styleClass="update-btn" stylesheets="@java.css" text="Update  Rapport" textFill="#595757" />
+                                    <Label fx:id="saisie_date" layoutX="246.0" layoutY="74.0" prefHeight="18.0" prefWidth="154.0" textFill="red" />
+                                    <Label fx:id="saisie_heure" layoutX="246.0" layoutY="132.0" prefHeight="18.0" prefWidth="154.0" textFill="red" />
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane fx:id="home_form" layoutX="24.8" prefHeight="650.0" prefWidth="1189.0" stylesheets="@java.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <children>
+                                                <AnchorPane layoutX="13.0" layoutY="11.0" prefHeight="625.0" prefWidth="1175.0" stylesheets="@java.css">
+                                                    <styleClass>
+                                                        <String fx:value="white-bg" />
+                                                        <String fx:value="shadow" />
+                                                    </styleClass>
+                                                    <children>
+                                                        <AnchorPane layoutX="8.0" layoutY="4.0" prefHeight="614.0" prefWidth="1156.0" stylesheets="@java.css">
+                                                            <styleClass>
+                                                                <String fx:value="rose-bg" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass>
+                                                            <children>
+                                                                <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="160.0" prefWidth="323.0" styleClass="hnn-btn" stylesheets="@java.css">
+                                                                    <children>
+                                                                        <FontAwesomeIconView glyphName="USERS" layoutX="14.0" layoutY="98.0" size="60" wrappingWidth="137.30000019073486" />
+                                                                        <Label layoutX="74.0" layoutY="107.0" prefHeight="39.0" prefWidth="153.0" text="Total User" textFill="#e1d8d8">
+                                                                            <font>
+                                                                                <Font size="18.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                    </children>
+                                                                </AnchorPane>
+                                                                <AnchorPane layoutX="388.0" layoutY="19.0" prefHeight="154.0" prefWidth="356.0" styleClass="hnn-btn" stylesheets="@java.css">
+                                                                    <children>
+                                                                        <FontAwesomeIconView glyphName="CHECK" layoutX="14.0" layoutY="98.0" size="60" wrappingWidth="137.30000019073486" />
+                                                                        <Label layoutX="157.0" prefHeight="50.0" prefWidth="77.0" text="578884" textFill="#e1d8d8">
+                                                                            <font>
+                                                                                <Font size="21.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <Label layoutX="83.0" layoutY="100.0" prefHeight="39.0" prefWidth="153.0" text="Total Presents" textFill="#e1d8d8">
+                                                                            <font>
+                                                                                <Font size="18.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                    </children>
+                                                                </AnchorPane>
+                                                                <AnchorPane layoutX="803.0" layoutY="14.0" prefHeight="154.0" prefWidth="320.0" styleClass="hnn-btn" stylesheets="@java.css">
+                                                                    <children>
+                                                                        <FontAwesomeIconView glyphName="MINUS" layoutX="20.0" layoutY="98.0" size="60" />
+                                                                        <Label layoutX="62.0" layoutY="100.0" prefHeight="39.0" prefWidth="149.0" text="Total Inactvie User" textFill="#e1d8d8">
+                                                                            <font>
+                                                                                <Font size="18.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                        <Label layoutX="167.0" layoutY="9.0" prefHeight="50.0" prefWidth="56.0" text="12" textFill="#e1d8d8">
+                                                                            <font>
+                                                                                <Font size="21.0" />
+                                                                            </font>
+                                                                        </Label>
+                                                                    </children>
+                                                                </AnchorPane>
+                                                                <BarChart layoutX="80.0" layoutY="241.0" prefHeight="287.0" prefWidth="759.0" title="User Data Chart">
+                                                                    <xAxis>
+                                                                        <CategoryAxis side="BOTTOM" />
+                                                                    </xAxis>
+                                                                    <yAxis>
+                                                                        <NumberAxis side="LEFT" />
+                                                                    </yAxis>
+                                                                </BarChart>
+                                                                <Label layoutX="160.0" layoutY="19.0" prefHeight="50.0" prefWidth="158.0" text="845790" textFill="#e1d8d8">
+                                                                    <font>
+                                                                        <Font size="21.0" />
+                                                                    </font>
+                                                                </Label>
+                                                            </children>
+                                                        </AnchorPane>
+                                                    </children>
+                                                </AnchorPane>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane fx:id="Recette_form" layoutX="35.2" layoutY="0.8" prefHeight="642.0" prefWidth="1168.0" stylesheets="@java.css" visible="false" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="1.0">
+                                            <children>
+                                                <AnchorPane layoutX="572.0" layoutY="21.0" prefHeight="614.0" prefWidth="588.0" stylesheets="@java.css">
+                                                    <children>
+                                                        <TextField fx:id="search_Rcc1" layoutX="55.0" layoutY="21.0" prefHeight="26.0" prefWidth="246.0" stylesheets="@java.css">
+                                                            <styleClass>
+                                                                <String fx:value="white-bg" />
+                                                                <String fx:value="shadow" />
+                                                            </styleClass>
+                                                        </TextField>
+                                                        <FontAwesomeIconView glyphName="SEARCH" layoutX="75.0" layoutY="39.0" />
+                                                        <ListView fx:id="listeviewnutr" layoutX="30.0" layoutY="61.0" prefHeight="510.0" prefWidth="524.0" styleClass="update-btn" stylesheets="@java.css" />
+                                                      <Button fx:id="selectNut" layoutX="4.0" layoutY="571.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="589.0" styleClass="update-btn" stylesheets="@java.css" text="select" textFill="#595757" />
+                                                    </children>
+                                                    <styleClass>
+                                                        <String fx:value="rose-bg" />
+                                                        <String fx:value="shadow" />
+                                                    </styleClass>
+                                                </AnchorPane>
+                                                <TextField fx:id="calories" layoutX="172.0" layoutY="46.0" prefHeight="29.0" prefWidth="244.0" styleClass="textfield" stylesheets="@java.css" />
+                                                <TextField fx:id="glucide" layoutX="173.0" layoutY="109.0" prefHeight="29.0" prefWidth="246.0" styleClass="textfield" stylesheets="@java.css" />
+                                                <TextField fx:id="lipide" layoutX="172.0" layoutY="161.0" prefHeight="29.0" prefWidth="246.0" styleClass="textfield" stylesheets="@java.css" />
+                                                <Text fill="#6b6568" layoutX="100.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="calories" wrappingWidth="53.6312255859375">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font></Text>
+                                                <Text fill="#6b6568" layoutX="101.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Glucide">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font></Text>
+                                                <Text fill="#6b6568" layoutX="106.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="lipide">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font></Text>
+                                                <Button fx:id="addnutri" layoutX="82.0" layoutY="421.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="109.0" styleClass="update-btn" stylesheets="@java.css" text="ADD" textFill="#595757" />
+                                                <Button fx:id="updatenutr" layoutX="214.0" layoutY="421.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="108.0" styleClass="update-btn" stylesheets="@java.css" text="Update" textFill="#595757" />
+                                                <Button fx:id="deletenutri" layoutX="341.0" layoutY="421.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="112.0" styleClass="update-btn" stylesheets="@java.css" text="Delete" textFill="#595757" />
+                                                <Button fx:id="clear_nutr" layoutX="342.0" layoutY="472.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="115.0" styleClass="update-btn" stylesheets="@java.css" text="Clear" textFill="#595757" />
+                                                <TextField fx:id="proteins" layoutX="173.0" layoutY="213.0" prefHeight="29.0" prefWidth="246.0" styleClass="textfield" stylesheets="@java.css" />
+                                                <TextField fx:id="fibres" layoutX="173.0" layoutY="261.0" prefHeight="29.0" prefWidth="248.0" styleClass="textfield" stylesheets="@java.css" />
+                                                <Text fill="#6b6568" layoutX="99.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Proteins">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font></Text>
+                                                <Text fill="#6b6568" layoutX="105.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fibres">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font></Text>
+                                                <Button fx:id="Recette" layoutX="221.0" layoutY="472.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="108.0" styleClass="update-btn" stylesheets="@java.css" text="Recette" textFill="#595757" />
+                                            </children>
+                                            <styleClass>
+                                                <String fx:value="rose-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                        </AnchorPane>
 
-</AnchorPane>
+                                        <AnchorPane fx:id="Profil_form" layoutX="25.0" layoutY="1.0" prefHeight="648.0" prefWidth="1178.0" visible="false">
+                                 <children>
+                                    <AnchorPane layoutX="6.0" prefHeight="639.0" prefWidth="1186.0" stylesheets="@java.css">
+                                       <children>
+                                          <Text layoutX="376.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :" wrappingWidth="79.99558448791504" />
+                                          <Text layoutX="368.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom :" wrappingWidth="71.4341049194336" />
+                                          <Text layoutX="377.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age :" wrappingWidth="79.37214088439941" />
+                                          <TextField fx:id="nom_profil" layoutX="474.0" layoutY="212.0" prefHeight="30.0" prefWidth="307.0" styleClass="label-info" stylesheets="@java.css" />
+                                          <TextField fx:id="prenom_profil" layoutX="473.0" layoutY="256.0" prefHeight="32.0" prefWidth="306.0" styleClass="label-info" stylesheets="@java.css" />
+                                          <TextField fx:id="age_profil" disable="true" layoutX="473.0" layoutY="305.0" prefHeight="30.0" prefWidth="306.0" styleClass="label-info" stylesheets="@java.css" />
+                                          <Text layoutX="376.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sexe:" wrappingWidth="56.97214698791504" />
+                                          <Text layoutX="379.0" layoutY="557.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role:" wrappingWidth="56.97214698791504" />
+                                          <Text layoutX="376.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email :" wrappingWidth="79.99558448791504" />
+                                          <TextField fx:id="email_profil" disable="true" layoutX="473.0" layoutY="429.0" prefHeight="31.0" prefWidth="310.0" styleClass="label-info" stylesheets="@java.css" />
+                                          <TextField fx:id="sexe_profil" disable="true" layoutX="474.0" layoutY="358.0" prefHeight="32.0" prefWidth="308.0" promptText="Homme" styleClass="label-info" stylesheets="@java.css" />
+                                          <TextField fx:id="role_profil" disable="true" layoutX="477.0" layoutY="537.0" prefHeight="32.0" prefWidth="309.0" promptText="doctor" styleClass="label-info" stylesheets="@java.css" />
+                                          <TextField fx:id="ID_user1" disable="true" layoutX="62.0" layoutY="32.0" prefHeight="30.0" prefWidth="154.0" styleClass="label-info" stylesheets="@java.css" visible="false" />
+                                          <ImageView fitHeight="150.0" fitWidth="220.0" layoutX="488.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@3135715.png" />
+                                             </image>
+                                          </ImageView>
+                                          <TextField fx:id="Password_profil" layoutX="477.0" layoutY="485.0" prefHeight="31.0" prefWidth="308.0" styleClass="label-info" stylesheets="@java.css" />
+                                          <Text layoutX="376.0" layoutY="505.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="79.99558448791504" />
+                                          <Button fx:id="EditUser" layoutX="519.0" layoutY="587.0" mnemonicParsing="false" onAction="#EditUser" prefHeight="26.0" prefWidth="206.0" styleClass="update-btn" stylesheets="@java.css" text="Edit" />
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="rose-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                                        <AnchorPane fx:id="Reclamation_form" layoutY="4.0" prefHeight="637.0" prefWidth="1168.0" stylesheets="@java.css" visible="false" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="4.0">
+                                            <children>
+                                                <AnchorPane layoutX="567.0" layoutY="7.0" prefHeight="618.0" prefWidth="584.0" stylesheets="@java.css">
+                                                    <styleClass>
+                                                        <String fx:value="rose-bg" />
+                                                        <String fx:value="shadow" />
+                                                    </styleClass>
+                                                    <children>
+                                                        <TextField fx:id="search_Recl" layoutX="73.0" layoutY="28.0" prefHeight="26.0" prefWidth="254.0" styleClass="search" stylesheets="@java.css" />
+                                                        <FontAwesomeIconView glyphName="SEARCH" layoutX="80.0" layoutY="45.0" />
+                                                        <ListView fx:id="Listview_Reclamation" layoutX="14.0" layoutY="66.0" prefHeight="526.0" prefWidth="566.0" styleClass="update-btn" stylesheets="@java.css" />
+                                                      <Button fx:id="select" layoutY="586.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="584.0" styleClass="update-btn" stylesheets="@java.css" text="select" textFill="#595757" />
+                                                    </children>
+                                                </AnchorPane>
+                                                <TextField fx:id="descriptionAjou" layoutX="173.0" layoutY="69.0" prefHeight="26.0" prefWidth="247.0" styleClass="textfield" stylesheets="@java.css" />
+                                                <Text fill="#6b6568" layoutX="26.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="description :" wrappingWidth="117.4174575805664">
+                                                    <font>
+                                                        <Font name="Arial" size="19.0" />
+                                                    </font>
+                                    </Text>
+                                                <Text fill="#6b6568" layoutX="26.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priorite" wrappingWidth="83.03051376342773">
+                                                    <font>
+                                                        <Font size="19.0" />
+                                                    </font>
+                                    </Text>
+                                                <Text fill="#6b6568" layoutX="26.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date :" wrappingWidth="58.32133102416992">
+                                                    <font>
+                                                        <Font size="19.0" />
+                                                    </font>
+                                    </Text>
+                                                <Button fx:id="ADD_Reclamation" layoutX="32.0" layoutY="338.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="118.0" styleClass="update-btn" stylesheets="@java.css" text="ADD" textFill="#595757" />
+                                                <Button fx:id="Update_Reclamation" layoutX="309.0" layoutY="338.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="121.0" styleClass="update-btn" stylesheets="@java.css" text="Update " textFill="#595757" />
+                                                <Button fx:id="Delete_Reclamation" layoutX="158.0" layoutY="338.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="131.0" styleClass="update-btn" stylesheets="@java.css" text="Delete" textFill="#595757" />
+                                                <Button fx:id="Clear_Reclamation" layoutX="173.0" layoutY="399.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="120.0" styleClass="update-btn" stylesheets="@java.css" text="Clear" textFill="#595757" />
+                                                <DatePicker fx:id="datePicker" layoutX="172.0" layoutY="182.0" prefHeight="26.0" prefWidth="250.0" styleClass="textfield" stylesheets="@java.css" />
+                                                <Button fx:id="repponse" layoutX="320.0" layoutY="400.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="115.0" styleClass="update-btn" stylesheets="@java.css" text="reponse" textFill="#595757" />
+                                                <Label fx:id="desccontrole" layoutX="158.0" layoutY="99.0" prefHeight="18.0" prefWidth="202.0" textFill="red" />
+                                                <Label fx:id="datecontrole" layoutX="144.0" layoutY="220.0" prefHeight="18.0" prefWidth="234.0" textFill="red" />
+                                            </children>
+                                            <styleClass>
+                                                <String fx:value="rose-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </center>
+                </BorderPane>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>

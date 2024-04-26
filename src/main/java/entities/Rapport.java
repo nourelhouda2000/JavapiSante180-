@@ -57,4 +57,6 @@ public class Rapport {
     public void deleteEntity1(Rapport rapport) {
         // Logique pour supprimer l'entité Rapport
     }
+
+
 }
