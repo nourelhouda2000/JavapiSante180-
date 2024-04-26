@@ -5,6 +5,7 @@ import com.sun.javafx.collections.MappingChange;
 import entities.Activite;
 import entities.Exercice;
 import java.util.Map;
+import javafx.geometry.Pos;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,6 +36,10 @@ public class AfficherActivite {
     @FXML
     private VBox activiteContainer;
 
+    @FXML
+    private BarChart<String, Integer> activiteBarChart;
+
+
 
 
     private final Activiteservice activiteService;
@@ -48,8 +53,7 @@ public class AfficherActivite {
         afficherListeActivites();
     }
 
-    @FXML
-    private BarChart<String, Integer> activiteBarChart;
+
 
 
     private void afficherListeActivites() {
@@ -63,47 +67,62 @@ public class AfficherActivite {
         }
     }
 
+
+
+
     private VBox createActiviteCard(Activite activite) {
         // Créer une carte (VBox) pour l'activité
         VBox card = new VBox();
         card.setPrefWidth(300);
         card.setSpacing(10); // Espacement entre les éléments à l'intérieur de la carte
-        card.setStyle("-fx-background-color: " + getRandomColor() + "; -fx-padding: 10px; -fx-margin: 10px;");
+        card.setStyle("-fx-background-color: #B6D7A8; -fx-padding: 10px; -fx-margin: 10px; -fx-border-radius: 10px;");
 
-        // Contenu de la carte
-        card.getChildren().add(new Label("Nom: " + activite.getNom()));
-        card.getChildren().add(new Label("Description: " + activite.getDescription()));
-        card.getChildren().add(new Label("Catégorie: " + activite.getCategorie()));
-        card.getChildren().add(new Label("Niveau: " + activite.getNiveau()));
+        // Créer une HBox pour contenir le nom de l'activité et l'aligner au centre
+        HBox nomBox = new HBox();
+        nomBox.setAlignment(Pos.CENTER);
+        Label nomLabel = new Label(activite.getNom());
+        nomLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: darkgreen;");
+        nomBox.getChildren().add(nomLabel);
+
+        // Ajouter la HBox contenant le nom de l'activité à la carte
+        card.getChildren().add(nomBox);
+
+        // Autres attributs de l'activité en noir et alignés à gauche
+        Label descriptionLabel = new Label("Description: " + activite.getDescription());
+        descriptionLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: black;");
+        Label categorieLabel = new Label("Catégorie: " + activite.getCategorie());
+        categorieLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: black;");
+        Label niveauLabel = new Label("Niveau: " + activite.getNiveau());
+        niveauLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: black;");
+
+        // Aligner les labels à gauche
+        descriptionLabel.setAlignment(Pos.BASELINE_LEFT);
+        categorieLabel.setAlignment(Pos.BASELINE_LEFT);
+        niveauLabel.setAlignment(Pos.BASELINE_LEFT);
+
+        // Ajouter les labels à la carte
+        card.getChildren().addAll(descriptionLabel, categorieLabel, niveauLabel);
 
         // Créer le bouton Modifier
         Button modifierButton = new Button("Modifier");
         modifierButton.getStyleClass().add("action-button");
+        modifierButton.setStyle("-fx-background-color: #AD1457; -fx-text-fill: white; -fx-font-size: 16px;");
         modifierButton.setOnAction(event -> handleModifier(activite));
 
         // Créer le bouton Supprimer
         Button supprimerButton = new Button("Supprimer");
         supprimerButton.getStyleClass().add("action-button");
+        supprimerButton.setStyle("-fx-background-color: #AD1457; -fx-text-fill: white; -fx-font-size: 16px;");
         supprimerButton.setOnAction(event -> handleSupprimer(activite));
 
         // Ajouter les boutons à la carte
         HBox buttonsBox = new HBox(modifierButton, supprimerButton);
+        buttonsBox.setAlignment(Pos.CENTER);
         buttonsBox.setSpacing(10);
         card.getChildren().add(buttonsBox);
 
         return card;
     }
-
-
-
-    private String getRandomColor() {
-        // Générer une couleur aléatoire au format hexadécimal
-        String[] colors = {"#FF5733", "#33FFB5", "#336CFF", "#FF33E0", "#B933FF", "#33FF57", "#FFD933"};
-        Random random = new Random();
-        int index = random.nextInt(colors.length);
-        return colors[index];
-    }
-
 
     private void handleModifier(Activite activite) {
         try {
@@ -141,7 +160,7 @@ public class AfficherActivite {
         afficherListeActivites();
 
     }
-@FXML
+    @FXML
     private void handleActiviteStatsButtonAction(ActionEvent event) {
         // Obtenez la liste des activités
         List<Activite> activites = Activiteservice.getAllData();
@@ -172,7 +191,6 @@ public class AfficherActivite {
         activiteBarChart.getYAxis().setLabel("Nombre d'activités");
         activiteBarChart.setTitle("Statistiques des activités par niveau");
     }
-
 
 
 }

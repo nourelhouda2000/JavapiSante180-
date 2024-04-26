@@ -148,49 +148,6 @@ public class Exerciceservice implements IExercice<Exercice> {
 
 
 
-   /* public List<Exercice> chercherExercice(String nom, String niveau, String description) {
-        List<Exercice> myList = new ArrayList<>();
-        try {
-            String sql = "SELECT * FROM exercice WHERE nom LIKE ? AND niveau LIKE ? AND description LIKE ?";
-            String nomSearch = "%" + nom + "%";
-            String niveauSearch = "%" + niveau + "%";
-            String descriptionSearch = "%" + description + "%";
-            PreparedStatement stee = cnx.prepareStatement(sql);
-            stee.setString(1, nomSearch);
-            stee.setString(2, niveauSearch);
-            stee.setString(3, descriptionSearch);
-            ResultSet rs = stee.executeQuery();
-            while (rs.next()) {
-                Exercice e = new Exercice();
-                e.setNom(rs.getString("Nom"));
-                e.setDescription(rs.getString("Description"));
-                e.setNiveau(rs.getString("Niveau"));
-                // Ajoutez d'autres attributs de l'exercice si nécessaire
-                myList.add(e);
-                System.out.println("Exercice trouvé !");
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return myList;
-    }*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 

@@ -6,54 +6,77 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="547.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifierActivite">
+<AnchorPane prefHeight="575.0" prefWidth="758.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModifierActivite">
     <children>
-
-
-        <Label layoutX="178.0" layoutY="78.0" text="Nom">
-         <font>
-            <Font name="Constantia" size="18.0" />
-         </font></Label>
-        <Label layoutX="136.0" layoutY="130.0" text="Description">
-         <font>
-            <Font name="Constantia" size="18.0" />
-         </font></Label>
-        <Label layoutX="154.0" layoutY="262.0" text="Niveau">
-         <font>
-            <Font name="Constantia" size="18.0" />
-         </font></Label>
-        <TextField fx:id="idnoma" layoutX="243.0" layoutY="77.0" prefHeight="26.0" prefWidth="195.0" />
-        <TextField fx:id="iddesa" layoutX="242.0" layoutY="118.0" prefHeight="58.0" prefWidth="195.0" />
-        <TextField fx:id="idcata" layoutX="243.0" layoutY="197.0" prefHeight="26.0" prefWidth="195.0" />
-        <ComboBox fx:id="idniva" layoutX="242.0" layoutY="261.0" prefHeight="26.0" prefWidth="230.0" promptText="Sélectionner le niveau de l'activite">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Débutant" />
-                    <String fx:value="Intermédiare" />
-                    <String fx:value="Avancée" />
-                </FXCollections>
-            </items>
-        </ComboBox>
-        <Label layoutX="136.0" layoutY="198.0" prefHeight="23.0" prefWidth="92.0" text="Categorie">
-         <font>
-            <Font name="Constantia" size="18.0" />
-         </font></Label>
-        <Button layoutX="83.0" layoutY="325.0" mnemonicParsing="false" onAction="#saveActiviteData" prefHeight="30.0" prefWidth="162.0" style="-fx-background-color: turquoise; -fx-font-size: 14px; -fx-text-fill: white; -fx-background-radius: 5px;" text="Enregistrer">
-         <font>
-            <Font name="Constantia" size="18.0" />
-         </font></Button>
-        <Button layoutX="287.0" layoutY="325.0" mnemonicParsing="false" onAction="#retournerAffichage" prefHeight="30.0" prefWidth="262.0" style="-fx-background-color: turquoise; -fx-font-size: 14px; -fx-text-fill: white; -fx-background-radius: 5px;" text=" Retourner à la liste des activités">
-         <font>
-            <Font name="Constantia" size="18.0" />
-         </font></Button>
-      <Label layoutX="186.0" layoutY="23.0" prefHeight="18.0" prefWidth="201.0" text="Modifier Activité" textAlignment="CENTER">
-         <font>
-            <Font name="Constantia Italic" size="24.0" />
-         </font>
-      </Label>
+      <AnchorPane prefHeight="102.0" prefWidth="758.0" style="-fx-background-color: #73AA18;">
+         <children>
+            <ImageView fitHeight="88.0" fitWidth="143.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="/image/image2.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="224.0" layoutY="4.0" prefHeight="88.0" prefWidth="294.0" text="Modifier Activité" textAlignment="CENTER">
+               <font>
+                  <Font name="Constantia Italic" size="36.0" />
+               </font>
+            </Label>
+            <Line endX="235.60003662109375" endY="7.62939453125E-6" layoutX="302.0" layoutY="80.0" startX="-126.80000305175781" startY="7.62939453125E-6" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="211.0" layoutY="129.0" prefHeight="423.0" prefWidth="380.0" style="-fx-background-color: #F5EEF8;">
+         <children>
+      
+      
+              <Label layoutX="39.0" layoutY="31.0" prefHeight="23.0" prefWidth="45.0" text="Nom" textFill="#a60669">
+               <font>
+                  <Font name="Constantia" size="18.0" />
+               </font>
+            </Label>
+              <TextField fx:id="idnoma" layoutX="113.0" layoutY="29.0" prefHeight="26.0" prefWidth="195.0" />
+              <Label layoutX="16.0" layoutY="82.0" text="Description" textFill="#a60669">
+               <font>
+                  <Font name="Constantia" size="18.0" />
+               </font>
+            </Label>
+              <TextField fx:id="iddesa" layoutX="113.0" layoutY="82.0" prefHeight="58.0" prefWidth="195.0" />
+              <Label layoutX="16.0" layoutY="176.0" prefHeight="23.0" prefWidth="92.0" text="Categorie" textFill="#a60669">
+               <font>
+                  <Font name="Constantia" size="18.0" />
+               </font>
+            </Label>
+              <TextField fx:id="idcata" layoutX="113.0" layoutY="175.0" prefHeight="26.0" prefWidth="195.0" />
+              <Label layoutX="29.0" layoutY="238.0" text="Niveau" textFill="#a60669">
+               <font>
+                  <Font name="Constantia" size="18.0" />
+               </font>
+            </Label>
+              <ComboBox fx:id="idniva" layoutX="113.0" layoutY="237.0" prefHeight="26.0" prefWidth="195.0" promptText="Sélectionner le niveau de l'activite">
+                  <items>
+                      <FXCollections fx:factory="observableArrayList">
+                          <String fx:value="Débutant" />
+                          <String fx:value="Intermédiare" />
+                          <String fx:value="Avancée" />
+                      </FXCollections>
+                  </items>
+              </ComboBox>
+              <Button layoutX="57.0" layoutY="322.0" mnemonicParsing="false" onAction="#saveActiviteData" prefHeight="30.0" prefWidth="262.0" style="-fx-background-color: #AD1457; -fx-font-size: 14px; -fx-text-fill: white; -fx-background-radius: 5px;" text="Enregistrer">
+               <font>
+                  <Font name="Constantia" size="18.0" />
+               </font>
+            </Button>
+              <Button layoutX="57.0" layoutY="370.0" mnemonicParsing="false" onAction="#retournerAffichage" prefHeight="30.0" prefWidth="262.0" style="-fx-background-color: #AD1457; -fx-font-size: 14px; -fx-text-fill: white; -fx-background-radius: 5px;" text=" Retourner à la liste des activités">
+               <font>
+                  <Font name="Constantia" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
     </children>
 
 </AnchorPane>

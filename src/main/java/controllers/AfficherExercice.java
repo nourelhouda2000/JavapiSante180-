@@ -122,7 +122,7 @@ public class AfficherExercice {
         FlowPane card = new FlowPane();
         card.setPrefWidth(300);
         card.setPrefHeight(200);
-        card.setStyle("-fx-background-color: #E0E0E0; -fx-padding: 10px; -fx-margin: 10px; -fx-border-radius: 10px;");
+        card.setStyle("-fx-background-color: #B6D7A8; -fx-padding: 10px; -fx-margin: 10px; -fx-border-radius: 10px;");
 
         // Contenu de la carte
         VBox content = new VBox();
@@ -135,7 +135,7 @@ public class AfficherExercice {
         nomText.setFont(Font.font(null, FontWeight.BOLD, 16));
 
         Text nomExercice = new Text(exercice.getNom());
-        nomExercice.setFill(Color.RED);
+        nomExercice.setFill(Color.DARKGREEN);
         nomExercice.setFont(Font.font(null, FontWeight.BOLD, 16));
         nomExercice.setUnderline(true);
 
@@ -166,11 +166,13 @@ public class AfficherExercice {
         // Créer le bouton Modifier
         Button modifierButton = new Button("Modifier");
         modifierButton.getStyleClass().add("action-button");
+        modifierButton.setStyle("-fx-background-color: #AD1457; -fx-text-fill: white; -fx-font-size: 16px;");
         modifierButton.setOnAction(event -> handleModifierexercice(exercice));
 
         // Créer le bouton Supprimer
         Button supprimerButton = new Button("Supprimer");
         supprimerButton.getStyleClass().add("action-button");
+        supprimerButton.setStyle("-fx-background-color: #AD1457; -fx-text-fill: white; -fx-font-size: 16px;");
         supprimerButton.setOnAction(event -> handleSupprimerExercice(exercice));
 
         // Ajouter les boutons au HBox

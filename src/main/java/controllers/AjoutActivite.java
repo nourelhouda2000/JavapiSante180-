@@ -15,7 +15,8 @@ import javafx.stage.Stage;
 import services.Activiteservice;
 import services.Exerciceservice;
 import javafx.event.ActionEvent;
-
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -125,6 +126,24 @@ public class AjoutActivite {
         }
 
     }
+
+    @FXML
+    private void consulterExercice() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Ajout_Exercice.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
 
 }
