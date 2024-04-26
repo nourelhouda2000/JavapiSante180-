@@ -286,6 +286,7 @@
                                     <Button fx:id="Updaterapport" layoutX="312.0" layoutY="301.0" mnemonicParsing="false" onAction="#Rapportupdate" prefHeight="38.0" prefWidth="106.0" styleClass="update-btn" stylesheets="@java.css" text="Update  Rapport" textFill="#595757" />
                                     <Label fx:id="saisie_date" layoutX="246.0" layoutY="74.0" prefHeight="18.0" prefWidth="154.0" textFill="red" />
                                     <Label fx:id="saisie_heure" layoutX="246.0" layoutY="132.0" prefHeight="18.0" prefWidth="154.0" textFill="red" />
+                                    <Button fx:id="statRDV" layoutX="79.0" layoutY="410.0" mnemonicParsing="false" onAction="#openStatRDVPage" prefHeight="36.0" prefWidth="346.0" styleClass="clear-btn" stylesheets="@java.css" text="Stat" textFill="#c71515" />
                                             </children>
                                         </AnchorPane>
                                         <AnchorPane fx:id="home_form" layoutX="24.8" prefHeight="650.0" prefWidth="1189.0" stylesheets="@java.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

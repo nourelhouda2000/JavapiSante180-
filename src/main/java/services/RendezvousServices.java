@@ -13,7 +13,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -324,6 +326,34 @@ public class RendezvousServices implements IservicesRendezvous<Rendezvous> {
             System.out.println(e.getMessage());
         }
         return rendezvousList;
+    }
+
+
+
+
+
+
+    public Map<String, Integer> getRDVStatisticsByMonth() {
+        Map<String, Integer> appointmentCountsByMonth = new HashMap<>();
+
+        String query = "SELECT DATE_FORMAT(date_r, '%Y-%m') AS month, COUNT(*) AS count " +
+                "FROM Rendezvous " +
+                "GROUP BY month";
+
+        try {
+            PreparedStatement pst = MyDB.getInstance().getConnection().prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                String month = rs.getString("month");
+                int count = rs.getInt("count");
+                appointmentCountsByMonth.put(month, count);
+            }
+        } catch (SQLException e) {
+            // Gérer les exceptions
+            e.printStackTrace();
+        }
+
+        return appointmentCountsByMonth;
     }
 
 }

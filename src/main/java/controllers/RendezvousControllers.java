@@ -122,7 +122,8 @@ private Button select_RDV;
     @FXML
     private DatePicker datePicker_RDV;
 
-
+    @FXML
+    private Button statRDV;
     @FXML
     private TextField id_R;
     @FXML
@@ -726,7 +727,7 @@ private Button select_RDV;
         Listview_RDV.setCellFactory(param -> new CustomListCell());
     }
 
-
+///////////////////////////////////////////////////////met
     @FXML
     public void rechercherRendezvous() {
         String searchTerm = Search_RDV.getText().trim().toLowerCase();
@@ -774,7 +775,18 @@ private Button select_RDV;
         alert.setContentText(message);
         alert.showAndWait();
     }
-
+    @FXML
+    void openStatRDVPage() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/statRendezvous.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////usernesrine////////////////////////////////////////
@@ -1159,6 +1171,7 @@ private Button select_RDV;
         assert pdf_rdv != null : "fx:id=\"pdf_rdv\" was not injected: check your FXML file 'Rendezvous.fxml'.";
         assert saisie_date != null : "fx:id=\"saisie_date\" was not injected: check your FXML file 'Rendezvous.fxml'.";
         assert saisie_heure != null : "fx:id=\"saisie_heure\" was not injected: check your FXML file 'Rendezvous.fxml'.";
+        assert statRDV != null : "fx:id=\"statRDV\" was not injected: check your FXML file 'Rendezvous.fxml'.";
 
         datePicker_RDV.setValue(LocalDate.now());
         observableRendezvousList = FXCollections.observableArrayList();
