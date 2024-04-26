@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Signup">
+   <children>
+      <Label contentDisplay="CENTER" layoutX="607.0" layoutY="119.0" prefHeight="42.0" prefWidth="159.0" text="Sign Up" textFill="#85b434">
+         <font>
+            <Font name="Arial Italic" size="25.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nom_cree" layoutX="507.0" layoutY="162.0" prefHeight="40.0" prefWidth="298.0" promptText="First Name" styleClass="textfield" stylesheets="@Loginn.css" />
+      <TextField fx:id="prenom_cree" layoutX="507.0" layoutY="214.0" prefHeight="40.0" prefWidth="298.0" promptText="Last Name" styleClass="textfield" stylesheets="@Loginn.css" />
+      <TextField fx:id="age_cree" layoutX="507.0" layoutY="315.0" prefHeight="42.0" prefWidth="298.0" promptText="Age" styleClass="textfield" stylesheets="@Loginn.css" />
+      <Button fx:id="signup_btn" layoutX="537.0" layoutY="520.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="238.0" styleClass="update-btn" stylesheets="@java.css" text="Sign Up" textFill="#73aa18" />
+      <TextField fx:id="email_cree" layoutX="507.0" layoutY="365.0" prefHeight="40.0" prefWidth="298.0" promptText="Email" styleClass="textfield" stylesheets="@Loginn.css" />
+      <TextField fx:id="pwd_cree" layoutX="507.0" layoutY="414.0" prefHeight="40.0" prefWidth="298.0" promptText="Password" styleClass="textfield" stylesheets="@Loginn.css" />
+      <AnchorPane prefHeight="63.0" prefWidth="900.0">
+         <children>
+            <ImageView fitHeight="52.0" fitWidth="45.0" layoutX="6.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="55.0" layoutY="58.4" prefHeight="542.0" prefWidth="480.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="420.0" AnchorPane.topAnchor="58.0">
+         <children>
+            <ImageView fitHeight="412.0" fitWidth="458.0" layoutX="7.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@slider-img.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="236.0" layoutY="494.0" prefHeight="22.0" prefWidth="135.0" text="Sign In Account">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+            </Label>
+            <Hyperlink fx:id="loginAccount" layoutX="371.0" layoutY="493.0" prefWidth="109.0" text="Login Account" />
+         </children>
+      </AnchorPane>
+      <ComboBox fx:id="sexe_cree" layoutX="507.0" layoutY="264.0" prefHeight="11.0" prefWidth="298.0" promptText="Choise your Sexe" styleClass="textfield" stylesheets="@java.css">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Femme" />
+               <String fx:value="Homme" />
+            </FXCollections>
+         </items>
+      </ComboBox>
+      <ComboBox fx:id="role_creee" layoutX="507.0" layoutY="465.0" prefHeight="42.0" prefWidth="298.0" promptText="Choise your Role" styleClass="textfield" stylesheets="@java.css">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Admin" />
+               <String fx:value="Doctor" />
+               <String fx:value="Patient" />
+            </FXCollections>
+         </items>
+      </ComboBox>
+      <ImageView fitHeight="79.0" fitWidth="83.0" layoutX="617.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@liste-de-controle.png" />
+         </image>
+      </ImageView>
+
+   </children>
+</AnchorPane>

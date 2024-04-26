@@ -432,5 +432,24 @@ public class UserServices implements IservicesUser <User>{
     }
 
 
+    public boolean resetPassword(String email) {
+    return true;
+    }
 
+
+
+    public boolean entityExistsbyemail(String email) {
+        try {
+            // Requête SQL pour vérifier si l'e-mail existe dans la table user
+            String query = "SELECT * FROM user WHERE email = ?";
+            PreparedStatement pst = MyDB.getInstance().getConnection().prepareStatement(query);
+            pst.setString(1, email);
+            ResultSet rs = pst.executeQuery();
+            return rs.next(); // Renvoie true si l'e-mail existe déjà dans la base de données, sinon false
+        } catch (SQLException e) {
+            // Gérer les exceptions SQLException
+            System.out.println("Erreur lors de la vérification de l'existence de l'utilisateur : " + e.getMessage());
+            return false; // En cas d'erreur, retourner false par défaut
+        }
+    }
 }

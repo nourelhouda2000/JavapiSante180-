@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -13,33 +15,39 @@
    <children>
       <AnchorPane fx:id="Login_form" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane prefHeight="400.0" prefWidth="300.0" styleClass="left-form" stylesheets="@Loginn.css">
+            <AnchorPane prefHeight="400.0" prefWidth="300.0" styleClass="right-form" stylesheets="@Loginn.css">
                <children>
-                  <FontAwesomeIconView glyphName="USERS" layoutX="96.0" layoutY="145.0" size="100" />
-                  <Label layoutX="13.0" layoutY="188.0" stylesheets="@Loginn.css" text="Employee Management System" textFill="#eadcdc">
-                     <font>
-                        <Font name="Tahoma Bold" size="18.0" />
-                     </font>
-                  </Label>
+                  <ImageView fitHeight="303.0" fitWidth="300.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@slider-img.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
             <AnchorPane layoutX="300.0" prefHeight="400.0" prefWidth="300.0" styleClass="right-form" stylesheets="@Loginn.css">
                <children>
-                  <Label layoutX="76.0" layoutY="94.0" stylesheets="@Loginn.css" text="Welcome Back !" textFill="DARKOLIVEGREEN">
+                  <Label layoutX="70.0" layoutY="121.0" stylesheets="@Loginn.css" text="Welcome Back !" textFill="#73aa18">
                      <font>
                         <Font name="Tahoma Bold" size="20.0" />
                      </font>
                   </Label>
                   <TextField fx:id="email_btn" layoutX="40.0" layoutY="163.0" prefHeight="30.0" prefWidth="220.0" promptText="Email" styleClass="textfield" stylesheets="@Loginn.css" />
                   <PasswordField fx:id="password_btn" layoutX="40.0" layoutY="200.0" prefHeight="30.0" prefWidth="220.0" promptText="Password" styleClass="textfield" stylesheets="@Loginn.css" />
-                  <Button fx:id="login_btn" layoutX="40.0" layoutY="256.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@Loginn.css" text="Login" />
+                  <Button fx:id="login_btn" layoutX="40.0" layoutY="265.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="40.0" prefWidth="220.0" styleClass="update-btn" stylesheets="@java.css" text="Login" />
 
                         <Button fx:id="close" layoutX="241.0" layoutY="14.0" mnemonicParsing="false" onAction="#close" prefHeight="24.0" prefWidth="70.0" styleClass="close" stylesheets="@Loginn.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                      <graphic>
                         <FontAwesomeIconView glyphName="CLOSE" selectionEnd="0" size="1.2em" />
                      </graphic>
                   </Button>
-                  <Hyperlink fx:id="linkpwd" layoutX="150.0" layoutY="305.0" text="Forget password ?" />
+                  <Hyperlink fx:id="linkpwd" layoutX="156.0" layoutY="230.0" onAction="#handleResetPassword" text="Forget password ?" />
+                  <Hyperlink fx:id="signup" layoutX="162.0" layoutY="363.0" text="Sign up" />
+                  <Label layoutX="82.0" layoutY="366.0" text="Create account" />
+                  <ImageView fitHeight="70.0" fitWidth="105.0" layoutX="109.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@user-interface%20.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>
