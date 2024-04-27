@@ -45,9 +45,10 @@ public class RendezvousControllers implements Initializable {
     private ObservableList<User> userList = FXCollections.observableArrayList();
 
     private UserServices userServices = new UserServices();
-    private RendezvousServices rendezvousServices = new RendezvousServices();
+    private  RendezvousServices rendezvousServices = new RendezvousServices();
     private RapportServices rapportServices = new RapportServices();
     private ObservableList<Rendezvous> observableRendezvousList;
+
     @FXML
     private ResourceBundle resources;
 
@@ -728,28 +729,28 @@ private Button select_RDV;
     }
 
 ///////////////////////////////////////////////////////met
-    @FXML
-    public void rechercherRendezvous() {
-        String searchTerm = Search_RDV.getText().trim().toLowerCase();
-        if (!searchTerm.isEmpty()) {
-            // Créer un prédicat pour filtrer les rendez-vous en fonction du terme de recherche
-            Predicate<Rendezvous> rendezvousFilter = rendezvous ->
-                    rendezvous.getDate_r().toLowerCase().contains(searchTerm) ||
-                            rendezvous.getHeur().toLowerCase().contains(searchTerm) ||
-                            rendezvous.getNomuser().toLowerCase().contains(searchTerm) ||
-                            rendezvous.getEmail().toLowerCase().contains(searchTerm) ||
-                            rendezvous.getRapport().toLowerCase().contains(searchTerm);
+@FXML
+public void rechercherRendezvous() {
+    String searchTerm = Search_RDV.getText().trim().toLowerCase();
+    if (!searchTerm.isEmpty()) {
+        // Assurez-vous d'avoir une instance valide de RendezvousServices
+        RendezvousServices rendezvousServices = new RendezvousServices();
 
-            // Créer une FilteredList à partir de la liste observable des rendez-vous
-            FilteredList<Rendezvous> filteredList = observableRendezvousList.filtered(rendezvousFilter);
+        // Créez un objet Rendezvous pour spécifier les critères de recherche
+        Rendezvous searchCriteria = new Rendezvous();
+        searchCriteria.setDate_r(searchTerm); // Vous pouvez également définir d'autres attributs de recherche ici
 
-            // Mettre à jour la liste affichée dans le ListView
-            Listview_RDV.setItems(filteredList);
-        } else {
-            // Si le terme de recherche est vide, afficher tous les rendez-vous
-            Listview_RDV.setItems(observableRendezvousList);
-        }
+        // Appeler la méthode de recherche pour obtenir les résultats
+        List<Rendezvous> searchResults = rendezvousServices.searchRendezvous(searchCriteria);
+
+        // Mettre à jour la liste affichée dans le ListView avec les résultats de la recherche
+        Listview_RDV.setItems(FXCollections.observableArrayList(searchResults));
+    } else {
+        // Si le terme de recherche est vide, afficher tous les rendez-vous
+        Listview_RDV.setItems(observableRendezvousList);
     }
+}
+
 ////////////////////////////////////////////metrdv pdf///////////////
 
 

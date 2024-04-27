@@ -10,6 +10,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import services.RendezvousServices;
 import javafx.scene.control.Button;
@@ -17,6 +18,7 @@ import javafx.scene.control.Button;
 import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 public class statRDV implements Initializable {
 
@@ -40,9 +42,12 @@ public class statRDV implements Initializable {
 
     private ObservableList<Rendezvous> rendezvousList;
 
+    @FXML
     public void close() {
-        System.exit(0);
+        Stage stage = (Stage) close_stat.getScene().getWindow();
+        stage.close();
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -72,11 +77,22 @@ public class statRDV implements Initializable {
         displayAppointmentStatistics(appointmentCountsByMonth);
     }
 
-    private Map<String, Integer> getRDVStatisticsByMonth() {
-        // Appelez la méthode de service pour obtenir les statistiques sur les rendez-vous par mois
+
+
+    public Map<String, Integer> getRDVStatisticsByMonth() {
+        // Utiliser un TreeMap pour trier les mois par ordre
+        Map<String, Integer> appointmentCountsByMonth = new TreeMap<>();
+
+        // Appeler la méthode de service pour obtenir les statistiques sur les rendez-vous par mois
         RendezvousServices rendezvousServices = new RendezvousServices();
-        return rendezvousServices.getRDVStatisticsByMonth();
+        Map<String, Integer> statisticsByMonth = rendezvousServices.getRDVStatisticsByMonth();
+
+        // Mettre à jour les statistiques par mois dans le TreeMap
+        appointmentCountsByMonth.putAll(statisticsByMonth);
+
+        return appointmentCountsByMonth;
     }
+
 
     private void displayAppointmentStatistics(Map<String, Integer> appointmentCountsByMonth) {
         // Configurer les données du graphique à barres

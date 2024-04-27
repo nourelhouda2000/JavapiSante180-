@@ -61,7 +61,7 @@ public class RendezvousServices implements IservicesRendezvous<Rendezvous> {
                 Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
                 successAlert.setTitle("Information Message");
                 successAlert.setHeaderText(null);
-                successAlert.setContentText("Le rendez-vous existe déjà dans la base de données.");
+                successAlert.setContentText("Le rendez-vous existe déjà .");
                 successAlert.showAndWait();
             } else {
                 // Vérifier le format de la date
@@ -356,4 +356,59 @@ public class RendezvousServices implements IservicesRendezvous<Rendezvous> {
         return appointmentCountsByMonth;
     }
 
+
+    public List<Rendezvous> searchRendezvous(Rendezvous searchCriteria) {
+        List<Rendezvous> searchResults = new ArrayList<>();
+        StringBuilder queryBuilder = new StringBuilder("SELECT * FROM Rendezvous WHERE 1=1");
+
+        if (searchCriteria.getDate_r() != null && !searchCriteria.getDate_r().isEmpty()) {
+            queryBuilder.append(" AND date_r = ?");
+        }
+        if (searchCriteria.getHeur() != null && !searchCriteria.getHeur().isEmpty()) {
+            queryBuilder.append(" AND heur = ?");
+        }
+        if (searchCriteria.getNomuser() != null && !searchCriteria.getNomuser().isEmpty()) {
+            queryBuilder.append(" AND nomuser = ?");
+        }
+        if (searchCriteria.getEmail() != null && !searchCriteria.getEmail().isEmpty()) {
+            queryBuilder.append(" AND email = ?");
+        }
+        // Ajoutez des conditions pour d'autres attributs si nécessaire
+
+        try {
+            PreparedStatement pst = MyDB.getInstance().getConnection().prepareStatement(queryBuilder.toString());
+
+            int parameterIndex = 1;
+            if (searchCriteria.getDate_r() != null && !searchCriteria.getDate_r().isEmpty()) {
+                pst.setString(parameterIndex++, searchCriteria.getDate_r());
+            }
+            if (searchCriteria.getHeur() != null && !searchCriteria.getHeur().isEmpty()) {
+                pst.setString(parameterIndex++, searchCriteria.getHeur());
+            }
+            if (searchCriteria.getNomuser() != null && !searchCriteria.getNomuser().isEmpty()) {
+                pst.setString(parameterIndex++, searchCriteria.getNomuser());
+            }
+            if (searchCriteria.getEmail() != null && !searchCriteria.getEmail().isEmpty()) {
+                pst.setString(parameterIndex, searchCriteria.getEmail());
+            }
+            // Ajoutez des paramètres pour d'autres attributs si nécessaire
+
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Rendezvous rendezvous = new Rendezvous();
+                rendezvous.setIdR(rs.getInt("id_r"));
+                rendezvous.setDate_r(rs.getString("date_r"));
+                rendezvous.setHeur(rs.getString("heur"));
+                rendezvous.setNomuser(rs.getString("nomuser"));
+                rendezvous.setEmail(rs.getString("email"));
+                rendezvous.setIdUser(rs.getInt("idUser"));
+                rendezvous.setIdRapport(rs.getInt("idRapport"));
+                searchResults.add(rendezvous);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return searchResults;
+    }
 }

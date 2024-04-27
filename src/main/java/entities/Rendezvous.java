@@ -1,14 +1,16 @@
 package entities;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableView;
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
-import java.io.File;
+import java.awt.*;
 import java.io.IOException;
 import java.util.List;
+
+import java.io.File;
 
 public class Rendezvous {
     //private int id_r;
@@ -133,29 +135,78 @@ public class Rendezvous {
             document.addPage(page);
 
             try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
-                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 16);
+                // Chargez l'image du logo
+                PDImageXObject logoImage = PDImageXObject.createFromFile("src/main/resources/logo.png", document);
+
+                // Définissez les coordonnées et la taille de l'image
+                float xImage = 50; // Position X du coin supérieur gauche de l'image
+                float yImage = page.getMediaBox().getHeight() - 150; // Position Y du coin supérieur gauche de l'image
+                float widthImage = 100; // Largeur de l'image
+                float heightImage = 50; // Hauteur de l'image
+
+                // Ajoutez l'image du logo à la page PDF
+                contentStream.drawImage(logoImage, xImage, yImage, widthImage, heightImage);
+
+                // Définissez les coordonnées pour le début du tableau
+                float xTable = 50; // Position X du coin supérieur gauche du tableau
+                float yTable = page.getMediaBox().getHeight() - 250; // Position Y du coin supérieur gauche du tableau
+
+                // Créez un tableau pour afficher les détails des rendez-vous
+                float tableWidth = page.getMediaBox().getWidth() - 2 * xTable;
+                float tableHeight = 100;
+                float cellMargin = 10;
+                float cellWidth = (tableWidth - 4 * cellMargin) / 4;
+                float cellHeight = 20;
+
+                // Dessinez une ligne pour séparer l'en-tête du contenu du tableau
+                float headerLineY = yTable + cellHeight + cellMargin / 2;
+                contentStream.moveTo(xTable, headerLineY);
+                contentStream.lineTo(xTable + tableWidth, headerLineY);
+                contentStream.stroke();
+
+                // Ajoutez les en-têtes de colonne avec du texte vert
+                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+                float yText = yTable - cellHeight / 2;
+                contentStream.setNonStrokingColor(Color.GREEN);
                 contentStream.beginText();
-                contentStream.newLineAtOffset(100, 750);
-                contentStream.showText("Liste des rendez-vous");
+                contentStream.newLineAtOffset(xTable + cellMargin, yText);
+                contentStream.showText("Date");
+                contentStream.endText();
+                contentStream.beginText();
+                contentStream.newLineAtOffset(xTable + cellMargin + cellWidth + cellMargin, yText);
+                contentStream.showText("Heure");
+                contentStream.endText();
+                contentStream.beginText();
+                contentStream.newLineAtOffset(xTable + cellMargin + 2 * (cellWidth + cellMargin), yText);
+                contentStream.showText("Nom");
+                contentStream.endText();
+                contentStream.beginText();
+                contentStream.newLineAtOffset(xTable + cellMargin + 3 * (cellWidth + cellMargin), yText);
+                contentStream.showText("Email");
                 contentStream.endText();
 
+                // Remplissez le tableau avec les détails des rendez-vous
+                contentStream.setNonStrokingColor(Color.BLACK);
                 contentStream.setFont(PDType1Font.HELVETICA, 12);
-                contentStream.beginText();
-                contentStream.newLineAtOffset(100, 700);
-
                 for (Rendezvous rendezvous : rendezvousList) {
-                    contentStream.showText("Date Rendez-vous: " + rendezvous.getDate_r());
-                    contentStream.newLineAtOffset(0, -20);
-                    contentStream.showText("Heure Rendez-vous: " + rendezvous.getHeur());
-                    contentStream.newLineAtOffset(0, -20);
-                    contentStream.showText("Nom: " + rendezvous.getNomuser());
-                    contentStream.newLineAtOffset(0, -20);
-                    contentStream.showText("Email: " + rendezvous.getEmail());
-                    contentStream.newLineAtOffset(0, -20);
-                    // Ajoutez d'autres champs si nécessaire
+                    contentStream.beginText();
+                    yText -= cellHeight;
+                    contentStream.newLineAtOffset(xTable + cellMargin, yText);
+                    contentStream.showText(rendezvous.getDate_r());
+                    contentStream.endText();
+                    contentStream.beginText();
+                    contentStream.newLineAtOffset(xTable + cellMargin + cellWidth + cellMargin, yText);
+                    contentStream.showText(rendezvous.getHeur());
+                    contentStream.endText();
+                    contentStream.beginText();
+                    contentStream.newLineAtOffset(xTable + cellMargin + 2 * (cellWidth + cellMargin), yText);
+                    contentStream.showText(rendezvous.getNomuser());
+                    contentStream.endText();
+                    contentStream.beginText();
+                    contentStream.newLineAtOffset(xTable + cellMargin + 3 * (cellWidth + cellMargin), yText);
+                    contentStream.showText(rendezvous.getEmail());
+                    contentStream.endText();
                 }
-
-                contentStream.endText();
             }
 
             document.save(filePath);
@@ -179,5 +230,6 @@ public class Rendezvous {
         // Par exemple, vous pouvez ajouter un timestamp à la fin du nom de fichier
         return fileName + "_" + System.currentTimeMillis();
     }
+
 
 }

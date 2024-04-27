@@ -14,7 +14,7 @@
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <BarChart fx:id="RendezvousBarchart" layoutX="11.0" layoutY="124.0" prefHeight="443.0" prefWidth="774.0" title="BarChart Rendez-vous">
+            <BarChart fx:id="RendezvousBarchart" layoutX="11.0" layoutY="124.0" prefHeight="451.0" prefWidth="774.0" title="BarChart Rendez-vous">
 
                 <xAxis>
                     <CategoryAxis side="BOTTOM" fx:id="xAxis" />
