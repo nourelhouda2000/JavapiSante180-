@@ -101,11 +101,23 @@ public class statRDV implements Initializable {
             series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
         }
 
-        // Effacer les données existantes et ajouter la nouvelle série de données au graphique avec animation de fondu
+        // Effet d'apparition en fondu
         FadeTransition ft = new FadeTransition(Duration.millis(1000), RendezvousBarchart);
         ft.setFromValue(0);
         ft.setToValue(1);
         ft.play();
+
+        // Effet de décalage vers le haut
+        for (XYChart.Series<String, Integer> s : RendezvousBarchart.getData()) {
+            for (XYChart.Data<String, Integer> data : s.getData()) {
+                data.getNode().setOpacity(0);
+                FadeTransition ftData = new FadeTransition(Duration.millis(1000), data.getNode());
+                ftData.setToValue(1);
+                ftData.play();
+            }
+        }
+
+        // Effacer les données existantes et ajouter la nouvelle série de données au graphique avec animation de fondu
         RendezvousBarchart.getData().clear();
         RendezvousBarchart.getData().add(series);
 

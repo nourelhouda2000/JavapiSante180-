@@ -46,7 +46,7 @@
                                         </Button>
                               <ImageView fitHeight="46.0" fitWidth="65.0" layoutX="21.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@logo.png" />
+                                    <Image url="@image/logo.png" />
                                  </image>
                               </ImageView>
                                     </children>
@@ -86,7 +86,7 @@
                                             <graphic>
                                                 <FontAwesomeIconView glyphName="PLUS" selectionFill="BLACK" size="25" tabSize="0" />
                                             </graphic></Button>
-                                        <Button fx:id="logout" layoutX="20.0" layoutY="586.0" minWidth="39.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="54.0" styleClass="logout" stylesheets="@java.css">
+                                        <Button fx:id="logout" layoutX="16.0" layoutY="612.0" minWidth="39.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="54.0" styleClass="logout" stylesheets="@java.css">
                                             <graphic>
                                                 <FontAwesomeIconView glyphName="SIGN_OUT" size="25" />
                                             </graphic>
@@ -107,7 +107,7 @@
                                     </LinearGradient>
                                  </textFill>
                                         </Button>
-                                        <Label layoutX="84.0" layoutY="595.0" text="Logout" textFill="#f2eeee" />
+                                        <Label layoutX="81.0" layoutY="620.0" text="Logout" textFill="#f2eeee" />
                                         <Button fx:id="Reclamationpage" layoutX="15.0" layoutY="513.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="173.0" styleClass="nav-btn" stylesheets="@java.css" text="Reclamation">
                                             <font>
                                                 <Font name="Berlin Sans FB" size="15.0" />
@@ -124,7 +124,7 @@
                                                 <FontAwesomeIconView glyphName="FILE" size="25" tabSize="0" />
                                             </graphic>
                                         </Button>
-                              <Label fx:id="NOMUSER" layoutX="84.0" layoutY="120.0" prefHeight="38.0" prefWidth="122.0" text="Label">
+                              <Label fx:id="NOMUSER" layoutX="84.0" layoutY="120.0" prefHeight="38.0" prefWidth="122.0">
                                  <font>
                                     <Font name="Bookshelf Symbol 7" size="25.0" />
                                  </font>
@@ -154,29 +154,29 @@
                               </Button>
                               <ImageView fitHeight="75.0" fitWidth="77.0" layoutX="64.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@3135715.png" />
+                                    <Image url="@image/3135715.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="Recettepage1" layoutX="15.0" layoutY="408.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="173.0" styleClass="nav-btn" stylesheets="@java.css" text="Activités">
+                              <Button fx:id="Activitepage" layoutX="15.0" layoutY="408.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="173.0" styleClass="nav-btn" stylesheets="@java.css" text="Activités">
                                  <font>
                                     <Font name="Berlin Sans FB" size="15.0" />
                                  </font>
                                  <graphic>
                                     <ImageView fitHeight="34.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@exercise.png" />
+                                          <Image url="@image/exercise.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="Recettepage11" layoutX="18.0" layoutY="462.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="173.0" styleClass="nav-btn" stylesheets="@java.css" text="Santé">
+                              <Button fx:id="Santepage" layoutX="18.0" layoutY="462.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="173.0" styleClass="nav-btn" stylesheets="@java.css" text="Santé">
                                  <font>
                                     <Font name="Berlin Sans FB" size="15.0" />
                                  </font>
                                  <graphic>
                                     <ImageView fitHeight="29.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@sant-jordi.png" />
+                                          <Image url="@image/sant-jordi.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -232,7 +232,7 @@
                                                 </AnchorPane>
                                             </children>
                                         </AnchorPane>
-                                        <AnchorPane fx:id="RDV_form" layoutX="28.0" layoutY="6.0" prefHeight="631.0" prefWidth="1171.0" stylesheets="@java.css">
+                                        <AnchorPane fx:id="RDV_form" layoutX="28.0" layoutY="6.0" prefHeight="631.0" prefWidth="1171.0" stylesheets="@java.css" visible="false">
                                             <styleClass>
                                                 <String fx:value="rose-bg" />
                                                 <String fx:value="shadow" />
@@ -244,7 +244,7 @@
                                                         <String fx:value="shadow" />
                                                     </styleClass>
                                                     <children>
-                                                        <TextField fx:id="Search_RDV" layoutX="73.0" layoutY="28.0" onAction="#rechercherRendezvous" prefHeight="26.0" prefWidth="254.0" promptText="search" styleClass="search" stylesheets="@java.css" />
+                                                        <TextField fx:id="Search_RDV" layoutX="73.0" layoutY="28.0" prefHeight="26.0" prefWidth="254.0" promptText="search" styleClass="search" stylesheets="@java.css" />
                                                         <FontAwesomeIconView glyphName="SEARCH" layoutX="80.0" layoutY="45.0" selectionEnd="0" size="10" wrappingWidth="15.7000093460083" />
                                                         <ListView fx:id="Listview_RDV" accessibleRole="HYPERLINK" blendMode="SRC_ATOP" editable="true" layoutX="14.0" layoutY="65.0" prefHeight="522.0" prefWidth="625.0" stylesheets="@java.css">
                                              <styleClass>
@@ -287,6 +287,7 @@
                                     <Label fx:id="saisie_date" layoutX="246.0" layoutY="74.0" prefHeight="18.0" prefWidth="154.0" textFill="red" />
                                     <Label fx:id="saisie_heure" layoutX="246.0" layoutY="132.0" prefHeight="18.0" prefWidth="154.0" textFill="red" />
                                     <Button fx:id="statRDV" layoutX="72.0" layoutY="410.0" mnemonicParsing="false" onAction="#openStatRDVPage" prefHeight="36.0" prefWidth="349.0" styleClass="clear-btn" stylesheets="@java.css" text="Stat" textFill="#c71515" />
+                                    <Button fx:id="calendarRDV" layoutX="73.0" layoutY="459.0" mnemonicParsing="false" onAction="#openCalendarPage" prefHeight="36.0" prefWidth="354.0" styleClass="clear-btn" stylesheets="@java.css" text="Calendar" textFill="#c71515" />
                                             </children>
                                         </AnchorPane>
                                         <AnchorPane fx:id="home_form" layoutX="24.8" prefHeight="650.0" prefWidth="1189.0" stylesheets="@java.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -418,7 +419,7 @@
                                             </styleClass>
                                         </AnchorPane>
 
-                                        <AnchorPane fx:id="Profil_form" layoutX="25.0" layoutY="1.0" prefHeight="648.0" prefWidth="1178.0" visible="false">
+                                        <AnchorPane fx:id="Profil_form" layoutX="25.0" layoutY="1.0" prefHeight="648.0" prefWidth="1178.0">
                                  <children>
                                     <AnchorPane layoutX="6.0" prefHeight="639.0" prefWidth="1186.0" stylesheets="@java.css">
                                        <children>
@@ -437,7 +438,7 @@
                                           <TextField fx:id="ID_user1" disable="true" layoutX="62.0" layoutY="32.0" prefHeight="30.0" prefWidth="154.0" styleClass="label-info" stylesheets="@java.css" visible="false" />
                                           <ImageView fitHeight="150.0" fitWidth="220.0" layoutX="488.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@3135715.png" />
+                                                <Image url="@image/3135715.png" />
                                              </image>
                                           </ImageView>
                                           <TextField fx:id="Password_profil" layoutX="477.0" layoutY="485.0" prefHeight="31.0" prefWidth="308.0" styleClass="label-info" stylesheets="@java.css" />
@@ -495,6 +496,52 @@
                                                 <String fx:value="shadow" />
                                             </styleClass>
                                         </AnchorPane>
+                              <AnchorPane fx:id="Sante_form" layoutX="10.0" layoutY="10.0" prefHeight="554.4" prefWidth="900.0" visible="false">
+                                 <children>
+                                    <AnchorPane layoutX="31.0" layoutY="3.0" prefHeight="636.0" prefWidth="1161.0" stylesheets="@java.css">
+                                       <children>
+                                          <AnchorPane layoutX="487.0" layoutY="7.0" prefHeight="618.0" prefWidth="670.0" stylesheets="@java.css">
+                                             <styleClass>
+                                                <String fx:value="rose-bg" />
+                                                <String fx:value="shadow" />
+                                             </styleClass>
+                                          </AnchorPane>
+                                          <Text layoutX="110.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sante">
+                                             <font>
+                                                <Font size="39.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="rose-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="Activités_form" layoutX="20.0" layoutY="20.0" prefHeight="554.4" prefWidth="900.0" visible="false">
+                                 <children>
+                                    <AnchorPane layoutX="31.0" layoutY="3.0" prefHeight="636.0" prefWidth="1161.0" stylesheets="@java.css">
+                                       <children>
+                                          <AnchorPane layoutX="487.0" layoutY="7.0" prefHeight="618.0" prefWidth="670.0" stylesheets="@java.css">
+                                             <styleClass>
+                                                <String fx:value="rose-bg" />
+                                                <String fx:value="shadow" />
+                                             </styleClass>
+                                          </AnchorPane>
+                                          <Text layoutX="40.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activités" wrappingWidth="242.78153228759766">
+                                             <font>
+                                                <Font size="33.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="rose-bg" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
                                     </children>
                                 </AnchorPane>
                             </children>

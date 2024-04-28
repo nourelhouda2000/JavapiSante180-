@@ -357,7 +357,7 @@ public class RendezvousServices implements IservicesRendezvous<Rendezvous> {
     }
 
 
-    public List<Rendezvous> searchRendezvous(Rendezvous searchCriteria) {
+ /*   public List<Rendezvous> searchRendezvous(Rendezvous searchCriteria) {
         List<Rendezvous> searchResults = new ArrayList<>();
         StringBuilder queryBuilder = new StringBuilder("SELECT * FROM Rendezvous WHERE 1=1");
 
@@ -410,5 +410,85 @@ public class RendezvousServices implements IservicesRendezvous<Rendezvous> {
         }
 
         return searchResults;
+    }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public List<Rendezvous> rechercheParHeure(String heure) {
+        ResultSet rs = null;
+        List<Rendezvous> listeRendezvous = new ArrayList<>();
+        try {
+            String query = "SELECT R.*, U.nomuser, U.email, RP.rapport " +
+                    "FROM Rendezvous R " +
+                    "INNER JOIN User U ON R.idUser = U.id_user " +
+                    "LEFT JOIN Rapport RP ON R.idRapport = RP.id_rapport " +
+                    "WHERE R.heur LIKE ?";
+
+
+            PreparedStatement pst = MyDB.getInstance().getConnection().prepareStatement(query);
+            pst.setString(1, "%" + heure + "%");
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Rendezvous rendezvous = new Rendezvous();
+                rendezvous.setIdR(rs.getInt("id_r"));
+                rendezvous.setDate_r(rs.getString("date_r"));
+                rendezvous.setHeur(rs.getString("heur"));
+                rendezvous.setNomuser(rs.getString("nomuser"));
+                rendezvous.setEmail(rs.getString("email"));
+                rendezvous.setRapport(rs.getString("rapport"));
+
+
+                // Ajoutez d'autres attributs au besoin
+
+                listeRendezvous.add(rendezvous);
+            }
+        } catch (SQLException e) {
+            // Gérez l'exception selon les besoins de votre application
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return listeRendezvous;
     }
+
+//////////////////////////calendr/////
+
+
+    public List<Rendezvous> getRdvByDate(LocalDate dateSelectionnee) {
+        List<Rendezvous> rdvs = new ArrayList<>();
+        String formattedDate = dateSelectionnee.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String query = "SELECT * FROM Rendezvous WHERE date_r = ?";
+        try {
+            PreparedStatement pst = MyDB.getInstance().getConnection().prepareStatement(query);
+            pst.setString(1, formattedDate);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Rendezvous rendezvous = new Rendezvous();
+                rendezvous.setIdR(rs.getInt("id_r"));
+                rendezvous.setDate_r(rs.getString("date_r"));
+                rendezvous.setHeur(rs.getString("heur"));
+                // Ajoutez d'autres attributs au besoin
+                rdvs.add(rendezvous);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rdvs;
+    }
+
 }

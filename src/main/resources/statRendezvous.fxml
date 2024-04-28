@@ -23,11 +23,11 @@
                     <NumberAxis fx:id="yAxis" minorTickLength="0.0" side="LEFT" tickLabelGap="0.0" tickUnit="0.0" upperBound="0.0" />
                 </yAxis>
             </BarChart>
-            <AnchorPane prefHeight="51.0" prefWidth="800.0">
+            <AnchorPane prefHeight="51.0" prefWidth="800.0" styleClass="update-btn" stylesheets="@java.css">
                <children>
                   <ImageView fitHeight="44.0" fitWidth="70.0" layoutX="8.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@logo.png" />
+                        <Image url="@image/logo.png" />
                      </image>
                   </ImageView>
                    <Button fx:id="close_stat" layoutX="738.0" layoutY="16.0" minHeight="20.0" mnemonicParsing="false" onAction="#close" prefHeight="20.0" prefWidth="54.0" styleClass="close" stylesheets="@java.css">

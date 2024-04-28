@@ -30,7 +30,8 @@ public class RapportControllers implements Initializable {
 
     @FXML
     private TextField  IDRDVRapport;
-
+    @FXML
+    private Button closeUpdateRapport;
     @FXML
     private URL location;
     @FXML
@@ -45,7 +46,8 @@ public class RapportControllers implements Initializable {
 
     @FXML
     private Button Ajouter_rapport;
-
+    @FXML
+    private Button closeaddrapport;
 
     @FXML
     private Label saisie_update;
@@ -56,6 +58,20 @@ public class RapportControllers implements Initializable {
     private Label saisie_rapport;
 
 
+
+
+
+
+    @FXML
+    public void closeupdaterapport() {
+        Stage stage = (Stage) closeUpdateRapport.getScene().getWindow();
+        stage.close();
+    }
+    @FXML
+    public void closeaddrapport() {
+        Stage stage = (Stage) closeaddrapport.getScene().getWindow();
+        stage.close();
+    }
 
     public void  addRappReset() {
 
@@ -166,6 +182,8 @@ public class RapportControllers implements Initializable {
         assert Update_rapport_btn != null : "fx:id=\"Update_rapport_btn\" was not injected: check your FXML file 'UpdateRapport.fxml'.";
         assert saisie_rapport != null : "fx:id=\"saisie_rapport\" was not injected: check your FXML file 'Rapport.fxml'.";
         assert saisie_update != null : "fx:id=\"saisie_update\" was not injected: check your FXML file 'UpdateRapport.fxml'.";
+        assert closeaddrapport != null : "fx:id=\"closeaddrapport\" was not injected: check your FXML file 'Rapport.fxml'.";
+        assert closeUpdateRapport != null : "fx:id=\"closeUpdateRapport\" was not injected: check your FXML file 'UpdateRapport.fxml'.";
 
         if (existingRapport != null) {
             Rapport_Update.setText(existingRapport.getRapport());

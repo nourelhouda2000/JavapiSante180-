@@ -7,9 +7,13 @@ import entities.Rendezvous;
 import java.net.URL;
 
 import entities.User;
+import javafx.animation.FadeTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Duration;
 import services.RapportServices;
 import services.RendezvousServices;
 import javafx.fxml.FXMLLoader;
@@ -62,6 +66,8 @@ public class RendezvousControllers implements Initializable {
     @FXML
     private Button ADD_Reclamation;
 
+    @FXML
+    private Button calendarRDV;
     @FXML
     private Button ADD_Rectt;
 
@@ -153,7 +159,10 @@ private Button select_RDV;
 
     @FXML
     private ListView<?> Listview_Reclamation;
-
+    @FXML
+    private AnchorPane Sante_form;
+    @FXML
+    private AnchorPane Activités_form;
 
 
 
@@ -192,6 +201,10 @@ private Button select_RDV;
     private TextField age_profil;
     @FXML
     private Button Profil_page;
+    @FXML
+    private Button Activitepage;
+    @FXML
+    private Button Santepage;
     @FXML
     private AnchorPane Profil_form;
     @FXML
@@ -325,6 +338,8 @@ private Button select_RDV;
             User_form.setVisible(false);
             Recette_form.setVisible(false);
             Reclamation_form.setVisible(false);
+            Activités_form.setVisible(false);
+            Sante_form.setVisible(false);
 
             Profil_page.setStyle("-fx-background-color:linear-gradient(to bottom right, #3a4368, #28966c);");
             Home_page.setStyle("-fx-background-color:transparent");
@@ -332,6 +347,8 @@ private Button select_RDV;
             user_page.setStyle("-fx-background-color:transparent");
             Recettepage.setStyle("-fx-background-color:transparent");
             Reclamationpage.setStyle("-fx-background-color:transparent");
+            Activitepage.setStyle("-fx-background-color:transparent");
+            Santepage.setStyle("-fx-background-color:transparent");
 
         } else if (event.getSource() == Rendezvouspage) {
             Profil_form.setVisible(false);
@@ -341,6 +358,8 @@ private Button select_RDV;
             User_form.setVisible(false);
             Recette_form.setVisible(false);
             Reclamation_form.setVisible(false);
+            Activités_form.setVisible(false);
+            Sante_form.setVisible(false);
 
             Rendezvouspage.setStyle("-fx-background-color:linear-gradient(to bottom right, #3a4368, #28966c);");
             Profil_page.setStyle("-fx-background-color:transparent");
@@ -348,7 +367,8 @@ private Button select_RDV;
             user_page.setStyle("-fx-background-color:transparent");
             Recettepage.setStyle("-fx-background-color:transparent");
             Reclamationpage.setStyle("-fx-background-color:transparent");
-
+            Activitepage.setStyle("-fx-background-color:transparent");
+            Santepage.setStyle("-fx-background-color:transparent");
         }
 
         else if (event.getSource() == Home_page) {
@@ -359,6 +379,8 @@ private Button select_RDV;
             User_form.setVisible(false);
             Recette_form.setVisible(false);
             Reclamation_form.setVisible(false);
+            Activités_form.setVisible(false);
+            Sante_form.setVisible(false);
 
             Home_page.setStyle("-fx-background-color:linear-gradient(to bottom right, #3a4368, #28966c);");
             Profil_page.setStyle("-fx-background-color:transparent");
@@ -366,6 +388,8 @@ private Button select_RDV;
             user_page.setStyle("-fx-background-color:transparent");
             Recettepage.setStyle("-fx-background-color:transparent");
             Reclamationpage.setStyle("-fx-background-color:transparent");
+            Activitepage.setStyle("-fx-background-color:transparent");
+            Santepage.setStyle("-fx-background-color:transparent");
 
         } else if (event.getSource() == Rendezvouspage) {
             Profil_form.setVisible(false);
@@ -374,6 +398,8 @@ private Button select_RDV;
             User_form.setVisible(false);
             Recette_form.setVisible(false);
             Reclamation_form.setVisible(false);
+            Activités_form.setVisible(false);
+            Sante_form.setVisible(false);
 
             Rendezvouspage.setStyle("-fx-background-color:linear-gradient(to bottom right, #3a4368, #28966c);");
             Profil_page.setStyle("-fx-background-color:transparent");
@@ -381,6 +407,8 @@ private Button select_RDV;
             user_page.setStyle("-fx-background-color:transparent");
             Recettepage.setStyle("-fx-background-color:transparent");
             Reclamationpage.setStyle("-fx-background-color:transparent");
+            Activitepage.setStyle("-fx-background-color:transparent");
+            Santepage.setStyle("-fx-background-color:transparent");
 
         }else if (event.getSource() == user_page) {
             Profil_form.setVisible(false);
@@ -389,12 +417,16 @@ private Button select_RDV;
             User_form.setVisible(true);
             Recette_form.setVisible(false);
             Reclamation_form.setVisible(false);
+            Activités_form.setVisible(false);
+            Sante_form.setVisible(false);
             user_page.setStyle("-fx-background-color:linear-gradient(to bottom right, #3a4368, #28966c);");
             Profil_page.setStyle("-fx-background-color:transparent");
             Home_page.setStyle("-fx-background-color:transparent");
             Rendezvouspage.setStyle("-fx-background-color:transparent");
             Recettepage.setStyle("-fx-background-color:transparent");
             Reclamationpage.setStyle("-fx-background-color:transparent");
+            Activitepage.setStyle("-fx-background-color:transparent");
+            Santepage.setStyle("-fx-background-color:transparent");
 
         }else if (event.getSource() == Recettepage) {
             Profil_form.setVisible(false);
@@ -403,12 +435,16 @@ private Button select_RDV;
             User_form.setVisible(false);
             Recette_form.setVisible(true);
             Reclamation_form.setVisible(false);
+            Activités_form.setVisible(false);
+            Sante_form.setVisible(false);
             Recettepage.setStyle("-fx-background-color:linear-gradient(to bottom right, #3a4368, #28966c);");
             Profil_page.setStyle("-fx-background-color:transparent");
             Home_page.setStyle("-fx-background-color:transparent");
             Rendezvouspage.setStyle("-fx-background-color:transparent");
             user_page.setStyle("-fx-background-color:transparent");
             Reclamationpage.setStyle("-fx-background-color:transparent");
+            Activitepage.setStyle("-fx-background-color:transparent");
+            Santepage.setStyle("-fx-background-color:transparent");
 
         }else if (event.getSource() == Reclamationpage) {
             Profil_form.setVisible(false);
@@ -417,6 +453,8 @@ private Button select_RDV;
             User_form.setVisible(false);
             Recette_form.setVisible(false);
             Reclamation_form.setVisible(true);
+            Activités_form.setVisible(false);
+            Sante_form.setVisible(false);
 
             Reclamationpage.setStyle("-fx-background-color:linear-gradient(to bottom right, #3a4368, #28966c);");
             Profil_page.setStyle("-fx-background-color:transparent");
@@ -424,6 +462,48 @@ private Button select_RDV;
             Rendezvouspage.setStyle("-fx-background-color:transparent");
             Recettepage.setStyle("-fx-background-color:transparent");
             user_page.setStyle("-fx-background-color:transparent");
+            Activitepage.setStyle("-fx-background-color:transparent");
+            Santepage.setStyle("-fx-background-color:transparent");
+
+
+
+
+        }else if (event.getSource() == Activitepage) {
+            Profil_form.setVisible(false);
+            home_form.setVisible(false);
+            RDV_form.setVisible(false);
+            User_form.setVisible(false);
+            Recette_form.setVisible(false);
+            Reclamation_form.setVisible(false);
+            Activités_form.setVisible(true);
+            Sante_form.setVisible(false);
+
+            Activitepage.setStyle("-fx-background-color:linear-gradient(to bottom right, #3a4368, #28966c);");
+            Profil_page.setStyle("-fx-background-color:transparent");
+            Home_page.setStyle("-fx-background-color:transparent");
+            Rendezvouspage.setStyle("-fx-background-color:transparent");
+            Recettepage.setStyle("-fx-background-color:transparent");
+            user_page.setStyle("-fx-background-color:transparent");
+            Reclamationpage.setStyle("-fx-background-color:transparent");
+            Santepage.setStyle("-fx-background-color:transparent");
+        }else if (event.getSource() == Santepage) {
+            Profil_form.setVisible(false);
+            home_form.setVisible(false);
+            RDV_form.setVisible(false);
+            User_form.setVisible(false);
+            Recette_form.setVisible(false);
+            Reclamation_form.setVisible(false);
+            Activités_form.setVisible(false);
+            Sante_form.setVisible(true);
+
+            Santepage.setStyle("-fx-background-color:linear-gradient(to bottom right, #3a4368, #28966c);");
+            Profil_page.setStyle("-fx-background-color:transparent");
+            Home_page.setStyle("-fx-background-color:transparent");
+            Rendezvouspage.setStyle("-fx-background-color:transparent");
+            Recettepage.setStyle("-fx-background-color:transparent");
+            user_page.setStyle("-fx-background-color:transparent");
+            Reclamationpage.setStyle("-fx-background-color:transparent");
+            Activitepage.setStyle("-fx-background-color:transparent");
         }
 
 
@@ -619,26 +699,33 @@ private Button select_RDV;
             showAlert("Erreur", "Impossible de charger la fenêtre de rapport.", Alert.AlertType.ERROR);
         }
     }
-
     private void openRapportWindow(int idRendezvous) throws IOException {
-        // Charger le fichier Rapport.fxml
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Rapport.fxml"));
-        Parent root = loader.load();
+        try {
+            // Charger le fichier Rapport.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Rapport.fxml"));
+            Parent root = loader.load();
 
-        // Passer l'ID du rendez-vous sélectionné au contrôleur RapportControllers
-        RapportControllers rapportController = loader.getController();
-        rapportController.setIdR(idRendezvous);
+            // Passer l'ID du rendez-vous sélectionné au contrôleur RapportControllers
+            RapportControllers rapportController = loader.getController();
+            rapportController.setIdR(idRendezvous);
 
-        // Créer une nouvelle scène
-        Scene scene = new Scene(root);
+            // Créer une nouvelle scène
+            Scene scene = new Scene(root);
 
-        // Créer un nouveau stage et définir la scène
-        Stage stage = new Stage();
-        stage.setScene(scene);
+            // Créer un nouveau stage et définir la scène
+            Stage stage = new Stage();
+            stage.setScene(scene);
 
-        // Afficher la fenêtre
-        stage.show();
+            // Appliquer l'animation d'ouverture à la fenêtre
+            applyOpenAnimation(root);
+
+            // Afficher la fenêtre
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
 
     private void showAlert(String title, String message, Alert.AlertType alertType) {
@@ -685,32 +772,56 @@ private Button select_RDV;
 
 
     private void openUpdateRapportWindow(int idRendezvous) throws IOException {
-        // Load the UpdateRapport.fxml file
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("UpdateRapport.fxml"));
-        Parent root = loader.load();
+        try {
+            // Load the UpdateRapport.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("UpdateRapport.fxml"));
+            Parent root = loader.load();
 
-        // Pass the ID of the selected rendezvous to the UpdateRapportController
-        RapportControllers updateRapportController = loader.getController();
-        updateRapportController.setIdR(idRendezvous);
+            // Pass the ID of the selected rendezvous to the UpdateRapportController
+            RapportControllers updateRapportController = loader.getController();
+            updateRapportController.setIdR(idRendezvous);
 
-        // Get the existing rapport for the selected rendezvous
-        Rapport existingRapport = rapportServices.getRapportByRendezvousId(idRendezvous);
-        if (existingRapport != null) {
-            // Pass the existing rapport to the UpdateRapportController
-            updateRapportController.setExistingRapport(existingRapport);
+            // Get the existing rapport for the selected rendezvous
+            Rapport existingRapport = rapportServices.getRapportByRendezvousId(idRendezvous);
+            if (existingRapport != null) {
+                // Pass the existing rapport to the UpdateRapportController
+                updateRapportController.setExistingRapport(existingRapport);
+            }
+
+            // Create a new scene
+            Scene scene = new Scene(root);
+
+            // Create a new stage and set the scene
+            Stage stage = new Stage();
+            stage.setScene(scene);
+
+            // Apply scale and translation transitions
+            applyOpenAnimation(root);
+
+            // Show the window
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        // Create a new scene
-        Scene scene = new Scene(root);
-
-        // Create a new stage and set the scene
-        Stage stage = new Stage();
-        stage.setScene(scene);
-
-        // Show the window
-        stage.show();
     }
 
+    private void applyOpenAnimation(Parent root) {
+        // Scale transition
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.5), root);
+        scaleTransition.setFromX(0); // Initial scale X: 0 (invisible)
+        scaleTransition.setFromY(0); // Initial scale Y: 0 (invisible)
+        scaleTransition.setToX(1); // Final scale X: 1 (fully visible)
+        scaleTransition.setToY(1); // Final scale Y: 1 (fully visible)
+
+        // Translation transition
+        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(0.5), root);
+        translateTransition.setFromX(-100); // Initial horizontal offset
+        translateTransition.setToX(0); // No final horizontal offset
+
+        // Play the transitions sequentially
+        scaleTransition.play();
+        translateTransition.play();
+    }
 
 
 
@@ -728,26 +839,17 @@ private Button select_RDV;
         Listview_RDV.setCellFactory(param -> new CustomListCell());
     }
 
-///////////////////////////////////////////////////////met
+///////////////////////////////////////////////////////metrecherche//
 @FXML
-public void rechercherRendezvous() {
-    String searchTerm = Search_RDV.getText().trim().toLowerCase();
-    if (!searchTerm.isEmpty()) {
-        // Assurez-vous d'avoir une instance valide de RendezvousServices
-        RendezvousServices rendezvousServices = new RendezvousServices();
+private void searchByHeureRDV(String heure) {
+    List<Rendezvous> rendezvousList = rendezvousServices.rechercheParHeure(heure);
 
-        // Créez un objet Rendezvous pour spécifier les critères de recherche
-        Rendezvous searchCriteria = new Rendezvous();
-        searchCriteria.setDate_r(searchTerm); // Vous pouvez également définir d'autres attributs de recherche ici
+    Listview_RDV.getItems().clear();
 
-        // Appeler la méthode de recherche pour obtenir les résultats
-        List<Rendezvous> searchResults = rendezvousServices.searchRendezvous(searchCriteria);
-
-        // Mettre à jour la liste affichée dans le ListView avec les résultats de la recherche
-        Listview_RDV.setItems(FXCollections.observableArrayList(searchResults));
+    if (rendezvousList.isEmpty()) {
+        showAlert("Aucun rendez-vous trouvé", "Aucun rendez-vous correspondant à l'heure spécifiée.", Alert.AlertType.INFORMATION);
     } else {
-        // Si le terme de recherche est vide, afficher tous les rendez-vous
-        Listview_RDV.setItems(observableRendezvousList);
+        Listview_RDV.getItems().addAll(rendezvousList);
     }
 }
 
@@ -776,6 +878,8 @@ public void rechercherRendezvous() {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    /////////////////////stat//////////////
     @FXML
     void openStatRDVPage() {
         try {
@@ -783,11 +887,63 @@ public void rechercherRendezvous() {
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
+
+            // Appliquer une transition d'échelle
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.5), root);
+            scaleTransition.setFromX(0); // Échelle initiale X: 0 (invisible)
+            scaleTransition.setFromY(0); // Échelle initiale Y: 0 (invisible)
+            scaleTransition.setToX(1); // Échelle finale X: 1 (pleinement visible)
+            scaleTransition.setToY(1); // Échelle finale Y: 1 (pleinement visible)
+
+            // Appliquer une transition de translation
+            TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(0.5), root);
+            translateTransition.setFromX(-100); // Décalage horizontal initial
+            translateTransition.setToX(0); // Pas de décalage horizontal final
+
+            // Jouer les transitions en séquence
+            scaleTransition.play();
+            translateTransition.play();
+
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
+    ///////////////calendar/
+
+    @FXML
+    void openCalendarPage() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CalendarRDV.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            // Appliquer une transition d'échelle
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.5), root);
+            scaleTransition.setFromX(0); // Échelle initiale X: 0 (invisible)
+            scaleTransition.setFromY(0); // Échelle initiale Y: 0 (invisible)
+            scaleTransition.setToX(1); // Échelle finale X: 1 (pleinement visible)
+            scaleTransition.setToY(1); // Échelle finale Y: 1 (pleinement visible)
+
+            // Appliquer une transition de translation
+            TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(0.5), root);
+            translateTransition.setFromX(-100); // Décalage horizontal initial
+            translateTransition.setToX(0); // Pas de décalage horizontal final
+
+            // Jouer les transitions en séquence
+            scaleTransition.play();
+            translateTransition.play();
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////usernesrine////////////////////////////////////////
@@ -1173,7 +1329,9 @@ public void rechercherRendezvous() {
         assert saisie_date != null : "fx:id=\"saisie_date\" was not injected: check your FXML file 'Rendezvous.fxml'.";
         assert saisie_heure != null : "fx:id=\"saisie_heure\" was not injected: check your FXML file 'Rendezvous.fxml'.";
         assert statRDV != null : "fx:id=\"statRDV\" was not injected: check your FXML file 'Rendezvous.fxml'.";
-
+        assert calendarRDV != null : "fx:id=\"calendarRDV\" was not injected: check your FXML file 'Rendezvous.fxml'.";
+        assert Activités_form != null : "fx:id=\"Activités_form\" was not injected: check your FXML file 'Rendezvous.fxml'.";
+        assert Sante_form != null : "fx:id=\"Sante_form\" was not injected: check your FXML file 'Rendezvous.fxml'.";
         datePicker_RDV.setValue(LocalDate.now());
         observableRendezvousList = FXCollections.observableArrayList();
         // Ajouter un écouteur d'événements pour détecter les changements de date
@@ -1183,9 +1341,9 @@ public void rechercherRendezvous() {
         addRDVShowListData();
         addUserShowListData();
 
-        // Ajouter un écouteur de changement pour le champ de recherche
         Search_RDV.textProperty().addListener((observable, oldValue, newValue) -> {
-            rechercherRendezvous();
+            // Appelez la méthode de recherche à chaque changement de texte
+            searchByHeureRDV(newValue);
         });
 
 

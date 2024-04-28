@@ -1,40 +1,32 @@
 package controllers;
 
-import java.net.URL;
-import java.util.Objects;
-import java.util.ResourceBundle;
-
-import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import netscape.javascript.JSObject;
+import javafx.stage.Stage;
 
-public class map {
+import java.net.URL;
+import java.util.ResourceBundle;
 
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
+public class map implements Initializable {
 
     @FXML
     private WebView webView;
 
-    @FXML
-    void initialize() {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Créer un objet WebEngine pour charger le contenu HTML dans le WebView
         WebEngine webEngine = webView.getEngine();
-        webEngine.load(Objects.requireNonNull(getClass().getResource("/map.html")).toExternalForm());
 
-        // Enable JavaScript communication
-        webEngine.getLoadWorker().stateProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == Worker.State.SUCCEEDED) {
-                JSObject window = (JSObject) webEngine.executeScript("window");
-                window.setMember("java", this);
-            }
-        });
+        // Charger le contenu HTML à partir d'un fichier dans le répertoire des ressources
+        URL resourceUrl = getClass().getClassLoader().getResource("map1.html");
+        if (resourceUrl != null) {
+            webEngine.load(resourceUrl.toExternalForm());
+        } else {
+            System.err.println("Error: map.html not found!");
+            // Gérer l'erreur ici, comme afficher un message à l'utilisateur
+        }
     }
-
-
 }

@@ -8,6 +8,8 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 import java.awt.*;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import java.io.File;
@@ -128,6 +130,10 @@ public class Rendezvous {
 
     //////////////////////////////////pdf////
 
+
+
+
+
     public static void generatePDF(List<Rendezvous> rendezvousList, String fileName) throws IOException {
         String filePath = PDF_PATH + fileName + ".pdf";
         try (PDDocument document = new PDDocument()) {
@@ -136,7 +142,7 @@ public class Rendezvous {
 
             try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
                 // Chargez l'image du logo
-                PDImageXObject logoImage = PDImageXObject.createFromFile("src/main/resources/logo.png", document);
+                PDImageXObject logoImage = PDImageXObject.createFromFile("src/main/resources/image/logo.png", document);
 
                 // Définissez les coordonnées et la taille de l'image
                 float xImage = 50; // Position X du coin supérieur gauche de l'image
@@ -147,7 +153,26 @@ public class Rendezvous {
                 // Ajoutez l'image du logo à la page PDF
                 contentStream.drawImage(logoImage, xImage, yImage, widthImage, heightImage);
 
-                // Définissez les coordonnées pour le début du tableau
+                // Ajouter la date et l'heure actuelles au contenu du document
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                LocalDateTime now = LocalDateTime.now();
+                String currentDate = "Date: " + dtf.format(now);
+
+                float xDate = 50; // Position X de la date
+                float yDate = page.getMediaBox().getHeight() - 200; // Position Y de la date
+                contentStream.setFont(PDType1Font.HELVETICA, 12);
+                contentStream.beginText();
+                contentStream.newLineAtOffset(xDate, yDate);
+                contentStream.showText(currentDate);
+                contentStream.endText();
+
+                // Dessiner une ligne pour séparer la date du reste du contenu
+                float lineY = yDate - 10;
+                contentStream.moveTo(xDate, lineY);
+                contentStream.lineTo(xDate + 150, lineY);
+                contentStream.stroke();
+
+                // Définir les coordonnées pour le début du tableau
                 float xTable = 50; // Position X du coin supérieur gauche du tableau
                 float yTable = page.getMediaBox().getHeight() - 250; // Position Y du coin supérieur gauche du tableau
 
@@ -230,6 +255,13 @@ public class Rendezvous {
         // Par exemple, vous pouvez ajouter un timestamp à la fin du nom de fichier
         return fileName + "_" + System.currentTimeMillis();
     }
+
+
+
+
+
+
+
 
 
 }
