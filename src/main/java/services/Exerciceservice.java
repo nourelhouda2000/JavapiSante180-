@@ -2,15 +2,19 @@ package services;
 
 
 import entities.Activite;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
-import javafx.fxml.FXML;
+
+
 import utils.MyDB;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import entities.Exercice;
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+
+
 
 public class Exerciceservice implements IExercice<Exercice> {
 
@@ -146,9 +150,61 @@ public class Exerciceservice implements IExercice<Exercice> {
 
 
 
+    public List<Exercice> rechercherExercices(String nom, String description, String niveau) {
+        List<Exercice> exercices = new ArrayList<>();
+        try {
+            // Requête SQL pour rechercher des exercices par nom, description et niveau
+            String requete = "SELECT * FROM exercice WHERE nom LIKE ? AND description LIKE ? AND niveau LIKE ?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            // Paramétrer les critères de recherche avec des '%' pour rechercher des correspondances partielles
+            pst.setString(1, "%" + nom + "%");
+            pst.setString(2, "%" + description + "%");
+            pst.setString(3, "%" + niveau + "%");
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                // Récupérer les détails de l'exercice à partir du résultat de la requête
+                int id = rs.getInt("id");
+                String nomExercice = rs.getString("nom");
+                String descriptionExercice = rs.getString("description");
+                String niveauExercice = rs.getString("niveau");
+                int nombreRepetition = rs.getInt("nombre_repetition");
+                int likes = rs.getInt("likes");
+                // Créer un objet Exercice avec les détails récupérés
+                Exercice exercice = new Exercice(id, nomExercice, descriptionExercice, niveauExercice, nombreRepetition, likes, null);
+                // Ajouter l'exercice à la liste des exercices
+                exercices.add(exercice);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la recherche des exercices : " + e.getMessage());
+        }
+        return exercices;
+    }
 
 
+
+
+
+    public List<Exercice> getOffresByPage(int pageNumber, int itemsPerPage) {
+        EntityManager em = Persistence.createEntityManagerFactory("UtriPU").createEntityManager();
+        Query query = em.createQuery("SELECT e FROM Exercice e ORDER BY e.id DESC");
+
+        int startPosition = (pageNumber - 1) * itemsPerPage;
+        query.setFirstResult(startPosition);
+        query.setMaxResults(itemsPerPage);
+
+        List<Exercice> offres = query.getResultList();
+        em.close();
+        return offres;
+    }
 }
+
+
+
+
+
+
+
 
 
 

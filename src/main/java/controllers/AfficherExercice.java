@@ -1,5 +1,4 @@
 package controllers;
-
 import entities.Exercice;
 import entities.Activite;
 import javafx.collections.FXCollections;
@@ -9,6 +8,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -24,6 +24,8 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.BaseColor;
+
+import javafx.scene.control.Pagination;
 
 
 import java.io.FileNotFoundException;
@@ -65,50 +67,97 @@ public class AfficherExercice {
 
     @FXML
     private TextField niveauExerciceField;
+    @FXML
+    private VBox resultatsVBox;
+    @FXML
+    private Pagination pagination;
+
+    @FXML
+    private Button rechercheButton;
+
+
+
+
+
+
+    private ObservableList<Exercice> masterData;
 
     private ObservableList<Exercice> exerciceDataList;
-    private ObservableList<Exercice> exercicesFiltres = FXCollections.observableArrayList();
-    @FXML
-    private Button Recherche;
-    @FXML
-    private TextField search;
-    private ObservableList<Exercice> obList = FXCollections.observableArrayList();
-    private FilteredList<Exercice> filteredData;
 
-    @FXML
-    private TableView<Exercice> afficherExercice;
+
 
 
 
     @FXML
     public void initialize() {
-
         // Récupérer la liste complète des exercices et l'assigner à exerciceDataList
-        exerciceDataList = FXCollections.observableArrayList(exerciceService.getAllData());
-        afficherListeExercices();
-        // Ajoutez la fonctionnalité de défilement
-        ScrollPane scrollPane = new ScrollPane(exerciceContainer);
-        scrollPane.setFitToWidth(true); // Redimensionner pour s'adapter à la largeur disponible
-        scrollPane.setFitToHeight(true); // Redimensionner pour s'adapter à la hauteur disponible
-        // Ajoutez le ScrollPane à votre disposition
-        VBox vbox = new VBox(scrollPane);
-        VBox.setVgrow(scrollPane, Priority.ALWAYS);
-        // Remplacez le conteneur actuel par le VBox contenant le ScrollPane
-        this.exerciceContainer = vbox;
-    }
-    public void displayExercices(List<Exercice> exercices) {
-        // Effacer le conteneur d'exercices avant d'afficher la nouvelle liste
-        exerciceContainer.getChildren().clear();
+        exerciceDataList = FXCollections.observableArrayList(Exerciceservice.getAllData());
 
-        // Parcourir la liste des exercices et les afficher dans le conteneur
-        for (Exercice exercice : exercices) {
-            FlowPane card = createExerciceCard(exercice);
-            exerciceContainer.getChildren().add(card);
+        // Créer un objet Pagination avec le nombre total de pages et une fonction pour générer le contenu de chaque page
+        int itemsPerPage = 1; // Nombre d'exercices par page
+        int pageCount = (int) Math.ceil((double) exerciceDataList.size() / itemsPerPage); // Calcul du nombre total de pages
+        pagination = new Pagination(pageCount, 0);
+        pagination.setStyle("-fx-font-size: 16px; -fx-background-color: #f2f2f2;");
+        pagination.setPageFactory(pageIndex -> createPageContent(pageIndex, itemsPerPage, exerciceDataList));
+
+        // Ajouter la pagination au conteneur sans supprimer le contenu existant
+        exerciceContainer.getChildren().add(pagination);
+
+        // Afficher la liste des exercices initiale
+        // afficherListeExercices();
+    }
+
+
+
+    private Node createPageContent(int pageIndex, int itemsPerPage, List<Exercice> exercices) {
+        int fromIndex = pageIndex * itemsPerPage;
+        int toIndex = Math.min(fromIndex + itemsPerPage, exercices.size());
+        List<Exercice> currentPageData = exercices.subList(fromIndex, toIndex);
+
+        // Créer dynamiquement les cartes d'exercices pour la page actuelle
+        FlowPane pageContent = new FlowPane();
+        pageContent.setPadding(new Insets(10));
+        pageContent.setHgap(10);
+        pageContent.setVgap(10);
+
+        for (Exercice exercice : currentPageData) {
+            // Créer la carte d'exercice et ajouter à la page
+            Node card = createCard(exercice);
+            pageContent.getChildren().add(card);
         }
+
+        return pageContent;
+    }
+
+    private Node createCard(Exercice exercice) {
+        // Code pour créer et personnaliser la carte d'exercice
+        // Retournez la carte d'exercice créée
+
+        // Exemple de code pour créer une carte d'exercice fictive avec VBox
+        VBox card = new VBox();
+        card.setStyle("-fx-background-color: #B6D7A8; -fx-padding: 10px; -fx-margin: 10px; -fx-border-radius: 10px;");
+
+        // Titre de l'exercice
+        Label titleLabel = new Label(exercice.getNom());
+        titleLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: purple; -fx-padding: 12px;");
+        // Description de l'exercice
+        Label descriptionLabel = new Label( "Description: " +exercice.getDescription());
+
+        // Niveau de l'exercice
+        Label levelLabel = new Label("Niveau: " + exercice.getNiveau());
+
+        Label numberLabel = new Label("Nombre_Repetition: " + exercice.getNombre_repetition());
+        Label likesLabel = new Label("Likes: " + exercice.getLikes());
+        Label actLabel = new Label("Activité: " + exercice.getActivite());
+
+        // Ajouter les éléments à la carte
+        card.getChildren().addAll(titleLabel, descriptionLabel, levelLabel,numberLabel,likesLabel,actLabel);
+
+        return card;
     }
     public void afficherListeExercices() {
         // Récupérer la liste des exercices depuis le service
-        List<Exercice> exercices = exerciceService.getAllData();
+        List<Exercice> exercices = Exerciceservice.getAllData();
 
         // Parcourir la liste des exercices et les afficher dans le conteneur
         for (Exercice exercice : exercices) {
@@ -236,13 +285,7 @@ public class AfficherExercice {
 
 
 
-    private void afficherAlerte(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.show();
-    }
+
 
     @FXML
     private void boutonimrimer(ActionEvent event) {
@@ -328,26 +371,35 @@ public class AfficherExercice {
 
 
 
+    @FXML
+    public void rechercherExercices(ActionEvent event) {
+        String nom = nomExerciceField.getText();
+        String description = descriptionExerciceField.getText();
+        String niveau = niveauExerciceField.getText();
+
+        // Appeler la méthode de recherche d'exercices dans le service
+        List<Exercice> exercices = exerciceService.rechercherExercices(nom, description, niveau);
+
+        // Afficher les résultats dans l'interface utilisateur
+        afficherResultats(exercices);
 
 
-
-
-
-    private void afficherExercices(List<Exercice> exercices) {
-        // Effacer les exercices précédemment affichés
-        exerciceContainer.getChildren().clear();
-
-        // Parcourir les exercices filtrés et les afficher dans l'interface utilisateur
-        for (Exercice exercice : exercices) {
-            FlowPane card = createExerciceCard(exercice);
-            exerciceContainer.getChildren().add(card);
-        }
     }
 
 
+    private void afficherResultats(List<Exercice> exercices) {
+        // Effacer les résultats précédents
+        resultatsVBox.getChildren().clear();
 
+        // Afficher les résultats de la recherche
+        for (Exercice exercice : exercices) {
+            // Créer un label pour afficher le nom de l'exercice
+            Label nomLabel = new Label(exercice.getNom());
+            nomLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: purple;"); // Appliquer le style pour le nom de l'exercice
 
-
-
+            resultatsVBox.getChildren().add(nomLabel);
+            // Vous pouvez ajouter d'autres informations de l'exercice si nécessaire
+        }
+    }
 }
 

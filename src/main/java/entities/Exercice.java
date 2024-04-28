@@ -1,17 +1,24 @@
 package entities;
 
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
+@Entity
 public class Exercice {
 
-
+@Id
     private int id;
     private String nom;
     private String description ;
     private String niveau;
     private int nombre_repetition;
     private int likes;
+@ManyToOne
     private Activite activite;
+
+
 
     public Exercice() {
 
