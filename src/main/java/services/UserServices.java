@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+
 public class UserServices implements IservicesUser <User>{
     // Méthode pour valider l'âge de l'utilisateur
     private boolean isValidAge(String age) {
@@ -230,6 +232,26 @@ public class UserServices implements IservicesUser <User>{
         }
     }
 
+    public boolean updateUserPwd(int userId, String newPassword) {
+        try {
+            String query = "UPDATE user SET mdp = ? WHERE id_user = ?";
+            PreparedStatement pst = MyDB.getInstance().getConnection().prepareStatement(query);
+            pst.setString(1, newPassword);
+            pst.setInt(2, userId);
+            int rowsUpdated = pst.executeUpdate();
+
+            if (rowsUpdated > 0) {
+                showAlert("Information", "Password updated successfully!");
+                return true;
+            } else {
+                showAlert("Information", "Failed to update password.");
+                return false;
+            }
+        } catch (SQLException e) {
+            showAlert("Information", "Error updating password: " + e.getMessage());
+            return false;
+        }
+    }
 
 
     public boolean updateUserpwdprofil1(User user) {
@@ -396,6 +418,40 @@ public class UserServices implements IservicesUser <User>{
         }
     }
 
+
+
+    public boolean AjouterCompte(String nomuser, String Prenomuser, String ageuser, String sexe, String email, String mdp, int role) {
+        try {
+            // Query to verify login credentials
+            String query = "SELECT * FROM user WHERE email = ? AND mdp = ?";
+            try (PreparedStatement pst = MyDB.getInstance().getConnection().prepareStatement(query)) {
+                pst.setString(1, email);
+                pst.setString(2, mdp);
+                try (ResultSet rs = pst.executeQuery()) {
+                    if (rs.next()) {
+                        // User authenticated successfully
+                        return true;
+                    } else {
+                        // Invalid credentials
+                        return false;
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            // Handle SQL exceptions
+            e.printStackTrace(); // Log the exception for debugging
+            // Display a generic error message to the user
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("Error");
+            errorAlert.setHeaderText(null);
+            errorAlert.setContentText("An error occurred while logging in. Please try again later.");
+            errorAlert.showAndWait();
+            return false;
+        }
+    }
+
+
+
     // Method to get the name of the user based on email
     public User getUserByEmail(String email) {
         try {
@@ -432,13 +488,7 @@ public class UserServices implements IservicesUser <User>{
     }
 
 
-    public boolean resetPassword(String email) {
-    return true;
-    }
-
-
-
-    public boolean entityExistsbyemail(String email) {
+    public boolean emailExists(String email) {
         try {
             // Requête SQL pour vérifier si l'e-mail existe dans la table user
             String query = "SELECT * FROM user WHERE email = ?";

@@ -926,13 +926,11 @@ public class RendezvousControllers implements Initializable {
 
 
 
-
-
-
     @FXML
     void EditUser(ActionEvent event) {
         if (validateFields1()) {
             User updatedUser = new User();
+            //updatedUser.setIdUser(getLoggedInUserId()); // Assuming you have a method to get the ID of the logged-in user
             updatedUser.setNomuser(nom_profil.getText());
             updatedUser.setPrenomuser(prenom_profil.getText());
             updatedUser.setMdp(Password_profil.getText());
@@ -940,12 +938,19 @@ public class RendezvousControllers implements Initializable {
             boolean success = userServices.updateUserpwdprofil1(updatedUser);
 
             if (success) {
-                addUserShowListData();
-                addUserReset();
+                // Update the displayed user information
+                nom_profil.setText(updatedUser.getNomuser());
+                prenom_profil.setText(updatedUser.getPrenomuser());
+                // Password should not be displayed, so no need to update it in the UI
+
+                // Show success message
                 showAlert("Succès", "Les informations de l'utilisateur ont été mises à jour avec succès.");
+            } else {
+                showAlert("Erreur", "Une erreur s'est produite lors de la mise à jour des informations de l'utilisateur.");
             }
         }
     }
+
     private boolean validateFields1() {
         // Vérifie si les champs nom_profil, prenom_profil et Password_profil sont remplis
         return !nom_profil.getText().isEmpty() &&

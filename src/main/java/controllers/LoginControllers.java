@@ -21,6 +21,7 @@ import services.UserServices;
 
 import javafx.scene.control.Hyperlink;
 
+import javafx.scene.control.CheckBox;
 
 public class LoginControllers {
     private UserServices userServices = new UserServices();
@@ -51,6 +52,10 @@ public class LoginControllers {
     private Hyperlink signup;
 
     @FXML
+    private CheckBox checkbox_pwd;
+
+
+    @FXML
     void handleResetPassword(ActionEvent event) {
         try {
             // Charger le fichier FXML
@@ -70,6 +75,29 @@ public class LoginControllers {
             e.printStackTrace(); // Gérer les erreurs de chargement du fichier FXML
         }
     }
+
+
+    @FXML
+    void handleSignUp(ActionEvent event) {
+        try {
+            // Charger le fichier FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/signup.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène
+            Scene scene = new Scene(root);
+
+            // Obtenir la scène actuelle
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Définir la nouvelle scène
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Gérer les erreurs de chargement du fichier FXML
+        }
+    }
+
 
 
     private void showAlert(String title, String message) {
@@ -125,17 +153,35 @@ public class LoginControllers {
         stage.show();
     }
 
+    @FXML
+    void showPasswordCheckbox(ActionEvent event) {
+            // Toggle the visibility of the password field based on checkbox state
+            boolean showPassword = checkbox_pwd.isSelected();
+            password_btn.setVisible(!showPassword);
+            password_btn.setManaged(!showPassword);
+            // If checkbox is selected, set the plain text of password field
+            if (showPassword) {
+                password_btn.setText(password_btn.getText());
+            } else {
+                // If checkbox is deselected, clear the plain text of password field
+                password_btn.setText(password_btn.getText());
+            }
+
+    }
+
     public void close() {
         System.exit(0);
     }
 
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    @FXML
+    void initialize() {
         assert Login_form != null : "fx:id=\"Login_form\" was not injected: check your FXML file 'Login.fxml'.";
+        assert checkbox_pwd != null : "fx:id=\"checkbox_pwd\" was not injected: check your FXML file 'Login.fxml'.";
         assert close != null : "fx:id=\"close\" was not injected: check your FXML file 'Login.fxml'.";
         assert email_btn != null : "fx:id=\"email_btn\" was not injected: check your FXML file 'Login.fxml'.";
+        assert linkpwd != null : "fx:id=\"linkpwd\" was not injected: check your FXML file 'Login.fxml'.";
         assert login_btn != null : "fx:id=\"login_btn\" was not injected: check your FXML file 'Login.fxml'.";
         assert password_btn != null : "fx:id=\"password_btn\" was not injected: check your FXML file 'Login.fxml'.";
-        assert linkpwd != null : "fx:id=\"linkpwd\" was not injected: check your FXML file 'Login.fxml'.";
         assert signup != null : "fx:id=\"signup\" was not injected: check your FXML file 'Login.fxml'.";
 
     }
