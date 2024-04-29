@@ -181,6 +181,53 @@ public class Exerciceservice implements IExercice<Exercice> {
         return exercices;
     }
 
+    public static void updateLikes(int exerciceId, int newLikesCount) {
+        try {
+            // Préparer la requête de mise à jour du nombre de likes
+            String query = "UPDATE exercice SET likes = ? WHERE id = ?";
+            PreparedStatement pst = cnx.prepareStatement(query);
+            pst.setInt(1, newLikesCount);
+            pst.setInt(2, exerciceId);
+
+            // Exécuter la mise à jour
+            int rowsAffected = pst.executeUpdate();
+
+            // Vérifier si la mise à jour a réussi
+            if (rowsAffected > 0) {
+                System.out.println("Nombre de likes mis à jour avec succès pour l'exercice avec l'ID : " + exerciceId);
+            } else {
+                System.out.println("Échec de la mise à jour du nombre de likes pour l'exercice avec l'ID : " + exerciceId);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la mise à jour du nombre de likes pour l'exercice avec l'ID " + exerciceId + " : " + e.getMessage());
+        }
+    }
+
+
+
+
+
+    public void updateDislikes(int exerciceId, int newDislikesCount) {
+        try {
+            // Préparer la requête de mise à jour du nombre de dislikes
+            String query = "UPDATE exercice SET dislikes = ? WHERE id = ?";
+            PreparedStatement pst = cnx.prepareStatement(query);
+            pst.setInt(1, newDislikesCount);
+            pst.setInt(2, exerciceId);
+
+            // Exécuter la mise à jour
+            int rowsAffected = pst.executeUpdate();
+
+            // Vérifier si la mise à jour a réussi
+            if (rowsAffected > 0) {
+                System.out.println("Nombre de dislikes mis à jour avec succès pour l'exercice avec l'ID : " + exerciceId);
+            } else {
+                System.out.println("Échec de la mise à jour du nombre de dislikes pour l'exercice avec l'ID : " + exerciceId);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la mise à jour du nombre de dislikes pour l'exercice avec l'ID " + exerciceId + " : " + e.getMessage());
+        }
+    }
 
 
 

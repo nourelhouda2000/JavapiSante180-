@@ -5,19 +5,23 @@ import com.sun.javafx.collections.MappingChange;
 import entities.Activite;
 import entities.Exercice;
 import java.util.Map;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import java.util.HashMap;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -28,7 +32,8 @@ import java.io.IOException;
 
 import java.util.List;
 import java.util.Random;
-import javafx.scene.control.Alert;
+
+import services.Exerciceservice;
 
 
 public class AfficherActivite {
@@ -38,6 +43,11 @@ public class AfficherActivite {
 
     @FXML
     private BarChart<String, Integer> activiteBarChart;
+    private ObservableList<Activite> activiteDataList;
+    @FXML
+    private Pagination pagination;
+
+
 
 
 
@@ -48,9 +58,25 @@ public class AfficherActivite {
         this.activiteService = new Activiteservice();
     }
 
+
+
     @FXML
     public void initialize() {
-        afficherListeActivites();
+        // Récupérer la liste complète des exercices et l'assigner à exerciceDataList
+        activiteDataList = FXCollections.observableArrayList(Activiteservice.getAllData());
+
+        // Créer un objet Pagination avec le nombre total de pages et une fonction pour générer le contenu de chaque page
+        int itemsPerPage = 1; // Nombre d'exercices par page
+        int pageCount = (int) Math.ceil((double) activiteDataList.size() / itemsPerPage); // Calcul du nombre total de pages
+        pagination = new Pagination(pageCount, 0);
+        pagination.setStyle("-fx-font-size: 16px; -fx-background-color: #f2f2f2;");
+        pagination.setPageFactory(pageIndex -> createPageContent(pageIndex, itemsPerPage, activiteDataList));
+
+        // Ajouter la pagination au conteneur sans supprimer le contenu existant
+        activiteContainer.getChildren().add(pagination);
+
+        // Afficher la liste des exercices initiale
+        // afficherListeExercices();
     }
 
 
@@ -58,7 +84,7 @@ public class AfficherActivite {
 
     private void afficherListeActivites() {
         // Récupérer la liste des activités depuis le service
-        List<Activite> activites = activiteService.getAllData();
+        List<Activite> activites = Activiteservice.getAllData();
 
         // Parcourir la liste des activités et les afficher dans le conteneur
         for (Activite activite : activites) {
@@ -182,6 +208,7 @@ public class AfficherActivite {
             Tooltip tooltip = new Tooltip(label);
             Tooltip.install(data.getNode(), tooltip);
             series.getData().add(data);
+
         }
 
         // Afficher le graphique
@@ -191,6 +218,60 @@ public class AfficherActivite {
         activiteBarChart.getYAxis().setLabel("Nombre d'activités");
         activiteBarChart.setTitle("Statistiques des activités par niveau");
     }
+    private Node createPageContent(int pageIndex, int itemsPerPage, List<Activite> activites) {
+        int fromIndex = pageIndex * itemsPerPage;
+        int toIndex = Math.min(fromIndex + itemsPerPage, activites.size());
+        List<Activite> currentPageData = activites.subList(fromIndex, toIndex);
 
+        // Créer dynamiquement les cartes d'exercices pour la page actuelle
+        FlowPane pageContent = new FlowPane();
+        pageContent.setPadding(new Insets(10));
+        pageContent.setHgap(10);
+        pageContent.setVgap(10);
+
+        for (Activite activite : currentPageData) {
+            // Créer la carte d'exercice et ajouter à la page
+            Node card = createCard(activite);
+            pageContent.getChildren().add(card);
+        }
+
+        return pageContent;
+    }
+    private Node createCard(Activite activite) {
+        // Code pour créer et personnaliser la carte d'exercice
+        // Retournez la carte d'exercice créée
+
+        // Exemple de code pour créer une carte d'exercice fictive avec VBox
+        VBox card = new VBox();
+        card.setStyle("-fx-background-color: #B6D7A8; -fx-padding: 07px; -fx-margin: 07px; -fx-border-radius: 07px;");
+
+        // Titre de l'exercice
+        Label titleLabel = new Label(activite.getNom());
+        titleLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: purple; -fx-padding: 12px;");
+        // Description de l'exercice
+        Label descriptionLabel = new Label( "Description: " +activite.getDescription());
+
+        // Niveau de l'exercice
+        Label levelLabel = new Label("Niveau: " + activite.getNiveau());
+        Label levelLabell = new Label("Categorie: " + activite.getCategorie());
+
+
+
+        // Ajouter les éléments à la carte
+        card.getChildren().addAll(titleLabel, descriptionLabel, levelLabel,levelLabell);
+
+        return card;
+    }
+
+    public void afficherrListeActivites() {
+        // Récupérer la liste des exercices depuis le service
+        List<Activite> activites = Activiteservice.getAllData();
+
+        // Parcourir la liste des exercices et les afficher dans le conteneur
+        for (Activite activite : activites) {
+            VBox card = createActiviteCard(activite);
+            activiteContainer.getChildren().add(card);
+        }
+    }
 
 }

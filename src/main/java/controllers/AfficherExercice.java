@@ -72,6 +72,11 @@ public class AfficherExercice {
     @FXML
     private Pagination pagination;
 
+    private Label likesCountLabel;
+
+    private boolean isLiked= false;
+
+
     @FXML
     private Button rechercheButton;
 
@@ -141,20 +146,52 @@ public class AfficherExercice {
         Label titleLabel = new Label(exercice.getNom());
         titleLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: purple; -fx-padding: 12px;");
         // Description de l'exercice
-        Label descriptionLabel = new Label( "Description: " +exercice.getDescription());
+        Label descriptionLabel = new Label("Description: " + exercice.getDescription());
 
         // Niveau de l'exercice
         Label levelLabel = new Label("Niveau: " + exercice.getNiveau());
 
         Label numberLabel = new Label("Nombre_Repetition: " + exercice.getNombre_repetition());
-        Label likesLabel = new Label("Likes: " + exercice.getLikes());
+        //Label likesLabel = new Label("Likes: " + exercice.getLikes());
         Label actLabel = new Label("Activité: " + exercice.getActivite());
 
         // Ajouter les éléments à la carte
-        card.getChildren().addAll(titleLabel, descriptionLabel, levelLabel,numberLabel,likesLabel,actLabel);
+        card.getChildren().addAll(titleLabel, descriptionLabel, levelLabel, numberLabel, actLabel);
+
+        // Bouton de like
+        Button likeButton = new Button("❤️"); // Utilisez une icône de cœur pour le bouton
+        likeButton.setStyle("-fx-font-size: 20px; -fx-text-fill: red;"); // Style pour agrandir et colorer le cœur
+        likeButton.setOnAction(event -> handleLike(exercice));
+
+        // Compte des likes
+        likesCountLabel = new Label("Likes: " + exercice.getLikes()); // Initialisation de likesCountLabel
+        likesCountLabel.setStyle("-fx-font-size: 14px;");
+
+        // Ajouter le bouton de like et le compte des likes à la carte
+        card.getChildren().addAll(likeButton, likesCountLabel);
 
         return card;
     }
+
+
+
+
+    private void handleLike(Exercice exercice) {
+        // Incrémentez le nombre de likes pour l'exercice correspondant
+        exercice.setLikes(exercice.getLikes() + 1);
+
+        // Mettez à jour le nombre de likes dans la base de données
+        Exerciceservice.updateLikes(exercice.getId(), exercice.getLikes());
+
+        // Mettez à jour l'affichage du nombre de likes sur la carte d'exercice
+        likesCountLabel.setText("Likes: " + exercice.getLikes());
+    }
+
+
+
+
+
+
     public void afficherListeExercices() {
         // Récupérer la liste des exercices depuis le service
         List<Exercice> exercices = Exerciceservice.getAllData();
@@ -197,12 +234,11 @@ public class AfficherExercice {
         niveauLabel.setStyle("-fx-font-size: 14px;");
         Label repetitionsLabel = new Label("Répétitions: " + exercice.getNombre_repetition());
         repetitionsLabel.setStyle("-fx-font-size: 14px;");
-        Label likesLabel = new Label("Likes: " + exercice.getLikes());
-        likesLabel.setStyle("-fx-font-size: 14px;");
+
         Label activiteLabel = new Label("Activité: " + exercice.getActivite().getNom());
         activiteLabel.setStyle("-fx-font-size: 14px;");
 
-        content.getChildren().addAll(nomTextFlow, descriptionLabel, niveauLabel, repetitionsLabel, likesLabel, activiteLabel);
+        content.getChildren().addAll(nomTextFlow, descriptionLabel, niveauLabel, repetitionsLabel, activiteLabel);
 
         // Ajouter le contenu à la carte
         card.getChildren().add(content);
@@ -277,7 +313,7 @@ public class AfficherExercice {
     private void refreshExerciceList() {
         // Réinitialiser la liste des exercices en récupérant à nouveau les données du service
         Exerciceservice exerciceService = new Exerciceservice();
-        List<Exercice> exercices = exerciceService.getAllData();
+        List<Exercice> exercices = Exerciceservice.getAllData();
         // Assurez-vous d'avoir une ComboBox pour les exercices
         // Remplacez activiteComboBox par le nom de votre ComboBox pour les exercices
       //  exerciceComboBox.setItems(FXCollections.observableArrayList(exercices));
