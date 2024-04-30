@@ -7,7 +7,7 @@ import java.net.http.HttpResponse;
 import org.json.JSONObject;
 
 public class WeatherAPI {
-    private static String API_KEY = "170f0715192447a7a1f92254243004";
+    private static String API_KEY = "";
     private static String API_URL = "http://api.meteo.com/weather?q=%s&apikey=%s";
 
     public static void setApiKey(String apiKey) {
