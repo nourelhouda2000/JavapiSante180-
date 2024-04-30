@@ -83,6 +83,11 @@
                   <Font name="Constantia" size="18.0" />
                </font>
             </Button>
+            <Button layoutX="77.0" layoutY="298.0" mnemonicParsing="false" onAction="#chatbot" prefHeight="36.0" prefWidth="178.0" style="-fx-background-color: #AD1457;" text="chat" textFill="WHITE">
+               <font>
+                  <Font name="Constantia" size="18.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <ImageView fitHeight="387.0" fitWidth="297.0" layoutX="451.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.ChatBotController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <children>
+        <ImageView fitHeight="162.0" fitWidth="170.0" layoutX="772.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="/image/image1.jpg" />
+            </image></ImageView>
+        <TextField fx:id="inputTextField" layoutX="216.0" layoutY="147.0" onAction="#processInput" prefHeight="42.0" prefWidth="292.0">
+            <styleClass>
+                <String fx:value="border" />
+                <String fx:value="white-form" />
+            </styleClass>
+        </TextField>
+        <TextArea fx:id="outputLabel" layoutX="216.0" layoutY="245.0" prefHeight="554.0" prefWidth="846.0">
+            <styleClass>
+                <String fx:value="border" />
+                <String fx:value="white-form" />
+            </styleClass>
+        </TextArea>
+        <Label layoutX="228.0" layoutY="64.0" prefHeight="31.0" prefWidth="385.0" text="Any Questions?" textFill="#0c2d48">
+            <font>
+                <Font name="System Bold Italic" size="37.0" />
+            </font>
+        </Label>
+        <Button layoutX="1091.0" layoutY="756.0" mnemonicParsing="false" onAction="#Goback" prefHeight="63.0" prefWidth="135.0"  text="&lt;- Go Back" />
+    </children>
+</AnchorPane>

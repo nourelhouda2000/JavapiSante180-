@@ -14,10 +14,8 @@ import javafx.stage.Stage;
 import services.Activiteservice;
 import services.Exerciceservice;
 import javafx.event.ActionEvent;
-
 import java.io.IOException;
-
-
+import java.sql.SQLException;
 
 
 public class AjoutActivite {
@@ -141,6 +139,21 @@ public class AjoutActivite {
 
     }
 
+    @FXML
+    void chatbot(ActionEvent event) throws IOException, SQLException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/chatbot.fxml"));
+            Parent root = loader.load();
 
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
 
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
+
