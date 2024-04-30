@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AnchorPane fx:id="main_form" prefHeight="348.0" prefWidth="506.0">
+            <children>
+                <BorderPane layoutX="7.0" layoutY="87.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <top>
+                        <AnchorPane prefHeight="29.0" prefWidth="1558.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <AnchorPane layoutX="-3.2" prefHeight="38.0" prefWidth="1417.0" styleClass="label-info" stylesheets="@java.css" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="-14.0">
+                                    <children>
+                                        <Button fx:id="minimize" layoutX="1291.0" layoutY="12.0" minWidth="37.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="62.0" styleClass="minimize" stylesheets="@java.css">
+                                            <graphic>
+                                                <FontAwesomeIconView glyphName="MINUS" styleClass="minimize" />
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="close" layoutX="1342.0" layoutY="12.0" minHeight="20.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="54.0" styleClass="close" stylesheets="@java.css">
+                                            <graphic>
+                                                <FontAwesomeIconView glyphName="CLOSE" />
+                                            </graphic>
+                                        </Button>
+                              <Text layoutX="28.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sante180°@esprit.tn" wrappingWidth="148.830078125" />
+                              <Text layoutX="171.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+216 55 66 50 74 " wrappingWidth="148.830078125" />
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </top>
+                    <center>
+                        <AnchorPane prefHeight="576.0" prefWidth="1138.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <AnchorPane layoutX="4.8" layoutY="16.0" prefHeight="638.0" prefWidth="1400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                    <AnchorPane layoutY="-29.0" prefHeight="70.0" prefWidth="1400.0" styleClass="nav-form" stylesheets="@java.css">
+                                 <children>
+                                              <Button fx:id="Home_page" layoutX="22.0" layoutY="18.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="93.0" styleClass="nav-btn" stylesheets="@java.css" text="Home">
+                                                  <font>
+                                                      <Font name="Berlin Sans FB" size="15.0" />
+                                                  </font>
+                                                  <graphic>
+                                                      <FontAwesomeIconView glyphName="HOME" size="25" />
+                                                  </graphic>
+                                    </Button>
+                                              <Button fx:id="Reclamationpage" layoutX="1127.0" layoutY="18.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" styleClass="nav-btn" stylesheets="@java.css" text="Reclamation">
+                                                  <font>
+                                                      <Font name="Berlin Sans FB" size="15.0" />
+                                                  </font>
+                                                  <graphic>
+                                                      <FontAwesomeIconView glyphName="PENCIL" size="25" tabSize="0" />
+                                                  </graphic>
+                                              </Button>
+                                    <Button fx:id="Activitepage" layoutX="504.0" layoutY="17.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="112.0" styleClass="nav-btn" stylesheets="@java.css" text="Activités">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="15.0" />
+                                       </font>
+                                       <graphic>
+                                          <ImageView fitHeight="34.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image/exercise.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="Santepage" layoutX="391.0" layoutY="17.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="106.0" styleClass="nav-btn" stylesheets="@java.css" text="Santé">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="15.0" />
+                                       </font>
+                                       <graphic>
+                                          <ImageView fitHeight="29.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image/sant-jordi.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                              <Button fx:id="Recettepage" layoutX="273.0" layoutY="17.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="118.0" styleClass="nav-btn" stylesheets="@java.css" text="Recette">
+                                                  <font>
+                                                      <Font name="Berlin Sans FB" size="15.0" />
+                                                  </font>
+                                                  <graphic>
+                                                      <FontAwesomeIconView glyphName="FILE" size="25" tabSize="0" />
+                                                  </graphic>
+                                              </Button>
+                                              <Button fx:id="Rendezvouspage" layoutX="126.0" layoutY="17.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="132.0" styleClass="nav-btn" stylesheets="@java.css" text="Rendez-vous">
+                                                  <font>
+                                                      <Font name="Berlin Sans FB" size="15.0" />
+                                                  </font>
+                                                  <graphic>
+                                                      <FontAwesomeIconView glyphName="PLUS" selectionFill="BLACK" size="25" tabSize="0" />
+                                                  </graphic>
+                                    </Button>
+                                    <Button fx:id="profilpage" layoutX="1273.0" layoutY="17.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="94.0" styleClass="nav-btn" stylesheets="@java.css" text="Profile">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="15.0" />
+                                       </font>
+                                       <graphic>
+                                          <FontAwesomeIconView glyphName="USER" size="25" wrappingWidth="30.300048828125" />
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                                    </AnchorPane>
+                              <AnchorPane layoutX="7.0" layoutY="41.0" prefHeight="608.0" prefWidth="1389.0" stylesheets="@java.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="nav-form" />
+                                 </styleClass>
+                                 <children>
+                                    <AnchorPane fx:id="home_form" layoutX="7.2" layoutY="4.8" prefHeight="607.0" prefWidth="1375.0" stylesheets="@java.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="top-form" />
+                                       </styleClass>
+                                       <children>
+                                          <ImageView fitHeight="555.0" fitWidth="657.0" layoutX="388.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image/slider-img.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="RDV_form" layoutX="6.0" layoutY="4.0" prefHeight="608.0" prefWidth="1375.0" stylesheets="@java.css" visible="false">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="top-form" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="Recette_form" layoutX="8.0" layoutY="4.0" prefHeight="594.0" prefWidth="1374.0" stylesheets="@java.css" visible="false">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="top-form" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="Sante_form" layoutX="6.0" layoutY="4.0" prefHeight="604.0" prefWidth="1375.0" stylesheets="@java.css" visible="false">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="top-form" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="Sante_form1" layoutX="7.0" layoutY="5.0" prefHeight="604.0" prefWidth="1374.0" stylesheets="@java.css" visible="false">
+                                       <styleClass>
+                                          <String fx:value="white-bg" />
+                                          <String fx:value="top-form" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </center>
+                </BorderPane>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>
