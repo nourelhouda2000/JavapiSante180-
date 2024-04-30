@@ -126,6 +126,7 @@
                   </Button>
                   <Pane prefHeight="84.0" prefWidth="186.0" />
                   <ComboBox fx:id="AnalysesCombBox" prefWidth="150.0" />
+                  <Button fx:id="Excel" mnemonicParsing="false" onAction="#Excel" text="Button" />
                </children>
             </HBox>
          </children>

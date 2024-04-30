@@ -2,6 +2,7 @@ package Controllers;
 
 
 import entities.Analyses;
+import entities.Pdf;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AjouterAnalyses {
 
@@ -110,6 +113,23 @@ public class AjouterAnalyses {
                         imc,
                         Integer.parseInt( taux.getText()),
                         santeid));
+
+                    Analyses voy = new Analyses( Integer.parseInt( poids.getText()),
+                            Integer.parseInt( taille.getText()),
+
+                            pi,
+                            imc,
+                            Integer.parseInt( taux.getText()),
+                            santeid);
+
+                    Pdf pd=new Pdf();
+                    try{
+                        pd.GeneratePdf("MesInformations",voy,voy.getId());
+
+                        System.out.println("impression done");
+                    } catch (Exception ex) {
+                        Logger.getLogger(ServiceAnalyses.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                 Alert alert=new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("ajout");

@@ -1,5 +1,6 @@
 package Controllers;
 
+import com.sun.javafx.charts.Legend;
 import entities.Analyses;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,12 +9,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import java.io.File;
 
 
 import java.awt.event.MouseEvent;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
+import java.io.Writer;
 import java.sql.SQLException;
 import java.util.List;
+import java.io.FileWriter;
 
 import entities.Sante;
 import javafx.scene.layout.VBox;
@@ -142,6 +148,9 @@ public class AfficherAnalyses {
         List<Analyses> analyses = ss.afficher();
         ServicesSante ssa =new ServicesSante();
         List<Sante> santes =ssa.afficher();
+        ObservableList<String> list4 = FXCollections.observableArrayList("PDF", "Excel", "Imprimer");
+
+
 
         for (Analyses analyse : analyses) {
             int santei = analyse.getSanteid();
@@ -328,5 +337,34 @@ public class AfficherAnalyses {
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/AjouterAnalyses.fxml"));
         Parent root=loader.load();
         poids.getScene().setRoot(root);
+    }
+    @FXML
+    private void Excel(ActionEvent event) throws IOException, SQLException {
+        Writer writer = null;
+        ServiceAnalyses sv = new ServiceAnalyses();
+        List<Analyses> list = sv.afficher();
+        try {
+
+            File file = new File("C:\\Users\\Dell\\Desktop\\analyses.csv");
+            writer = new BufferedWriter(new FileWriter(file));
+
+            for (Analyses ev : list) {
+
+                String text = ev.getPoids()+" | " +ev.getTaille()+ " | " + ev.getPoidsideal()+ " | "+ev.getImc()+" | "+ev.getTaux()+ "\n";
+                System.out.println(text);
+                writer.write(text);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        finally {
+            writer.flush();
+            writer.close();
+            Alert alert= new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("excel");
+            alert.setHeaderText(null);
+            alert.setContentText("!!!excel exported!!!");
+            alert.showAndWait();
+        }
     }
 }

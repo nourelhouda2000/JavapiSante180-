@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #00CC99;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ViewAnalyses">
    <children>
-      <AnchorPane layoutX="38.0" layoutY="38.0" prefHeight="321.0" prefWidth="524.0" style="-fx-background-color: white;">
+      <AnchorPane layoutX="20.0" layoutY="25.0" prefHeight="350.0" prefWidth="560.0" style="-fx-background-color: white;">
          <children>
             <ImageView fitHeight="322.0" fitWidth="288.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -32,27 +34,27 @@
                   <Font name="System Bold Italic" size="19.0" />
                </font>
             </Label>
-            <Label fx:id="poidsa" layoutX="443.0" layoutY="124.0" prefHeight="28.0" prefWidth="90.0">
+            <Label fx:id="poidsa" layoutX="459.0" layoutY="124.0" prefHeight="28.0" prefWidth="74.0">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label fx:id="taiilea" layoutX="443.0" layoutY="147.0" prefHeight="28.0" prefWidth="90.0">
+            <Label fx:id="taiilea" layoutX="477.0" layoutY="144.0" prefHeight="28.0" prefWidth="59.0">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label fx:id="poidsia" layoutX="443.0" layoutY="174.0" prefHeight="28.0" prefWidth="90.0">
+            <Label fx:id="poidsia" layoutX="461.0" layoutY="174.0" prefHeight="28.0" prefWidth="74.0">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label fx:id="imca" layoutX="443.0" layoutY="202.0" prefHeight="28.0" prefWidth="90.0">
+            <Label fx:id="imca" layoutX="464.0" layoutY="202.0" prefHeight="28.0" prefWidth="74.0">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label fx:id="tauxa" layoutX="443.0" layoutY="230.0" prefHeight="28.0" prefWidth="90.0">
+            <Label fx:id="tauxa" layoutX="464.0" layoutY="230.0" prefHeight="28.0" prefWidth="74.0">
                <font>
                   <Font size="19.0" />
                </font>
@@ -77,6 +79,29 @@
                   <Font name="System Bold Italic" size="19.0" />
                </font>
             </Label>
+            <AnchorPane fx:id="pane" layoutX="29.0" layoutY="263.0" prefHeight="46.0" prefWidth="494.0">
+               <children>
+                  <VBox prefHeight="46.0" prefWidth="494.0">
+                     <children>
+                        <Label fx:id="etat" prefHeight="31.0" prefWidth="509.0" text="                                       Label" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold Italic" size="21.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="perdre" prefHeight="18.0" prefWidth="496.0" text="Label">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <Button fx:id="PDF" layoutX="293.0" layoutY="90.0" mnemonicParsing="false" style="-fx-background-color: #ae0303;" text="PDF" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>
