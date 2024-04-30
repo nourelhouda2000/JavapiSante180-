@@ -50,6 +50,7 @@
                      </image>
                   </ImageView>
                   <CheckBox fx:id="checkbox_pwd" layoutX="267.0" layoutY="206.0" mnemonicParsing="false" onAction="#showPasswordCheckbox" prefHeight="18.0" prefWidth="18.0" />
+                  <TextField fx:id="login_showpwd" layoutX="40.0" layoutY="200.0" prefHeight="30.0" prefWidth="220.0" promptText="Password" styleClass="textfield" stylesheets="@Loginn.css" />
                </children>
             </AnchorPane>
          </children>

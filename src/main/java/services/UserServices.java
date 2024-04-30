@@ -232,6 +232,9 @@ public class UserServices implements IservicesUser <User>{
         }
     }
 
+
+
+
     public boolean updateUserPwd(int userId, String newPassword) {
         try {
             String query = "UPDATE user SET mdp = ? WHERE id_user = ?";
@@ -252,6 +255,8 @@ public class UserServices implements IservicesUser <User>{
             return false;
         }
     }
+
+
 
 
     public boolean updateUserpwdprofil1(User user) {
