@@ -74,14 +74,12 @@ public class AfficherExercice {
 
     private Label likesCountLabel;
 
-    private boolean isLiked= false;
+    private boolean isLiked = false;
+
 
 
     @FXML
     private Button rechercheButton;
-
-
-
 
 
 
@@ -160,8 +158,8 @@ public class AfficherExercice {
 
         // Bouton de like
         Button likeButton = new Button("❤️"); // Utilisez une icône de cœur pour le bouton
-        likeButton.setStyle("-fx-font-size: 20px; -fx-text-fill: red;"); // Style pour agrandir et colorer le cœur
-        likeButton.setOnAction(event -> handleLike(exercice));
+        likeButton.setStyle("-fx-font-size: 20px; -fx-text-fill: GRAY;"); // Style pour agrandir et colorer le cœur
+        likeButton.setOnAction(event -> handleLike(exercice, likeButton));
 
         // Compte des likes
         likesCountLabel = new Label("Likes: " + exercice.getLikes()); // Initialisation de likesCountLabel
@@ -176,9 +174,21 @@ public class AfficherExercice {
 
 
 
-    private void handleLike(Exercice exercice) {
-        // Incrémentez le nombre de likes pour l'exercice correspondant
-        exercice.setLikes(exercice.getLikes() + 1);
+
+   // Variable de statut pour suivre si l'utilisateur a liké l'exercice
+
+    private void handleLike(Exercice exercice, Button likeButton) {
+        if (isLiked) {
+            // Si l'exercice est déjà liké et que le bouton est cliqué à nouveau, désactivez-le (dislike) et décrémentez le nombre de likes
+            exercice.setLikes(exercice.getLikes() - 1);
+            likeButton.setStyle("-fx-font-size: 20px; -fx-text-fill: GRAY; -fx-border-color: red;"); // Changer le cœur en gris et le contour en rouge
+        } else {
+            // Sinon, c'est un nouveau like, donc activez-le (like) et incrémente le nombre de likes
+            exercice.setLikes(exercice.getLikes() + 1);
+            likeButton.setStyle("-fx-font-size: 20px; -fx-text-fill: red;"); // Garder le cœur rouge
+        }
+
+        isLiked = !isLiked; // Inversez le statut du bouton (toggle)
 
         // Mettez à jour le nombre de likes dans la base de données
         Exerciceservice.updateLikes(exercice.getId(), exercice.getLikes());
@@ -186,6 +196,8 @@ public class AfficherExercice {
         // Mettez à jour l'affichage du nombre de likes sur la carte d'exercice
         likesCountLabel.setText("Likes: " + exercice.getLikes());
     }
+
+
 
 
 
@@ -369,7 +381,7 @@ public class AfficherExercice {
 
             // Récupérer la liste des exercices depuis le service
             Exerciceservice exerciceService = new Exerciceservice();
-            List<Exercice> exercices = exerciceService.getAllData();
+            List<Exercice> exercices = Exerciceservice.getAllData();
 
             // Ajouter les données des exercices à la table
             for (Exercice exercice : exercices) {

@@ -5,8 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.XYChart;
+import entities.WeatherAPI;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -15,13 +14,11 @@ import javafx.stage.Stage;
 import services.Activiteservice;
 import services.Exerciceservice;
 import javafx.event.ActionEvent;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.XYChart;
+
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+
+
 
 public class AjoutActivite {
 
