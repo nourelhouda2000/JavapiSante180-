@@ -33,14 +33,14 @@ public class ChatBot {
 
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
             String model = "gpt-3.5-turbo"; // Initialize the model variable with the correct model name
-           // String apiKey = ""; // Replace with your actual API key
+            // Replace with your actual API key
             String requestBody = "{\"model\":\"" + model + "\",\"prompt\":\"" + input + "\",\"max_tokens\":150}";
 
             Request request = new Request.Builder()
                     .url("https://api.openai.com/v1/completions")
                     .post(RequestBody.create(requestBody, mediaType))
                     .addHeader("Content-Type", "application/json")
-                    .addHeader("Authorization", "Bearer " + apiKey) // Use the retrieved API key
+                   // .addHeader("Authorization", "Bearer " + apiKey) // Use the retrieved API key
                     .build();
 
             Response response = client.newCall(request).execute();
@@ -59,9 +59,5 @@ public class ChatBot {
             return "Oops! An error occurred while processing your request. Error: " + e.getMessage();
         }
     }
- /*   private static String generateGPT3Response(String input) {
-        // Implement your GPT-3 interaction logic here
-        // Return the generated response from GPT-3
-        return "GPT-3 Response Placeholder";
-    }*/
+
 }

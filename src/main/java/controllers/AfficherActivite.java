@@ -2,6 +2,10 @@ package controllers;
 
 import entities.Activite;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Map;
 
 import javafx.collections.FXCollections;
@@ -24,6 +28,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.json.JSONObject;
+import javafx.scene.text.Text;
+
 import services.Activiteservice;
 
 import java.io.IOException;
@@ -32,7 +38,7 @@ import java.util.List;
 
 import javafx.scene.control.Label;
 
-import entities.WeatherAPI;
+
 
 
 
@@ -46,6 +52,12 @@ public class AfficherActivite {
     private ObservableList<Activite> activiteDataList;
     @FXML
     private Pagination pagination;
+
+    @FXML
+    private Text weatherText;
+    @FXML
+    private TextField cityTextField;
+
 
 
 
@@ -64,7 +76,7 @@ public class AfficherActivite {
 
 
 
-   @FXML
+   /*@FXML
     public void initialize() {
         // Récupérer la liste complète des exercices et l'assigner à exerciceDataList
         activiteDataList = FXCollections.observableArrayList(Activiteservice.getAllData());
@@ -81,8 +93,18 @@ public class AfficherActivite {
 
         // Afficher la liste des exercices initiale
         // afficherListeExercices();
-    }
 
+       //afficherMeteo();
+    }*/
+   @FXML
+   public void initialize() {
+       // Afficher la liste des activités initiale
+       afficherListeActivites();
+
+
+       // Afficher les données météorologiques
+       afficherMeteo();
+   }
 
 
 
@@ -153,20 +175,7 @@ public class AfficherActivite {
 
         //
 
-        Label weatherLabel = new Label("Météo: ");
-        try {
-            String cityName = "Tunis"; // Vous pouvez également utiliser activite.getCity() si la ville est disponible dans l'objet activite
-            JSONObject weatherData = WeatherAPI.getWeather(cityName);
-            String weatherInfo = extractWeatherInfo(weatherData);
-            weatherLabel.setText("Météo: " + weatherInfo);
-        } catch (Exception e) {
-            // Gérer l'exception ici, par exemple en affichant un message d'erreur
-            e.printStackTrace();
-            weatherLabel.setText("Météo: Non disponible");
-        }
 
-        // Ajouter le label météo à la carte
-        card.getChildren().add(weatherLabel);
 
         return card;
     }
@@ -258,7 +267,7 @@ public class AfficherActivite {
 
         return pageContent;
     }
-    /*private Node createCard(Activite activite) {
+    private Node createCard(Activite activite) {
         // Code pour créer et personnaliser la carte d'exercice
         // Retournez la carte d'exercice créée
 
@@ -283,123 +292,19 @@ public class AfficherActivite {
 
         return card;
     }
-*/
-
-
-    /*private Node createCard(Activite activite) {
-        // Créez la carte d'activité
-        VBox card = new VBox();
-        card.setStyle("-fx-background-color: #B6D7A8; -fx-padding: 07px; -fx-margin: 07px; -fx-border-radius: 07px;");
-
-        // Titre de l'activité
-        Label titleLabel = new Label(activite.getNom());
-        titleLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: purple; -fx-padding: 12px;");
-
-        // Description de l'activité
-        Label descriptionLabel = new Label("Description: " + activite.getDescription());
-
-        // Niveau de l'activité
-        Label levelLabel = new Label("Niveau: " + activite.getNiveau());
-
-        // Catégorie de l'activité
-        Label categoryLabel = new Label("Catégorie: " + activite.getCategorie());
-
-        // Label pour afficher la météo
-        Label weatherLabel = new Label("Météo: ");
-        try {
-            String cityName = "Tunis";
-            WeatherAPI weatherApi = new WeatherAPI();
-            JSONObject weatherData = weatherApi.getWeather(cityName);
-            String weatherInfo = extractWeatherInfo(weatherData);
-            weatherLabel.setText("Météo: " + weatherInfo);
-        } catch (Exception e) {
-            // Gérer l'exception ici, par exemple en affichant un message d'erreur
-            e.printStackTrace();
-            weatherLabel.setText("Météo: Non disponible");
-        }
-
-        // Ajoutez tous les éléments à la carte
-        card.getChildren().addAll(titleLabel, descriptionLabel, levelLabel, categoryLabel, weatherLabel);
-
-        return card;
-    }*/
-
-
-
-        // ...
-
-        private Node createCard(Activite activite) {
-            // Créez la carte d'activité
-            VBox card = new VBox();
-            card.setStyle("-fx-background-color: #B6D7A8; -fx-padding: 07px; -fx-margin: 07px; -fx-border-radius: 07px;");
-
-            // Titre de l'activité
-            Label titleLabel = new Label(activite.getNom());
-            titleLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: purple; -fx-padding: 12px;");
-
-            // Description de l'activité
-            Label descriptionLabel = new Label("Description: " + activite.getDescription());
-
-            // Niveau de l'activité
-            Label levelLabel = new Label("Niveau: " + activite.getNiveau());
-
-            // Catégorie de l'activité
-            Label categoryLabel = new Label("Catégorie: " + activite.getCategorie());
-
-            // Label pour afficher la météo
-            Label weatherLabel = new Label("Météo: ");
-            try {
-                String cityName = "Tunis";
-                WeatherAPI weatherApi = new WeatherAPI();
-                JSONObject weatherData = weatherApi.getWeather(cityName);
-                String weatherInfo = extractWeatherInfo(weatherData);
-                weatherLabel.setText("Météo: " + weatherInfo);
-                // Vérifiez si l'activité est réalisable en fonction des conditions météorologiques
-                String activityStatus = getActivityStatus(weatherData, activite);
-                Label statusLabel = new Label("Status: " + activityStatus);
-                card.getChildren().add(statusLabel);
-            } catch (Exception e) {
-                // Gérer l'exception ici, par exemple en affichant un message d'erreur
-                e.printStackTrace();
-                weatherLabel.setText("Météo: Nuageux");
-            }
-
-            // Ajoutez tous les éléments à la carte
-            card.getChildren().addAll(titleLabel, descriptionLabel, levelLabel, categoryLabel, weatherLabel);
-
-            return card;
-        }
-
-        // Méthode utilitaire pour extraire les informations météorologiques à partir de l'objet JSONObject
-        private String extractWeatherInfo(JSONObject weatherData) {
-            // Ici, vous pouvez extraire les informations météorologiques pertinentes de l'objet JSON
-            // et les retourner sous forme de chaîne de caractères
-            // Par exemple :
-            String weatherInfo = weatherData.getString("description");
-            return weatherInfo;
-        }
-
-        // Méthode pour déterminer si l'activité peut être réalisée en fonction des conditions météorologiques actuelles
-        private String getActivityStatus(JSONObject weatherData, Activite activite) {
-            // Ajoutez votre logique ici pour déterminer si l'activité peut être réalisée
-            // en fonction des conditions météorologiques actuelles
-            // Par exemple, si l'activité est une activité en extérieur et qu'il pleut, vous pouvez
-            // retourner "Non recommandé" ou "Impossible"
-            return "Recommandé"; // Remplacez cela par votre propre logique
-        }
 
 
 
 
-    // Méthode utilitaire pour extraire les informations météorologiques à partir de l'objet JSONObject
-   /* private String extractWeatherInfo(JSONObject weatherData) {
-        // Ici, vous pouvez extraire les informations météorologiques pertinentes de l'objet JSON
-        // et les retourner sous forme de chaîne de caractères
-        // Par exemple :
-        String weatherDescription = weatherData.getJSONObject("weather").getString("description");
-        return weatherDescription;
-    }
-*/
+
+
+
+
+
+
+
+
+
 
     public void afficherrListeActivites() {
         // Récupérer la liste des exercices depuis le service
@@ -411,5 +316,51 @@ public class AfficherActivite {
             activiteContainer.getChildren().add(card);
         }
     }
+    @FXML
+    private void afficherMeteo() {
+        try {
+            // Récupérer le nom de la ville saisi par le client
+            String cityName = cityTextField.getText().trim();
+            if (cityName.isEmpty()) {
+                weatherText.setText("");
+                return;
+            }
 
+            String apiKey = "170f0715192447a7a1f92254243004"; // Remplacez par votre clé API météo
+            String weatherData = getContent("http://api.weatherapi.com/v1/current.json?key=" + apiKey + "&lang=fr&q=" + cityName);
+            JSONObject weatherObject = new JSONObject(weatherData);
+            JSONObject currentObject = weatherObject.getJSONObject("current");
+            double temperature = currentObject.getDouble("temp_c");
+            double ressenti = currentObject.getDouble("feelslike_c");
+            double pression = currentObject.getDouble("pressure_mb");
+            double vitesseVent = currentObject.getDouble("wind_kph");
+
+            String weatherInfo = String.format("Température: %.1f°C, Ressenti: %.1f°C, Pression: %.1f mb, Vitesse du vent: %.1f km/h", temperature, ressenti, pression, vitesseVent);
+            String styledWeatherInfo = String.format("-fx-font-size: 18px; -fx-fill: violet; -fx-font-weight: bold; -fx-font-family: Arial; ", weatherInfo);
+            weatherText.setText(styledWeatherInfo);
+            // Mettre à jour le texte affiché dans l'objet Text weatherText
+            weatherText.setText(weatherInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            weatherText.setText("Impossible de récupérer les données météorologiques");
+        }
+    }
+    private String getContent(String urlAdress) {
+        StringBuilder content = new StringBuilder();
+
+        try {
+            URL url = new URL(urlAdress);
+            URLConnection urlConnection = url.openConnection();
+
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return content.toString();
+    }
 }

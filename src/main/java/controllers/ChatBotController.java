@@ -52,7 +52,7 @@ public class ChatBotController {
                 .join();
     }
 
-    private static final String apiKey = "";
+   //
     private static final String model = "gpt-3.5-turbo";  // Adjust the model name
 
     private static String getOpenAIAPIAnswer(String question) {
@@ -66,7 +66,7 @@ public class ChatBotController {
                     .url("https://api.openai.com/v1/chat/completions")  // Use the correct endpoint for chat
                     .post(RequestBody.create(requestBody, mediaType))
                     .addHeader("Content-Type", "application/json")
-                    .addHeader("Authorization", "Bearer " + apiKey)
+                    //.addHeader("Authorization", "Bearer " + apiKey)
                     .build();
 
             Response response = client.newCall(request).execute();

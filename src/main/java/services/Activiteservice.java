@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import entities.Activite;
 import entities.Exercice;
-import entities.WeatherAPI;
 
 
-    public class Activiteservice implements IActivite<Activite> {
+public class Activiteservice implements IActivite<Activite> {
 
         Connection cnx = MyDB.getInstance().getConnection();
 
