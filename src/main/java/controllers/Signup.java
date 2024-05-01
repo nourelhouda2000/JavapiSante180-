@@ -15,6 +15,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+
 public class Signup implements Initializable {
 
     @FXML
@@ -51,6 +62,12 @@ public class Signup implements Initializable {
     private Button signup_btn;
 
     private UserServices userServices;
+
+    @FXML
+    private CheckBox checkbox_signup;
+
+    @FXML
+    private TextField showpwdsignup;
 
     @FXML
     void handleLoginAccount(ActionEvent event) {
@@ -115,6 +132,21 @@ public class Signup implements Initializable {
         userService.addUser(user);
     }
 
+
+    @FXML
+    void showcheckbox_signup(ActionEvent event) {
+        if (checkbox_signup.isSelected()) {
+            showpwdsignup.setText(pwd_cree.getText());
+            showpwdsignup.setVisible(true);
+            pwd_cree.setVisible(false);
+        } else {
+            pwd_cree.setText(showpwdsignup.getText());
+            showpwdsignup.setVisible(false);
+            pwd_cree.setVisible(true);
+        }
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         assert age_cree != null : "fx:id=\"age_cree\" was not injected: check your FXML file 'signup.fxml'.";
@@ -126,6 +158,8 @@ public class Signup implements Initializable {
         assert role_creee != null : "fx:id=\"role_creee\" was not injected: check your FXML file 'signup.fxml'.";
         assert sexe_cree != null : "fx:id=\"sexe_cree\" was not injected: check your FXML file 'signup.fxml'.";
         assert signup_btn != null : "fx:id=\"signup_btn\" was not injected: check your FXML file 'signup.fxml'.";
+        assert checkbox_signup != null : "fx:id=\"checkbox_signup\" was not injected: check your FXML file 'signup.fxml'.";
+
 
         userServices = new UserServices();
     }

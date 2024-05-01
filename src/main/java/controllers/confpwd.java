@@ -15,6 +15,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import services.UserServices;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.CheckBox;
+
 
 public class confpwd {
 
@@ -24,16 +27,31 @@ public class confpwd {
     @FXML
     private URL location;
 
-    @FXML
-    private TextField confirm_pwd;
 
-    @FXML
-    private TextField new_pwd;
 
     @FXML
     private Button newpwd_btn;
 
     private UserServices userServices;
+
+    @FXML
+    private CheckBox checkbox_confpwd1;
+
+    @FXML
+    private CheckBox checkbox_confpwd2;
+
+    @FXML
+    private TextField conf_showpwd1;
+
+    @FXML
+    private TextField conf_showpwd2;
+
+    @FXML
+    private PasswordField confirm_pwd;
+
+    @FXML
+    private PasswordField new_pwd;
+
 
     public void setUserServices(UserServices userServices) {
         this.userServices = userServices;
@@ -66,6 +84,37 @@ public class confpwd {
         }
     }
 
+
+
+    @FXML
+    void showconfpwd1(ActionEvent event) {
+        if (checkbox_confpwd1.isSelected()) {
+
+            conf_showpwd1.setText(new_pwd.getText());
+            conf_showpwd1.setVisible(true);
+            new_pwd.setVisible(false);
+        } else {
+            new_pwd.setText(conf_showpwd1.getText());
+            conf_showpwd1.setVisible(false);
+            new_pwd.setVisible(true);
+        }
+    }
+
+    @FXML
+    void showconfpwd2(ActionEvent event) {
+        if (checkbox_confpwd2.isSelected()) {
+            conf_showpwd2.setText(confirm_pwd.getText());
+            conf_showpwd2.setVisible(true);
+            confirm_pwd.setVisible(false);
+        } else {
+            confirm_pwd.setText(conf_showpwd2.getText());
+            conf_showpwd2.setVisible(false);
+            confirm_pwd.setVisible(true);
+        }
+    }
+
+
+
     private int getUserId() {
         return 123;
     }
@@ -88,6 +137,12 @@ public class confpwd {
         assert confirm_pwd != null : "fx:id=\"confirm_pwd\" was not injected: check your FXML file 'confpwd.fxml'.";
         assert new_pwd != null : "fx:id=\"new_pwd\" was not injected: check your FXML file 'confpwd.fxml'.";
         assert newpwd_btn != null : "fx:id=\"newpwd_btn\" was not injected: check your FXML file 'confpwd.fxml'.";
+        assert checkbox_confpwd1 != null : "fx:id=\"checkbox_confpwd1\" was not injected: check your FXML file 'confpwd.fxml'.";
+        assert checkbox_confpwd2 != null : "fx:id=\"checkbox_confpwd2\" was not injected: check your FXML file 'confpwd.fxml'.";
+        assert conf_showpwd1 != null : "fx:id=\"conf_showpwd1\" was not injected: check your FXML file 'confpwd.fxml'.";
+        assert conf_showpwd2 != null : "fx:id=\"conf_showpwd2\" was not injected: check your FXML file 'confpwd.fxml'.";
+
+
         userServices = new UserServices();
     }
 

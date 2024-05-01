@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
@@ -72,8 +72,9 @@
             <Image url="@liste-de-controle.png" />
          </image>
       </ImageView>
-      <PasswordField fx:id="pwd_cree" layoutX="507.0" layoutY="414.0" prefHeight="40.0" prefWidth="298.0" promptText="Password" styleClass="textfield" stylesheets="@Loginn.css" />
-      <FontAwesomeIconView glyphName="EYE" layoutX="815.0" layoutY="438.0" />
+      <PasswordField fx:id="pwd_cree" layoutX="507.0" layoutY="413.0" prefHeight="40.0" prefWidth="298.0" promptText="Password" styleClass="textfield" stylesheets="@Loginn.css" />
+      <TextField fx:id="showpwdsignup" layoutX="507.0" layoutY="413.0" prefHeight="40.0" prefWidth="298.0" promptText="Password" styleClass="textfield" stylesheets="@Loginn.css" />
+      <CheckBox fx:id="checkbox_signup" layoutX="814.0" layoutY="424.0" mnemonicParsing="false" onAction="#showcheckbox_signup" prefHeight="14.0" prefWidth="15.0" />
 
    </children>
 </AnchorPane>

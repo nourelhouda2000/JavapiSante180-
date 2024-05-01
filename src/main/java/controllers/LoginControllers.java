@@ -136,6 +136,8 @@ public class LoginControllers {
 
         stage.show();
     }
+
+
     @FXML
     void showPasswordCheckbox(ActionEvent event) {
         if (checkbox_pwd.isSelected()) {
