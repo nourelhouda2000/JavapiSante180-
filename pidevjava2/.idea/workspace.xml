@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="831f78c2-4860-4b50-847b-c236b06c4fbd" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="2eBWvdXEj3xw5X45SfuEvVkHXHy" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="NEW_TOOLWINDOW_STRIPE_DEFAULTS" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
+  </component>
+  <component name="RunManager">
+    <configuration name="pidevjava2 [javafx:run]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="javafx:run" />
+              </list>
+            </option>
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Maven.pidevjava2 [javafx:run]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="831f78c2-4860-4b50-847b-c236b06c4fbd" name="Changes" comment="" />
+      <created>1711378685296</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711378685296</updated>
+      <workItem from="1711378686322" duration="3292000" />
+      <workItem from="1711402381900" duration="711000" />
+      <workItem from="1711409276308" duration="1048000" />
+      <workItem from="1711412571398" duration="5438000" />
+      <workItem from="1711459340977" duration="1925000" />
+      <workItem from="1711461749748" duration="3432000" />
+      <workItem from="1711973925546" duration="664000" />
+      <workItem from="1712171616392" duration="2620000" />
+      <workItem from="1712944883735" duration="321000" />
+      <workItem from="1712945219033" duration="740000" />
+      <workItem from="1712946155910" duration="823000" />
+      <workItem from="1712946994057" duration="3685000" />
+      <workItem from="1712951306266" duration="5290000" />
+      <workItem from="1712956633492" duration="4789000" />
+      <workItem from="1712964877536" duration="163000" />
+      <workItem from="1713124405848" duration="1306000" />
+      <workItem from="1713128548048" duration="47000" />
+      <workItem from="1713129348849" duration="1844000" />
+      <workItem from="1713131247245" duration="2040000" />
+      <workItem from="1713133549166" duration="5327000" />
+      <workItem from="1713143295550" duration="1761000" />
+      <workItem from="1713145094016" duration="705000" />
+      <workItem from="1713145821644" duration="2790000" />
+      <workItem from="1713173365274" duration="20354000" />
+      <workItem from="1713294252977" duration="8057000" />
+      <workItem from="1713351836180" duration="1992000" />
+      <workItem from="1713354060327" duration="7431000" />
+      <workItem from="1713361956037" duration="1383000" />
+      <workItem from="1713363543283" duration="16257000" />
+      <workItem from="1713392587013" duration="507000" />
+      <workItem from="1713393155461" duration="25000" />
+      <workItem from="1713434718554" duration="1733000" />
+      <workItem from="1713468845606" duration="13962000" />
+      <workItem from="1713523737156" duration="20494000" />
+      <workItem from="1713556802169" duration="409000" />
+      <workItem from="1713623964916" duration="1190000" />
+      <workItem from="1713643036070" duration="1535000" />
+      <workItem from="1713644618786" duration="13269000" />
+      <workItem from="1713715717140" duration="23623000" />
+      <workItem from="1713784209694" duration="6199000" />
+      <workItem from="1714070622800" duration="2605000" />
+      <workItem from="1714151015852" duration="4485000" />
+      <workItem from="1714217837798" duration="40407000" />
+      <workItem from="1714303209097" duration="23173000" />
+      <workItem from="1714337798003" duration="7025000" />
+      <workItem from="1714392368897" duration="1015000" />
+      <workItem from="1714394938002" duration="14917000" />
+      <workItem from="1714519777160" duration="75000" />
+      <workItem from="1714520752446" duration="1344000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/Main.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
