@@ -270,3 +270,13 @@ and open the template in the editor.
 .list-cell .rapport {
     -fx-text-fill: #dc3545; /* couleur du texte */
 }
+/* style.css */
+.list-cell {
+    -fx-background-color: #B6D7A8; /* Couleur de fond des cellules */
+    -fx-padding: 10px;
+    -fx-border-radius: 10px;
+}
+
+.list-cell:hover {
+    -fx-background-color: #A3C59E; /* Couleur de fond des cellules au survol */
+}

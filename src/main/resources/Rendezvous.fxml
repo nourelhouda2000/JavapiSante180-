@@ -57,7 +57,7 @@
                     <left>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                             <children>
-                                <AnchorPane layoutX="6.0" layoutY="-4.0" prefHeight="654.0" prefWidth="217.0" styleClass="nav-form" stylesheets="@java.css" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="-23.0" AnchorPane.topAnchor="-4.0">
+                                <AnchorPane layoutX="18.4" prefHeight="654.0" prefWidth="207.0" styleClass="nav-form" stylesheets="@java.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="-14.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <Label layoutX="19.0" layoutY="83.0" prefHeight="35.0" prefWidth="165.0" text="Welcome ," textFill="#281a21">
                                             <font>
@@ -71,21 +71,24 @@
                                             </font>
                                             <graphic>
                                                 <FontAwesomeIconView glyphName="HOME" size="25" />
-                                            </graphic></Button>
+                                            </graphic>
+                              </Button>
                                         <Button fx:id="user_page" layoutX="15.0" layoutY="263.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="174.0" styleClass="nav-btn" stylesheets="@java.css" text="User">
                                             <font>
                                                 <Font name="Berlin Sans FB" size="15.0" />
                                             </font>
                                             <graphic>
                                                 <FontAwesomeIconView glyphName="USERS" size="25" />
-                                            </graphic></Button>
+                                            </graphic>
+                              </Button>
                                         <Button fx:id="Rendezvouspage" layoutX="17.0" layoutY="310.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="173.0" styleClass="nav-btn" stylesheets="@java.css" text="Rendez-vous">
                                             <font>
                                                 <Font name="Berlin Sans FB" size="15.0" />
                                             </font>
                                             <graphic>
                                                 <FontAwesomeIconView glyphName="PLUS" selectionFill="BLACK" size="25" tabSize="0" />
-                                            </graphic></Button>
+                                            </graphic>
+                              </Button>
                                         <Button fx:id="logout" layoutX="16.0" layoutY="612.0" minWidth="39.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="54.0" styleClass="logout" stylesheets="@java.css">
                                             <graphic>
                                                 <FontAwesomeIconView glyphName="SIGN_OUT" size="25" />
@@ -143,7 +146,8 @@
                                           </Stop>
                                        </stops>
                                     </LinearGradient>
-                                 </textFill></Label>
+                                 </textFill>
+                              </Label>
                               <Button fx:id="Profil_page" layoutX="19.0" layoutY="170.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="172.0" styleClass="nav-btn" stylesheets="@java.css" text="Profile">
                                  <font>
                                     <Font name="Berlin Sans FB" size="15.0" />
@@ -191,7 +195,7 @@
                             <children>
                                 <AnchorPane prefHeight="550.0" prefWidth="898.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                        <AnchorPane fx:id="User_form" layoutX="107.0" layoutY="116.0" prefHeight="554.4" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <AnchorPane fx:id="User_form" layoutX="107.0" layoutY="116.0" prefHeight="554.4" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <children>
                                                 <AnchorPane layoutX="31.0" layoutY="3.0" prefHeight="636.0" prefWidth="1161.0" stylesheets="@java.css">
                                                     <children>
@@ -419,7 +423,7 @@
                                             </styleClass>
                                         </AnchorPane>
 
-                                        <AnchorPane fx:id="Profil_form" layoutX="25.0" layoutY="1.0" prefHeight="648.0" prefWidth="1178.0">
+                                        <AnchorPane fx:id="Profil_form" layoutX="25.0" layoutY="1.0" prefHeight="648.0" prefWidth="1178.0" visible="false">
                                  <children>
                                     <AnchorPane layoutX="6.0" prefHeight="639.0" prefWidth="1186.0" stylesheets="@java.css">
                                        <children>
@@ -519,7 +523,7 @@
                                     </AnchorPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="Activités_form" layoutX="20.0" layoutY="20.0" prefHeight="554.4" prefWidth="900.0" visible="false">
+                              <AnchorPane fx:id="Activités_form" layoutY="5.0" prefHeight="554.4" prefWidth="900.0" visible="false">
                                  <children>
                                     <AnchorPane layoutX="31.0" layoutY="3.0" prefHeight="636.0" prefWidth="1161.0" stylesheets="@java.css">
                                        <children>
