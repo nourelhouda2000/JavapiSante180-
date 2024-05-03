@@ -10,11 +10,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import entities.Sante;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import services.ServicesSante;
 import services.ServiceAnalyses;
 
-import java.io.IOException;
+import java.io.*;
 import java.sql.SQLException;
 
 import java.util.List;
@@ -27,9 +28,11 @@ import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
-import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Random;
+import javafx.scene.image.Image;
+
 
 public class AjouterAnalyses {
 
@@ -44,7 +47,10 @@ public class AjouterAnalyses {
 
 
 
-
+    @FXML
+    private Label path;
+    @FXML
+    private ImageView Image;
 
     @FXML
     private TextField poids;
@@ -304,10 +310,11 @@ public class AjouterAnalyses {
         }
     }
     @FXML
-    private void selectImage() {
+    private void selectImage() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Image File");
         File file = fileChooser.showOpenDialog(null);
+
         if (file != null) {
             // Load the image
             String imagePath = file.getAbsolutePath();
@@ -328,6 +335,39 @@ public class AjouterAnalyses {
             } catch (TesseractException e) {
                 e.printStackTrace();
             }
+        }
+        Random rand = new Random();
+        int x = rand.nextInt(1000);
+
+
+        //String DBPath = "C:\\\\xampp\\\\htdocs\\\\Version-Integre\\\\public\\\\uploads\\\\" + x + ".jpg";
+        String DBPath = "" + x + ".jpg";
+
+        if (file != null) {
+            FileInputStream Fsource = new FileInputStream(file.getAbsolutePath());
+            FileOutputStream Fdestination = new FileOutputStream(DBPath);
+            BufferedInputStream bin = new BufferedInputStream(Fsource);
+            BufferedOutputStream bou = new BufferedOutputStream(Fdestination);
+            System.out.println(file.getAbsoluteFile());
+            String p= String.valueOf(file.getAbsoluteFile());
+            path.setText(p);
+
+
+
+            Image img = new Image(file.toURI().toString());
+            Image.setImage(img);
+
+            int b = 0;
+            while (b != -1) {
+                b = bin.read();
+                bou.write(b);
+            }
+            bin.close();
+            bou.close();
+
+        } else {
+            System.out.println("error");
+
         }
     }
 
