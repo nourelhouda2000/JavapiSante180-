@@ -5,10 +5,12 @@
 <?import javafx.scene.chart.BubbleChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -133,7 +135,7 @@
                             <children>
                                 <AnchorPane prefHeight="550.0" prefWidth="898.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                        <AnchorPane fx:id="User_form" layoutX="107.0" layoutY="116.0" prefHeight="554.4" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <AnchorPane fx:id="User_form" layoutX="107.0" layoutY="116.0" prefHeight="554.4" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <children>
                                                 <AnchorPane layoutX="22.0" layoutY="3.0" prefHeight="636.0" prefWidth="1170.0" stylesheets="@java.css">
                                                     <children>
@@ -277,7 +279,7 @@
                                                                         <Font size="21.0" />
                                                                     </font>
                                                                 </Label>
-                                                <BubbleChart fx:id="Charts" layoutX="210.0" layoutY="185.0" onDragDetected="#userCharts" title="User Chart">
+                                                <BubbleChart fx:id="Charts" layoutX="210.0" layoutY="185.0" onDragDetected="#userCharts" stylesheets="@chart.css" title="User Chart">
                                                   <xAxis>
                                                     <NumberAxis side="BOTTOM" />
                                                   </xAxis>
@@ -361,7 +363,7 @@
                                                 <String fx:value="shadow" />
                                             </styleClass>
                                         </AnchorPane>
-                              <AnchorPane fx:id="Profil_form" layoutX="10.0" layoutY="10.0" prefHeight="554.4" prefWidth="900.0" visible="false">
+                              <AnchorPane fx:id="Profil_form" layoutX="10.0" layoutY="10.0" prefHeight="554.4" prefWidth="900.0">
                                  <children>
                                     <AnchorPane layoutX="22.0" layoutY="3.0" prefHeight="636.0" prefWidth="1170.0" stylesheets="@java.css">
                                        <children>
@@ -375,8 +377,8 @@
                                           <Text layoutX="379.0" layoutY="557.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role:" wrappingWidth="56.97214698791504" />
                                           <Text layoutX="376.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email :" wrappingWidth="79.99558448791504" />
                                           <TextField fx:id="email_profil" disable="true" layoutX="473.0" layoutY="429.0" prefHeight="31.0" prefWidth="310.0" styleClass="label-info" stylesheets="@java.css" />
-                                          <TextField fx:id="sexe_profil" disable="true" layoutX="474.0" layoutY="358.0" prefHeight="32.0" prefWidth="308.0" promptText="Homme" styleClass="label-info" stylesheets="@java.css" />
-                                          <TextField fx:id="role_profil" disable="true" layoutX="477.0" layoutY="537.0" prefHeight="32.0" prefWidth="309.0" promptText="doctor" styleClass="label-info" stylesheets="@java.css" />
+                                          <TextField fx:id="sexe_profil" disable="true" layoutX="474.0" layoutY="358.0" prefHeight="32.0" prefWidth="308.0" styleClass="label-info" stylesheets="@java.css" />
+                                          <TextField fx:id="role_profil" disable="true" layoutX="477.0" layoutY="537.0" prefHeight="32.0" prefWidth="309.0" styleClass="label-info" stylesheets="@java.css" />
                                           <TextField fx:id="ID_user1" disable="true" layoutX="62.0" layoutY="32.0" prefHeight="30.0" prefWidth="154.0" styleClass="label-info" stylesheets="@java.css" visible="false" />
                                           <ImageView fitHeight="150.0" fitWidth="220.0" layoutX="547.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -386,6 +388,8 @@
                                           <TextField fx:id="Password_profil" layoutX="477.0" layoutY="485.0" prefHeight="31.0" prefWidth="308.0" styleClass="label-info" stylesheets="@java.css" />
                                           <Text layoutX="376.0" layoutY="505.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="79.99558448791504" />
                                            <Button fx:id="Edit_profil" layoutX="519.0" layoutY="587.0" mnemonicParsing="false" onAction="#EditUser" prefHeight="26.0" prefWidth="206.0" styleClass="update-btn" stylesheets="@java.css" text="Edit" />
+                                          <CheckBox fx:id="checkpwd_edit" layoutX="798.0" layoutY="492.0" mnemonicParsing="false" onAction="#edit_check" />
+                                          <PasswordField fx:id="showpwd_edit" layoutX="476.0" layoutY="485.0" prefHeight="30.0" prefWidth="310.0" styleClass="label-info" stylesheets="@Loginn.css" />
                                        </children>
                                        <styleClass>
                                           <String fx:value="white-bg" />

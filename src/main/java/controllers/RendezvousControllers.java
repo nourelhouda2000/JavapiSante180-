@@ -60,6 +60,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.chart.BubbleChart;
 
 
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.PasswordField;
+
 
 
 public class RendezvousControllers implements Initializable {
@@ -300,6 +303,12 @@ public class RendezvousControllers implements Initializable {
     private PieChart gender_piechart;
     @FXML
     private BarChart<String, Number> age_barchart;
+
+    @FXML
+    private CheckBox checkpwd_edit;
+
+    @FXML
+    private PasswordField showpwd_edit;
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private Rendezvous rendezvous;
@@ -979,6 +988,20 @@ public class RendezvousControllers implements Initializable {
         }
     }
 
+    @FXML
+    void edit_check(ActionEvent event) {
+        if (checkpwd_edit.isSelected()) {
+            Password_profil.setText(showpwd_edit.getText());
+            Password_profil.setVisible(true);
+            showpwd_edit.setVisible(false);
+        } else {
+            showpwd_edit.setText(Password_profil.getText());
+            Password_profil.setVisible(false);
+            showpwd_edit.setVisible(true);
+        }
+    }
+
+
     private boolean validateFields1() {
         // Vérifie si les champs nom_profil, prenom_profil et Password_profil sont remplis
         return !nom_profil.getText().isEmpty() &&
@@ -1209,6 +1232,8 @@ public class RendezvousControllers implements Initializable {
         assert Edit_profil != null : "fx:id=\"Edit_profil\" was not injected: check your FXML file 'Rendezvous.fxml'.";
         assert pdf_rdv != null : "fx:id=\"pdf_rdv\" was not injected: check your FXML file 'Rendezvous.fxml'.";
         assert Charts != null : "fx:id=\"Charts\" was not injected: check your FXML file 'Rendezvous.fxml'.";
+        assert checkpwd_edit != null : "fx:id=\"checkpwd_edit\" was not injected: check your FXML file 'Rendezvous.fxml'.";
+        assert showpwd_edit != null : "fx:id=\"showpwd_edit\" was not injected: check your FXML file 'Rendezvous.fxml'.";
 
 
         datePicker_RDV.setValue(LocalDate.now());
