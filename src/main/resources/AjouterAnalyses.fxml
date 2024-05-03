@@ -61,6 +61,11 @@
                </font>
             </Label>
             <ComboBox fx:id="SanteCombobox" layoutX="12.0" layoutY="198.0" prefHeight="26.0" prefWidth="407.0" />
+            <Button layoutX="87.0" layoutY="323.0" mnemonicParsing="false" onAction="#selectImage" prefHeight="28.0" prefWidth="280.0" style="-fx-background-color: #AD1457;" text="Selectionner Image" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <ImageView fitHeight="407.0" fitWidth="353.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
