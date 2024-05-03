@@ -1,5 +1,6 @@
 package controllers;
 
+import services.UserServices;
 
 import entities.Rapport;
 import entities.Rendezvous;
@@ -8,6 +9,7 @@ import java.net.URL;
 
 import entities.User;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import services.RapportServices;
@@ -26,6 +28,7 @@ import javafx.scene.control.ListView;
 import java.time.LocalDate;
 import java.util.List;
 
+import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -38,6 +41,25 @@ import javafx.scene.control.Alert.AlertType;
 
 import javafx.scene.layout.AnchorPane;
 import services.UserServices;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
+import services.UserServices;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.Map;
+import java.util.ResourceBundle;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+
+import javafx.scene.input.MouseEvent;
+import javafx.scene.chart.BubbleChart;
+
+
 
 
 public class RendezvousControllers implements Initializable {
@@ -272,13 +294,19 @@ public class RendezvousControllers implements Initializable {
     @FXML
     private Button user_page;
 
+    @FXML
+    private BubbleChart<?, ?> Charts;
+    @FXML
+    private PieChart gender_piechart;
+    @FXML
+    private BarChart<String, Number> age_barchart;
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private Rendezvous rendezvous;
 
-    @FXML
-    void initialize() {
 
-    }
+    private UserServices userService = new UserServices();
+
 
 
     public void close() {
@@ -1050,6 +1078,58 @@ public class RendezvousControllers implements Initializable {
     }
 
 
+    // Define a static method to load FXML files
+    public static void loadFXML(String fxml) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(RendezvousControllers.class.getResource(fxml));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    void userCharts(MouseEvent event) {
+
+    }
+
+    @FXML
+    void userCharts() {
+        Map<String, Long> genderDistribution = userService.getGenderDistribution();
+
+        // Create PieChart data
+        PieChart.Data[] pieChartData = genderDistribution.entrySet().stream()
+                .map(entry -> new PieChart.Data(entry.getKey(), entry.getValue()))
+                .toArray(PieChart.Data[]::new);
+
+        // Add data to PieChart
+        gender_piechart.getData().addAll(pieChartData);
+
+        // Retrieve age distribution data
+        Map<String, Long> ageDistribution = userService.getGenderDistribution(); // Implement this method in userService
+
+        // Create BarChart data
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
+
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        ageDistribution.entrySet().forEach(entry -> series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue())));
+
+        // Add data series to BarChart
+        age_barchart.getData().add(series);
+    }
+
+
+    @FXML
+    void backtolist(ActionEvent event) throws IOException {
+        RendezvousControllers.loadFXML("/Rendezvous.fxml");
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -1128,6 +1208,8 @@ public class RendezvousControllers implements Initializable {
         assert user_page != null : "fx:id=\"user_page\" was not injected: check your FXML file 'Rendezvous.fxml'.";
         assert Edit_profil != null : "fx:id=\"Edit_profil\" was not injected: check your FXML file 'Rendezvous.fxml'.";
         assert pdf_rdv != null : "fx:id=\"pdf_rdv\" was not injected: check your FXML file 'Rendezvous.fxml'.";
+        assert Charts != null : "fx:id=\"Charts\" was not injected: check your FXML file 'Rendezvous.fxml'.";
+
 
         datePicker_RDV.setValue(LocalDate.now());
         observableRendezvousList = FXCollections.observableArrayList();

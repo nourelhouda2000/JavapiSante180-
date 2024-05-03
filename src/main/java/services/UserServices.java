@@ -10,6 +10,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
+
+import utils.MyDB;
+
+
 
 public class UserServices implements IservicesUser <User>{
     // Méthode pour valider l'âge de l'utilisateur
@@ -507,4 +514,31 @@ public class UserServices implements IservicesUser <User>{
             return false; // En cas d'erreur, retourner false par défaut
         }
     }
+
+    // Méthode pour récupérer la distribution des sexes
+    public Map<String, Long> getGenderDistribution() {
+        Map<String, Long> genderDistribution = new HashMap<>();
+
+        // Requête SQL pour obtenir la distribution des sexes
+        String query = "SELECT sexe, COUNT(*) AS count FROM user GROUP BY sexe";
+
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/votre_base_de_donnees", "votre_utilisateur", "votre_mot_de_passe");
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+
+            // Parcourir les résultats de la requête
+            while (resultSet.next()) {
+                String gender = resultSet.getString("sexe");
+                long count = resultSet.getLong("count");
+                genderDistribution.put(gender, count);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gérer l'exception de manière appropriée
+        }
+
+        return genderDistribution;
+    }
+
 }

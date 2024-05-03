@@ -76,14 +76,12 @@ public class LoginControllers {
 
     // Method to send an email
     private void sendEmail(String recipient, String subject, String body) {
-        // Set up email server properties
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
 
-        // Create a Session object
         Session session = Session.getInstance(props, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication("nesrinefadhli14@gmail.com", "vydz qyto rtqk yhag");
@@ -91,27 +89,22 @@ public class LoginControllers {
         });
 
         try {
-            // Create a MimeMessage object
             Message message = new MimeMessage(session);
-            // Set the sender email address
             message.setFrom(new InternetAddress("nesrinefadhli14@gmail.com"));
-            // Set the recipient email address
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
-            // Set the email subject
             message.setSubject(subject);
-            // Set the email body
             message.setText(body);
 
-            // Send the email
             Transport.send(message);
 
             System.out.println("Email sent successfully.");
 
         } catch (MessagingException e) {
             e.printStackTrace();
-            // Handle the exception appropriately
+            showAlert("Email Sending Error", "An error occurred while sending the email.");
         }
     }
+
 
     @FXML
     void handleResetPassword(ActionEvent event) {
