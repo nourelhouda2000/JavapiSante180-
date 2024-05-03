@@ -3,6 +3,9 @@ package controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.util.Properties;
 
 import entities.User;
 import javafx.event.ActionEvent;
@@ -22,8 +25,16 @@ import services.UserServices;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.CheckBox;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+
+import javafx.scene.input.MouseEvent;
+
 public class LoginControllers {
     private UserServices userServices = new UserServices();
+
+    private int loginAttempts = 0;
+    private final int MAX_LOGIN_ATTEMPTS = 3;
+
     @FXML
     private ResourceBundle resources;
 
@@ -57,6 +68,50 @@ public class LoginControllers {
     @FXML
     private TextField login_showpwd;
 
+    @FXML
+    private FontAwesomeIconView facebook;
+
+    @FXML
+    private FontAwesomeIconView instagram;
+
+    // Method to send an email
+    private void sendEmail(String recipient, String subject, String body) {
+        // Set up email server properties
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+
+        // Create a Session object
+        Session session = Session.getInstance(props, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("nesrinefadhli14@gmail.com", "vydz qyto rtqk yhag");
+            }
+        });
+
+        try {
+            // Create a MimeMessage object
+            Message message = new MimeMessage(session);
+            // Set the sender email address
+            message.setFrom(new InternetAddress("nesrinefadhli14@gmail.com"));
+            // Set the recipient email address
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
+            // Set the email subject
+            message.setSubject(subject);
+            // Set the email body
+            message.setText(body);
+
+            // Send the email
+            Transport.send(message);
+
+            System.out.println("Email sent successfully.");
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            // Handle the exception appropriately
+        }
+    }
 
     @FXML
     void handleResetPassword(ActionEvent event) {
@@ -72,7 +127,6 @@ public class LoginControllers {
         }
     }
 
-
     @FXML
     void handleSignUp(ActionEvent event) {
         try {
@@ -86,8 +140,6 @@ public class LoginControllers {
             e.printStackTrace();
         }
     }
-
-
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -116,11 +168,22 @@ public class LoginControllers {
             User user = userServices.getUserByEmail(email);
             openRapportWindow(user);
         } else {
-            showAlert(Alert.AlertType.ERROR, "Login Failed", "Incorrect email or password.");
+            loginAttempts++; // Increment the login attempts counter
+            if (loginAttempts >= MAX_LOGIN_ATTEMPTS) {
+                showAlert(Alert.AlertType.ERROR, "Login Failed", "Please try again later. You have attempted more than 3 times.");
+
+                // Send email notification
+                sendEmail(email, "Login Attempt Limit Exceeded", "You have exceeded the maximum number of login attempts. Please try again later.");
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Login Failed", "Incorrect email or password.");
+            }
         }
     }
 
     private void openRapportWindow(User user) throws IOException {
+        // Reset the login attempts counter
+        loginAttempts = 0;
+
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("Rendezvous.fxml"));
 
@@ -137,7 +200,6 @@ public class LoginControllers {
         stage.show();
     }
 
-
     @FXML
     void showPasswordCheckbox(ActionEvent event) {
         if (checkbox_pwd.isSelected()) {
@@ -151,9 +213,44 @@ public class LoginControllers {
         }
     }
 
-
     public void close() {
         System.exit(0);
+    }
+
+    private static final String FACEBOOK_APP_ID = "YOUR_FACEBOOK_APP_ID";
+    private static final String FACEBOOK_APP_SECRET = "YOUR_FACEBOOK_APP_SECRET";
+    private static final String FACEBOOK_REDIRECT_URI = "YOUR_FACEBOOK_REDIRECT_URI";
+
+    @FXML
+    void handleFacebookLogin(ActionEvent event) throws IOException {
+        String accessToken = getFacebookAccessToken();
+        if (accessToken != null) {
+            User user = getFacebookUser(accessToken);
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Facebook Login Failed", "Failed to obtain Facebook access token.");
+        }
+    }
+
+    private String getFacebookAccessToken() {
+        try {
+            String facebookAuthUrl = "https://www.facebook.com/dialog/oauth?client_id=" + FACEBOOK_APP_ID +
+                    "&redirect_uri=" + FACEBOOK_REDIRECT_URI + "&scope=email";
+
+            return "YOUR_FACEBOOK_ACCESS_TOKEN";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private User getFacebookUser(String accessToken) {
+
+        return null;
+    }
+
+    @FXML
+    void handleInstagramLogin(MouseEvent event) {
+
     }
 
     @FXML
@@ -167,5 +264,7 @@ public class LoginControllers {
         assert password_btn != null : "fx:id=\"password_btn\" was not injected: check your FXML file 'Login.fxml'.";
         assert signup != null : "fx:id=\"signup\" was not injected: check your FXML file 'Login.fxml'.";
         assert login_showpwd != null : "fx:id=\"login_showpwd\" was not injected: check your FXML file 'Login.fxml'.";
+        assert facebook != null : "fx:id=\"facebook\" was not injected: check your FXML file 'Login.fxml'.";
+        assert instagram != null : "fx:id=\"instagram\" was not injected: check your FXML file 'Login.fxml'.";
     }
 }
