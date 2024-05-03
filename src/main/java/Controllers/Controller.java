@@ -35,7 +35,7 @@ public class Controller {
                 String height = extractValue(result, "m");
 
                 // Display the extracted values
-                textAreaa.setText("Poids: " + weight + "\nTaille: " + height);
+                textAreaa.setText(result);
             } catch (TesseractException e) {
                 e.printStackTrace();
             }

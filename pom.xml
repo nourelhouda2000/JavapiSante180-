@@ -47,6 +47,25 @@
             <version>5.5.13.2</version> <!-- Mettez à jour la version selon vos besoins -->
         </dependency>
         <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>5.2.5</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>5.2.3</version> <!-- Assurez-vous de mettre la version correcte -->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.3</version> <!-- Assurez-vous d'utiliser la version correspondant à votre projet -->
+        </dependency>
+
+
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
@@ -56,6 +75,24 @@
         <artifactId>  tesseract  </artifactId>
         <version> 4.1.0-1.5.2  </version>
         </dependency>
+        <dependency>
+            <groupId> org.apache.cassandra</groupId>
+            <artifactId>cassandra-all</artifactId>
+            <version>0.8.1</version>
+
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+
+        </dependency>
+
 
     </dependencies>
     <build>

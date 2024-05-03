@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import java.io.File;
+import java.io.BufferedWriter;
 
 
 import java.awt.event.MouseEvent;
@@ -18,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.io.FileWriter;
 
@@ -26,6 +28,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import services.ServicesSante;
 import services.ServiceAnalyses;
+import javafx.event.ActionEvent;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 public class AfficherAnalyses {
     @FXML
@@ -340,31 +346,49 @@ public class AfficherAnalyses {
     }
     @FXML
     private void Excel(ActionEvent event) throws IOException, SQLException {
-        Writer writer = null;
+        // Récupérer la liste à partir de la base de données ou d'une autre source
         ServiceAnalyses sv = new ServiceAnalyses();
         List<Analyses> list = sv.afficher();
-        try {
 
-            File file = new File("C:\\Users\\Dell\\Desktop\\analyses.csv");
-            writer = new BufferedWriter(new FileWriter(file));
+        // Créer une liste pour stocker les données à convertir en Excel
+        List<String> data1 = new ArrayList<>();
+        data1.add("Poids");
+        List<String> data2 = new ArrayList<>();
+        data2.add("Taille");
+        List<String> data3 = new ArrayList<>();
+        data3.add("Poids ideale");
+        List<String> data4 = new ArrayList<>();
+        data4.add("Imc");
+        List<String> data5 = new ArrayList<>();
+        data5.add("Taux");
 
-            for (Analyses ev : list) {
-
-                String text = ev.getPoids()+" | " +ev.getTaille()+ " | " + ev.getPoidsideal()+ " | "+ev.getImc()+" | "+ev.getTaux()+ "\n";
-                System.out.println(text);
-                writer.write(text);
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        // Ajouter les données de chaque analyse à la liste sous forme de chaînes
+        for (Analyses analyse : list) {
+            String rowData1 = String.valueOf(analyse.getPoids());
+            data1.add(rowData1);
         }
-        finally {
-            writer.flush();
-            writer.close();
-            Alert alert= new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("excel");
-            alert.setHeaderText(null);
-            alert.setContentText("!!!excel exported!!!");
-            alert.showAndWait();
+        for (Analyses analyse : list) {
+            String rowData2 = String.valueOf(analyse.getTaille());
+            data2.add(rowData2);
         }
+        for (Analyses analyse : list) {
+            String rowData3 = String.valueOf(analyse.getPoidsideal());
+            data3.add(rowData3);
+        }
+        for (Analyses analyse : list) {
+            String rowData4 = String.valueOf(analyse.getImc());
+            data4.add(rowData4);
+        }
+        for (Analyses analyse : list) {
+            String rowData5 = String.valueOf(analyse.getTaux());
+            data5.add(rowData5);
+        }
+
+        // Spécifier le chemin du fichier Excel de sortie
+        String filePath = "C:\\Users\\Dell\\Desktop\\1.xlsx";
+
+        // Appeler la méthode convertListToExcel pour convertir la liste en Excel
+        ListToExcelConverter.convertListToExcel(data1,data2,data3,data4,data5, filePath);
     }
+
 }
