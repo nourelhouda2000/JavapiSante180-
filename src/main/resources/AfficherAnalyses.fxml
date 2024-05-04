@@ -127,6 +127,8 @@
                   <Pane prefHeight="84.0" prefWidth="186.0" />
                   <ComboBox fx:id="AnalysesCombBox" prefWidth="150.0" />
                   <Button fx:id="Excel" mnemonicParsing="false" onAction="#Excel" style="-fx-background-color: #2ba90b;" text="Excel" textFill="WHITE" />
+                  <Pane prefHeight="84.0" prefWidth="59.0" />
+                  <Button mnemonicParsing="false" onAction="#stat" style="-fx-background-color: #AD1457;" text="Statistique" textFill="WHITE" />
                </children>
             </HBox>
          </children>

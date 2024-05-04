@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import java.io.File;
 import java.io.BufferedWriter;
@@ -26,6 +27,7 @@ import java.io.FileWriter;
 import entities.Sante;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import services.ServicesSante;
 import services.ServiceAnalyses;
 import javafx.event.ActionEvent;
@@ -149,6 +151,7 @@ public class AfficherAnalyses {
     @FXML
     public void initialize() throws SQLException {
         Sante santem=new Sante();
+        
             ServiceAnalyses ss=new ServiceAnalyses();
         // Exemple d'ajout de santés (vous pouvez remplacer par vos données réelles)
         List<Analyses> analyses = ss.afficher();
@@ -389,6 +392,20 @@ public class AfficherAnalyses {
 
         // Appeler la méthode convertListToExcel pour convertir la liste en Excel
         ListToExcelConverter.convertListToExcel(data1,data2,data3,data4,data5, filePath);
+    }
+    @FXML
+    void stat(ActionEvent event) throws IOException {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/statimc.fxml"));
+        Parent root=loader.load();
+
+
+
+
+        Scene scene=new Scene(root);
+        Stage stage =new Stage();
+        stage.setScene(scene);
+        stage.show();
+
     }
 
 }

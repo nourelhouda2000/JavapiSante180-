@@ -212,7 +212,7 @@ public class AjouterAnalyses {
         boolean t=validerFormat(taille, "1[1-9][0-9]|200");
 
 
-        boolean ta=validerFormat(taux, "[5-9][0-9]|100");
+        boolean ta=validerFormat(taux, "[3-9][0-9]|100");
         boolean com=validerCombo(SanteCombobox);
 
         // Valider les chiffres uniquement pour les calories

@@ -74,6 +74,11 @@
                               <Font name="Verdana" size="14.0" />
                            </font>
                         </Button>
+                        <Button layoutX="77.0" layoutY="304.0" mnemonicParsing="false" onAction="#affAnalyseButton1" prefHeight="28.0" prefWidth="280.0" style="-fx-background-color: #AD1457;" text="Afficher Analyses" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="387.0" prefWidth="404.0" style="-fx-background-color: #EBDEF0;">

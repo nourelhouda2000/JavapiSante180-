@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
+<AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="836.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Analysesta">
+    <children>
+      <AnchorPane layoutX="23.0" layoutY="19.0" prefHeight="548.0" prefWidth="798.0" style="-fx-background-color: #73AA18;">
+         <children>
+            <ImageView fitHeight="78.0" fitWidth="94.0" layoutX="20.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../xampp/htdocs/First/public/FrontEnd/images/logo.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+        <PieChart fx:id="imcPieChart" layoutX="135.0" layoutY="43.0" prefHeight="484.0" prefWidth="647.0" />
+    </children>
 </AnchorPane>

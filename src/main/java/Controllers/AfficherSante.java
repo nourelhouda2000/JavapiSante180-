@@ -211,4 +211,13 @@ public class AfficherSante {
             return false;
         }
     }
+    @FXML
+    void affAnalyseButton1(ActionEvent event) {
+        Sante selectedSante = santeCombBox.getSelectionModel().getSelectedItem();
+        int id = selectedSante.getId();
+
+
+
+    }
+
 }
