@@ -33,14 +33,14 @@ public class ChatBot {
 
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
             String model = "gpt-3.5-turbo"; // Initialize the model variable with the correct model name
-            // Replace with your actual API key
+            String apiKey = "sk-proj-CeLMFF4t1Zp6BUSw4VAkT3BlbkFJKwR7IX6JjHRmt4khp97Z"; // Replace with your actual API key
             String requestBody = "{\"model\":\"" + model + "\",\"prompt\":\"" + input + "\",\"max_tokens\":150}";
 
             Request request = new Request.Builder()
                     .url("https://api.openai.com/v1/completions")
                     .post(RequestBody.create(requestBody, mediaType))
                     .addHeader("Content-Type", "application/json")
-                   // .addHeader("Authorization", "Bearer " + apiKey) // Use the retrieved API key
+                    .addHeader("Authorization", "Bearer " + apiKey) // Use the retrieved API key
                     .build();
 
             Response response = client.newCall(request).execute();

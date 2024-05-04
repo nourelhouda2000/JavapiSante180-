@@ -174,47 +174,11 @@ public class AfficherExercice {
         // Ajouter le bouton de like et le compte des likes à la carte
         card.getChildren().addAll(likeButton, likesCountLabel);
 
-        card.setOnMouseClicked(event -> playVideo(exercice));
+
         return card;
     }
 
 
-    @FXML
-    private void playVideo(Exercice exercice) {
-        if (exercice.hasVideo()) {
-            String videoUrl = exercice.getVideoUrl();
-
-            // Vérifier que l'URL de la vidéo n'est pas vide
-            if (videoUrl != null && !videoUrl.isEmpty()) {
-                // Lancer la lecture vidéo dans une nouvelle fenêtre en utilisant la classe Video
-                Video video = new Video("Lecture Vidéo", videoUrl);
-            } else {
-                // Afficher un message indiquant que l'URL de la vidéo est invalide
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information");
-                alert.setHeaderText(null);
-                alert.setContentText("L'URL de la vidéo est invalide.");
-                alert.showAndWait();
-            }
-        } else {
-            // Afficher un message indiquant qu'aucune vidéo n'est disponible pour cet exercice
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information");
-            alert.setHeaderText(null);
-            alert.setContentText("Aucune vidéo n'est disponible pour cet exercice.");
-            alert.showAndWait();
-        }
-    }
-
-
-
-
-
-
-
-
-
-    // Variable de statut pour suivre si l'utilisateur a liké l'exercice
 
     private void handleLike(Exercice exercice, Button likeButton) {
         if (isLiked) {
@@ -488,5 +452,8 @@ public class AfficherExercice {
             // Vous pouvez ajouter d'autres informations de l'exercice si nécessaire
         }
     }
+
+
+
 }
 

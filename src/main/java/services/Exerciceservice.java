@@ -8,7 +8,10 @@ import utils.MyDB;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import entities.Exercice;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -203,47 +206,15 @@ public class Exerciceservice implements IExercice<Exercice> {
         }
     }
 
+    // Méthode pour calculer les statistiques des exercices en fonction de l'activité la plus choisie
 
 
 
 
-    public void updateDislikes(int exerciceId, int newDislikesCount) {
-        try {
-            // Préparer la requête de mise à jour du nombre de dislikes
-            String query = "UPDATE exercice SET dislikes = ? WHERE id = ?";
-            PreparedStatement pst = cnx.prepareStatement(query);
-            pst.setInt(1, newDislikesCount);
-            pst.setInt(2, exerciceId);
-
-            // Exécuter la mise à jour
-            int rowsAffected = pst.executeUpdate();
-
-            // Vérifier si la mise à jour a réussi
-            if (rowsAffected > 0) {
-                System.out.println("Nombre de dislikes mis à jour avec succès pour l'exercice avec l'ID : " + exerciceId);
-            } else {
-                System.out.println("Échec de la mise à jour du nombre de dislikes pour l'exercice avec l'ID : " + exerciceId);
-            }
-        } catch (SQLException e) {
-            System.out.println("Erreur lors de la mise à jour du nombre de dislikes pour l'exercice avec l'ID " + exerciceId + " : " + e.getMessage());
-        }
-    }
 
 
 
 
-    public List<Exercice> getOffresByPage(int pageNumber, int itemsPerPage) {
-        EntityManager em = Persistence.createEntityManagerFactory("UtriPU").createEntityManager();
-        Query query = em.createQuery("SELECT e FROM Exercice e ORDER BY e.id DESC");
-
-        int startPosition = (pageNumber - 1) * itemsPerPage;
-        query.setFirstResult(startPosition);
-        query.setMaxResults(itemsPerPage);
-
-        List<Exercice> offres = query.getResultList();
-        em.close();
-        return offres;
-    }
 }
 
 

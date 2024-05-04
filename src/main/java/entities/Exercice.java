@@ -15,7 +15,7 @@ public class Exercice {
     private String niveau;
     private int nombre_repetition;
     private int likes;
-    private String videoUrl;
+
 @ManyToOne
     private Activite activite;
 
@@ -33,7 +33,7 @@ public class Exercice {
         this.nombre_repetition = nombre_repetition;
         this.likes = likes;
         this.activite=activite;
-       // this.videoUrl=videoUrl;
+
     }
 
     public Exercice( String nom, String description, String niveau, int nombre_repetition, int likes , Activite activite ) {
@@ -43,7 +43,7 @@ public class Exercice {
         this.nombre_repetition = nombre_repetition;
         this.likes = likes;
         this.activite=activite;
-       // this.videoUrl=videoUrl;
+
     }
 
     public int getId() {
@@ -131,18 +131,7 @@ public class Exercice {
 
      //
 
-    // Méthode pour vérifier si une vidéo est associée à l'exercice
-    public String getVideoUrl() {
-        return videoUrl;
-    }
 
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl;
-    }
-    public boolean hasVideo() {
-        // Vérifier si l'URL de la vidéo est présente
-        return videoUrl != null && !videoUrl.isEmpty();
-    }
 
 }
 

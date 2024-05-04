@@ -34,15 +34,7 @@ public class ChatBotController {
                 .thenAccept(answer -> Platform.runLater(() -> outputLabel.setText(answer)));
         inputTextField.clear();
     }
-/*    @FXML
-    private void processInput(ActionEvent event) {
-        String input = inputTextField.getText();
 
-        ChatBot ChatBot = new ChatBot();
-        CompletableFuture.supplyAsync(() -> ChatBot.processInput(input))
-                .thenAccept(answer -> Platform.runLater(() -> outputLabel.setText(answer)));
-        inputTextField.clear();
-    }*/
 
 
     public static void main(String[] args) {
@@ -52,7 +44,8 @@ public class ChatBotController {
                 .join();
     }
 
-   //
+
+   private static final String apiKey = "sk-proj-CeLMFF4t1Zp6BUSw4VAkT3BlbkFJKwR7IX6JjHRmt4khp97Z";
     private static final String model = "gpt-3.5-turbo";  // Adjust the model name
 
     private static String getOpenAIAPIAnswer(String question) {
@@ -66,7 +59,7 @@ public class ChatBotController {
                     .url("https://api.openai.com/v1/chat/completions")  // Use the correct endpoint for chat
                     .post(RequestBody.create(requestBody, mediaType))
                     .addHeader("Content-Type", "application/json")
-                    //.addHeader("Authorization", "Bearer " + apiKey)
+                    .addHeader("Authorization", "Bearer " + apiKey)
                     .build();
 
             Response response = client.newCall(request).execute();
@@ -97,23 +90,19 @@ public class ChatBotController {
     }
 
     @FXML
-    void Goback(ActionEvent event) {
+    private void RETOUR() {
         try {
-            // Load the Ajouter interface FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/DasboardUser.fxml"));
-            Parent ajouterInterface = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Ajout_Activite.fxml"));
+            Parent root = loader.load();
 
-            // Create a new scene
-            Scene ajouterScene = new Scene(ajouterInterface);
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
 
-            // Get the current stage
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            // Set the scene and show the stage
-            currentStage.setScene(ajouterScene);
-            currentStage.show();
+            stage.show();
         } catch (IOException e) {
-            e.printStackTrace(); // Handle the exception properly in your application
+            e.printStackTrace();
         }
+
     }
 }

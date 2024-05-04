@@ -44,6 +44,8 @@ import javafx.scene.control.Label;
 
 public class AfficherActivite {
 
+
+
     @FXML
     private VBox activiteContainer;
 
@@ -362,5 +364,23 @@ public class AfficherActivite {
             e.printStackTrace();
         }
         return content.toString();
+    }
+
+
+    @FXML
+    private void Statistiques() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/StatistiqueActivite.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

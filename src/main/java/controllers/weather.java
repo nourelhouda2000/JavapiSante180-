@@ -39,14 +39,14 @@ public class weather {
 
         @FXML
         private Text wind;
-/*
+
         @FXML
         void initialize() {
             getWeather.setOnAction(
                     event -> {
                         String usercity = city.getText().trim();
                         if(!usercity.isEmpty()){
-                            String output = getContent("http://api.weatherapi.com/v1/current.json?key=&q="+ usercity +"&aqi=no");
+                            String output = getContent("http://api.weatherapi.com/v1/current.json?key=170f0715192447a7a1f92254243004&q="+ usercity +"&aqi=no");
 
                             JSONObject object = new JSONObject(output);
                             currentTemp.setText(String.valueOf(object.getJSONObject("current").getDouble("temp_c")));
@@ -56,7 +56,7 @@ public class weather {
                         }
                     }
             );
-        }*/
+        }
         private static String getContent(String urlAdress){
             StringBuffer content = new StringBuffer();
 
