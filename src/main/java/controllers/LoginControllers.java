@@ -29,6 +29,21 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 
 import javafx.scene.input.MouseEvent;
 
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.Version;
+import com.restfb.exception.FacebookException;
+
+import com.restfb.scope.ScopeBuilder;
+//import com.restfb.types.User;
+/*
+import dev.niekirk.com.instagram4j.Instagram4j;
+import dev.niekirk.com.instagram4j.requests.InstagramLoginRequest;
+import dev.niekirk.com.instagram4j.requests.InstagramLogoutRequest;
+import dev.niekirk.com.instagram4j.requests.payload.InstagramLoginResult;
+
+ */
+
 public class LoginControllers {
     private UserServices userServices = new UserServices();
 
@@ -104,7 +119,6 @@ public class LoginControllers {
             showAlert("Email Sending Error", "An error occurred while sending the email.");
         }
     }
-
 
     @FXML
     void handleResetPassword(ActionEvent event) {
@@ -210,41 +224,106 @@ public class LoginControllers {
         System.exit(0);
     }
 
-    private static final String FACEBOOK_APP_ID = "YOUR_FACEBOOK_APP_ID";
-    private static final String FACEBOOK_APP_SECRET = "YOUR_FACEBOOK_APP_SECRET";
-    private static final String FACEBOOK_REDIRECT_URI = "YOUR_FACEBOOK_REDIRECT_URI";
 
+
+    private static final String FACEBOOK_APP_ID = "1799987317079344";
+    private static final String FACEBOOK_APP_SECRET = "https://www.facebook.com/";
+    private static final String FACEBOOK_REDIRECT_URI = "https://localhost:8080/facebook/callback";
+    public static final Version VERSION_11_0 = Version.VERSION_11_0;
+
+
+    // Method to handle Facebook login
     @FXML
-    void handleFacebookLogin(ActionEvent event) throws IOException {
+    void handleFacebookIconClick(MouseEvent event) {
         String accessToken = getFacebookAccessToken();
         if (accessToken != null) {
             User user = getFacebookUser(accessToken);
+            if (user != null) {
+                // Handle the retrieved user data as needed
+                // For example, you can display user information or proceed to the next screen
+                System.out.println("Facebook login successful. User: " + user);
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Facebook Login Failed", "Failed to obtain user data from Facebook.");
+            }
         } else {
             showAlert(Alert.AlertType.ERROR, "Facebook Login Failed", "Failed to obtain Facebook access token.");
         }
     }
+    /*
+    private String getFacebookAccessToken() {
+        // Use FACEBOOK_APP_ID when creating the DefaultFacebookClient
+        FacebookClient fbClient = new DefaultFacebookClient(Version.VERSION_11_0, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET);
+        // Fetch user information using the access token
+        User me = fbClient.fetchObject("me", User.class);
+        System.out.println(me.getNomuser()); // Just for debugging, remove in production
+
+        return "EAAsbuEw8tboBO4AlRzgsY3sFJg1RbpHYHpRs2nGpf1f8LMydioxAfmGZA0s6HZAevao39iBarniptfsPKQ520W18htUCl0hbctmrl9LDzdzZAMx9iGxXnad5yrE8eC4k0KTivoef16NpETvRWYGGjBMUR039X1sZA83d07sGZAtDeIZB0NekfDm8XQ34cKRfodb15RhBTIVKw7g9ZARL7avaO3ZBzqZAEul1Y8ZC0aZBCZBjHLtyXlsN6hKD4NPUAkxaatwRKAZDZD";
+    }
+
+     */
 
     private String getFacebookAccessToken() {
-        try {
-            String facebookAuthUrl = "https://www.facebook.com/dialog/oauth?client_id=" + FACEBOOK_APP_ID +
-                    "&redirect_uri=" + FACEBOOK_REDIRECT_URI + "&scope=email";
+        // No need to create a DefaultFacebookClient instance, just return the hardcoded access token
+        return "EAAsbuEw8tboBO4AlRzgsY3sFJg1RbpHYHpRs2nGpf1f8LMydioxAfmGZA0s6HZAevao39iBarniptfsPKQ520W18htUCl0hbctmrl9LDzdzZAMx9iGxXnad5yrE8eC4k0KTivoef16NpETvRWYGGjBMUR039X1sZA83d07sGZAtDeIZB0NekfDm8XQ34cKRfodb15RhBTIVKw7g9ZARL7avaO3ZBzqZAEul1Y8ZC0aZBCZBjHLtyXlsN6hKD4NPUAkxaatwRKAZDZD";
+    }
 
-            return "YOUR_FACEBOOK_ACCESS_TOKEN";
-        } catch (Exception e) {
+
+    // Method to fetch Facebook user data
+    private User getFacebookUser(String accessToken) {
+        FacebookClient facebookClient = new DefaultFacebookClient(accessToken, Version.LATEST);
+        try {
+            com.restfb.types.User fbUser = facebookClient.fetchObject("me", com.restfb.types.User.class);
+            // Convert com.restfb.types.User to your User class
+            User user = new User();
+            user.setNomuser(fbUser.getName());
+            // Set other properties as needed
+            return user;
+        } catch (FacebookException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+/*
+    private User getFacebookUser(String accessToken) {
+        FacebookClient facebookClient = new DefaultFacebookClient(accessToken, Version.LATEST);
+        try {
+            return facebookClient.fetchObject("me", User.class);
+        } catch (FacebookException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    private User getFacebookUser(String accessToken) {
+ */
 
-        return null;
-    }
 
+/*
     @FXML
-    void handleInstagramLogin(MouseEvent event) {
+    void handleInstagramLogin(ActionEvent event) {
+        String username = "YOUR_INSTAGRAM_USERNAME";
+        String password = "YOUR_INSTAGRAM_PASSWORD";
 
+        try {
+            Instagram4j instagram = Instagram4j.builder().username(username).password(password).build();
+            instagram.setup();
+            InstagramLoginResult loginResult = instagram.sendRequest(new InstagramLoginRequest(username, password));
+
+            if (loginResult.getStatus().equals("ok")) {
+                // Instagram login successful, obtain user data as needed
+                // For example, you can retrieve the user's profile information:
+                // InstagramUser user = instagram.sendRequest(new InstagramGetUserRequest(username)).getUser();
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Instagram Login Failed", "Failed to log in to Instagram.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Instagram Login Failed", "An error occurred while logging in to Instagram.");
+        }
     }
+
+ */
 
     @FXML
     void initialize() {
@@ -259,5 +338,7 @@ public class LoginControllers {
         assert login_showpwd != null : "fx:id=\"login_showpwd\" was not injected: check your FXML file 'Login.fxml'.";
         assert facebook != null : "fx:id=\"facebook\" was not injected: check your FXML file 'Login.fxml'.";
         assert instagram != null : "fx:id=\"instagram\" was not injected: check your FXML file 'Login.fxml'.";
+        facebook.setOnMouseClicked(this::handleFacebookIconClick);
     }
+
 }
