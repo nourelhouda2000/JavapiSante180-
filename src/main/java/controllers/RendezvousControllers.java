@@ -63,6 +63,13 @@ import javafx.scene.chart.BubbleChart;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 
+import services.UserServices;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import utils.MyDB;
 
 
 public class RendezvousControllers implements Initializable {
@@ -894,6 +901,8 @@ public class RendezvousControllers implements Initializable {
     }
 
 
+
+
     private boolean validateFields() {
         return !nom_ajou.getText().isEmpty() &&
                 !prenom_ajou.getText().isEmpty() &&
@@ -961,13 +970,18 @@ public class RendezvousControllers implements Initializable {
 
 
 
+    // Method to retrieve the ID of the logged-in user
+    private int getLoggedInUserId() {
+        return UserServices.getInstance().getIdUser();
+    }
+
 
 
     @FXML
     void EditUser(ActionEvent event) {
         if (validateFields1()) {
             User updatedUser = new User();
-            //updatedUser.setIdUser(getLoggedInUserId()); // Assuming you have a method to get the ID of the logged-in user
+            updatedUser.setIdUser(getLoggedInUserId());
             updatedUser.setNomuser(nom_profil.getText());
             updatedUser.setPrenomuser(prenom_profil.getText());
             updatedUser.setMdp(Password_profil.getText());
@@ -975,15 +989,9 @@ public class RendezvousControllers implements Initializable {
             boolean success = userServices.updateUserpwdprofil1(updatedUser);
 
             if (success) {
-                // Update the displayed user information
-                nom_profil.setText(updatedUser.getNomuser());
-                prenom_profil.setText(updatedUser.getPrenomuser());
-                // Password should not be displayed, so no need to update it in the UI
-
-                // Show success message
+                addUserShowListData();
+                addUserReset();
                 showAlert("Succès", "Les informations de l'utilisateur ont été mises à jour avec succès.");
-            } else {
-                showAlert("Erreur", "Une erreur s'est produite lors de la mise à jour des informations de l'utilisateur.");
             }
         }
     }

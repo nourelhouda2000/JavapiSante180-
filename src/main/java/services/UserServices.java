@@ -1,7 +1,10 @@
 package services;
 import entities.User;
 import javafx.scene.control.Alert;
+
 import utils.MyDB;
+import utils.MyDB;
+
 import java.util.regex.Pattern;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,11 +17,30 @@ import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import utils.MyDB;
+
+public class UserServices implements IservicesUser<User> {
+
+    User user = new User();
+    int idUser = user.getIdUser();
+
+    // Declare the instance variable at the class level
+    private static UserServices instance;
+
+    public static UserServices getInstance() {
+        if (instance == null) {
+            instance = new UserServices();
+        }
+        return instance;
+    }
+
+    // Method to get the ID of the logged-in user
+    public int getIdUser() {
+        return idUser;
+    }
 
 
 
-public class UserServices implements IservicesUser <User>{
+
     // Méthode pour valider l'âge de l'utilisateur
     private boolean isValidAge(String age) {
         try {
@@ -264,51 +286,59 @@ public class UserServices implements IservicesUser <User>{
     }
 
 
-
-
     public boolean updateUserpwdprofil1(User user) {
         try {
-            String query = "UPDATE user SET nomuser = ?, prenomuser = ?, mdp = ? WHERE id_user = ?";
-            PreparedStatement pst = MyDB.getInstance().getConnection().prepareStatement(query);
+            StringBuilder queryBuilder = new StringBuilder("UPDATE user SET ");
+            List<String> setStatements = new ArrayList<>();
 
-            // Paramètres pour la mise à jour
-            pst.setString(1, user.getNomuser());
-            pst.setString(2, user.getPrenomuser());
-            pst.setString(3, user.getMdp());
+            if (user.getNomuser() != null && !user.getNomuser().isEmpty()) {
+                setStatements.add("nomuser = ?");
+            }
+            if (user.getPrenomuser() != null && !user.getPrenomuser().isEmpty()) {
+                setStatements.add("prenomuser = ?");
+            }
+            if (user.getMdp() != null && !user.getMdp().isEmpty()) {
+                setStatements.add("mdp = ?");
+            }
 
-            pst.setInt(4, user.getIdUser());
+            queryBuilder.append(String.join(", ", setStatements));
+            queryBuilder.append(" WHERE id_user = ?");
 
-            // Exécution de la requête
+            PreparedStatement pst = MyDB.getInstance().getConnection().prepareStatement(queryBuilder.toString());
+
+            int parameterIndex = 1;
+            if (user.getNomuser() != null && !user.getNomuser().isEmpty()) {
+                pst.setString(parameterIndex++, user.getNomuser());
+            }
+            if (user.getPrenomuser() != null && !user.getPrenomuser().isEmpty()) {
+                pst.setString(parameterIndex++, user.getPrenomuser());
+            }
+            if (user.getMdp() != null && !user.getMdp().isEmpty()) {
+                pst.setString(parameterIndex++, user.getMdp());
+            }
+
+            pst.setInt(parameterIndex, user.getIdUser());
+
+            // Print the SQL query and parameters for debugging
+            System.out.println("SQL Query: " + pst.toString());
+
             int rowsUpdated = pst.executeUpdate();
 
-            // Vérification si la mise à jour a réussi
             if (rowsUpdated > 0) {
-                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                successAlert.setTitle("Information Message");
-                successAlert.setHeaderText(null);
-                successAlert.setContentText("user mis à jour avec succès !");
-                successAlert.showAndWait();
-                // System.out.println("user mis à jour avec succès !");
+                showAlert("Information", "User updated successfully!");
                 return true;
             } else {
-                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                successAlert.setTitle("Information Message");
-                successAlert.setHeaderText(null);
-                successAlert.setContentText("Aucun user mis à jour.");
-                successAlert.showAndWait();
-                // System.out.println("Aucun user mis à jour.");
+                showAlert("Information", "No user updated. Rows updated: " + rowsUpdated);
                 return false;
             }
         } catch (SQLException e) {
-            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-            successAlert.setTitle("Information Message");
-            successAlert.setHeaderText(null);
-            successAlert.setContentText("Erreur lors de la mise à jour de l'utilisateur : " + e.getMessage());
-            successAlert.showAndWait();
-            //System.out.println("Erreur lors de la mise à jour de l'utilisateur : " + e.getMessage());
+            showAlert("Error", "Error updating user: " + e.getMessage());
+            e.printStackTrace(); // Print the stack trace for debugging
             return false;
         }
     }
+
+
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
