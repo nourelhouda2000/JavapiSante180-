@@ -1,19 +1,12 @@
 package test;
-import entites.Reclamations;
-import java.sql.Date;
 
-import entites.Reponses;
-import services.Reclamationsservices;
-import services.Reponsesservices;
 import utils.MyDB;
 
-import java.sql.SQLException;
-import java.util.List; // Importez la classe List depuis java.util
 public class main {
     public static void main(String[] args) {
         // Obtention d'une instance de MyDB
         MyDB db = MyDB.getInstance();
-
+/*
         // Création d'une instance de RendezvousServices
         Reclamationsservices rec = new Reclamationsservices();
         Date daterec = Date.valueOf("2025-03-12");
@@ -89,4 +82,4 @@ public class main {
             System.out.println(r);
         }
 */
-    }
+    }}

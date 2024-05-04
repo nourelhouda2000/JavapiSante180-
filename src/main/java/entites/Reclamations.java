@@ -18,6 +18,15 @@ public class Reclamations {
         this.Priorite = Priorite;
         this.daterec = daterec;
     }
+    public Reclamations(int idrec) {
+        this.idrec = idrec;
+
+    }
+
+    public Reclamations(int idrec, String description) {
+        this.idrec = idrec;
+        this.description = description;
+    }
 
     public Reclamations(String description, String Priorite, Date daterec) {
         this.description = description;
@@ -59,7 +68,7 @@ public class Reclamations {
 
     @Override
     public String toString() {
-        return "l id est " + idrec + ", le description " + description + ", Priorite " + Priorite + ", daterec " + daterec;
+        return  ", le description " + description + ", Priorite " + Priorite + ", daterec " + daterec;
     }
 
     @Override
@@ -73,5 +82,8 @@ public class Reclamations {
     @Override
     public int hashCode() {
         return Objects.hash(idrec, description, Priorite, daterec);
+    }
+
+    public void setDate(Date sqlDate) {
     }
 }

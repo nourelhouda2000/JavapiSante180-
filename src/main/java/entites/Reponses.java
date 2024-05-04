@@ -8,25 +8,59 @@ public class Reponses {
     private String notereponse ;
     private Date daterec;
     private int likes;
+   private double rating;
+    private Reclamations reclamations;
+
+    public Reponses(int idrep) {
+        this.idrep=idrep;    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public Reclamations getReclamations() {
+        return reclamations;
+    }
+
+    public void setReclamations(Reclamations reclamations) {
+        this.reclamations = reclamations;
+    }
 
     public Reponses() {
 
     }
 
-    public Reponses(int idrep, String description, String notereponse, Date daterec) {
+    public Reponses(int idrep, String description, String notereponse,int likes, Date daterec,Reclamations reclamations) {
         this.idrep = idrep;
         this.description = description;
         this.notereponse = notereponse;
         this.daterec = daterec;
+        this.likes=likes;
+        this.reclamations=reclamations;
     }
-
-    public Reponses( String description, String notereponse, Date daterec) {
+    public Reponses(int idrep, String description, String notereponse, int likes, Date daterec, double rating, Reclamations reclamations) {
+        this.idrep = idrep;
+        this.description = description;
+        this.notereponse = notereponse;
+        this.likes = likes;
+        this.daterec = daterec;
+        this.rating=rating;
+        this.reclamations = reclamations;
+        this.rating = rating;
+    }
+    public Reponses( String description, String notereponse, Date daterec,Reclamations reclamations,int likes) {
 
         this.description = description;
         this.notereponse = notereponse;
         this.daterec = daterec;
+        this.likes=likes;
+        this.reclamations=reclamations;
     }
-    public int getIdrep() {
+    public  int getIdrep() {
         return idrep;
     }
 
@@ -65,6 +99,7 @@ public class Reponses {
                 ", description='" + description + '\'' +
                 ", notereponse='" + notereponse + '\'' +
                 ", daterec=" + daterec +
+                ", reclamations=" + reclamations +
                 '}';
     }
 
@@ -81,4 +116,14 @@ public class Reponses {
     public int hashCode() {
         return Objects.hash(idrep, description, notereponse, daterec);
     }
+
+
+    public void setRating(double rating) {
+        this.rating=rating;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
 }

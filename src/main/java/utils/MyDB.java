@@ -23,7 +23,7 @@ public class MyDB {
 
     private Connection cnx;
     private static MyDB instance;
-
+//1rendre le constructeur prive
     private MyDB() {
         try {
             cnx = DriverManager.getConnection(URL, USER, PWD);
@@ -36,7 +36,7 @@ public class MyDB {
     public Connection getConnection() {
         return cnx;
     }
-
+//2  creation instance static
     public static MyDB getInstance() {
         if (instance == null) {
             instance = new MyDB();
@@ -44,4 +44,14 @@ public class MyDB {
         return instance;
     }
 
+    public void closeConnection() {
+        if (cnx != null) {
+            try {
+                cnx.close();
+                System.out.println("Connexion fermée.");
+            } catch (SQLException e) {
+                System.out.println("Erreur lors de la fermeture de la connexion : " + e.getMessage());
+            }
+        }
+    }
 }
