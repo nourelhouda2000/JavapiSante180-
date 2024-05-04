@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="609.0" prefWidth="762.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AfAnalyses">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="595.0" prefWidth="746.0" style="-fx-background-color: #EBDEF0;">
+         <children>
+            <GridPane fx:id="santeGrid" prefHeight="595.0" prefWidth="746.0">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ScrollPane hbarPolicy="AS_NEEDED" prefHeight="594.0" prefWidth="746.0" vbarPolicy="AS_NEEDED">
+                     <content>
+                        <VBox fx:id="vboxSante" prefHeight="590.0" prefWidth="748.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints />
+               </columnConstraints>
+            </GridPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

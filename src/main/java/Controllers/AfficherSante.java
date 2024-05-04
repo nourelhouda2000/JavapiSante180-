@@ -6,10 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import services.ServiceAnalyses;
 
 
 import java.io.IOException;
@@ -19,6 +22,7 @@ import java.util.List;
 import entities.Sante;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import services.AnalysesServices;
 import services.ServicesSante;
 
 public class AfficherSante {
@@ -212,9 +216,20 @@ public class AfficherSante {
         }
     }
     @FXML
-    void affAnalyseButton1(ActionEvent event) {
+    void affAnalyseButton1(ActionEvent event) throws IOException, SQLException {
         Sante selectedSante = santeCombBox.getSelectionModel().getSelectedItem();
         int id = selectedSante.getId();
+
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/afAnalyses.fxml"));
+        Parent root=loader.load();
+        AfAnalyses controller=loader.getController();
+
+
+        controller.setlist(id);
+        Scene scene=new Scene(root);
+        Stage stage =new Stage();
+        stage.setScene(scene);
+        stage.show();
 
 
 
