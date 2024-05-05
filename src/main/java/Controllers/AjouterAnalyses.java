@@ -114,24 +114,31 @@ public class AjouterAnalyses {
             try {
                 Sante selectedSante = SanteCombobox.getSelectionModel().getSelectedItem();
                 Integer santeid= selectedSante.getId();
-               int p= Integer.parseInt( poids.getText());
-               int t= Integer.parseInt( taille.getText());
+                double poidsa=Double.parseDouble(poids.getText());
+               int p= Double.valueOf(poidsa).intValue();
+                double taillea=Double.parseDouble(taille.getText());
+                if (taillea<2){taillea=taillea*100;}
+
+               int t= Double.valueOf(taillea).intValue();
+                System.out.println(t);
+                System.out.println(p);
+
                double imcd=p/((t*0.01)*(t*0.01));
                int imc=(int)imcd;
                double poidsi=22*((t*0.01)*(t*0.01));
                int pi=(int)poidsi;
 
                 sa.add(new Analyses(
-                        Integer.parseInt( poids.getText()),
-                        Integer.parseInt( taille.getText()),
+                       p,
+                        t,
 
                         pi,
                         imc,
                         Integer.parseInt( taux.getText()),
                         santeid));
 
-                    Analyses voy = new Analyses( Integer.parseInt( poids.getText()),
-                            Integer.parseInt( taille.getText()),
+                    Analyses voy = new Analyses(p,
+                            t,
 
                             pi,
                             imc,
@@ -181,13 +188,22 @@ public class AjouterAnalyses {
 
 
     public void LoadPage() throws IOException {
+        double poidsa=Double.parseDouble(poids.getText());
+        int p= Double.valueOf(poidsa).intValue();
+        double taillea=Double.parseDouble(taille.getText());
+        if (taillea<2){taillea=taillea*100;}
+        int t=Double.valueOf(taillea).intValue();
+        String poids=  Integer.toString(p);
+        String taille=Integer.toString(t);
+
+
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/afficher1Analyse.fxml"));
         Parent root=loader.load();
         ViewAnalyses controller=loader.getController();
-        String imc=calculerIMC(poids.getText(),taille.getText());
-        String poidsideal=calculerPoidsIdeal(taille.getText());
+        String imc=calculerIMC(poids,taille);
+        String poidsideal=calculerPoidsIdeal(taille);
 
-        controller.MyFunction(poids.getText(),taille.getText(),poidsideal,imc,taux.getText());
+        controller.MyFunction(poids,taille,poidsideal,imc,taux.getText());
         Scene scene=new Scene(root);
         Stage stage =new Stage();
         stage.setScene(scene);
@@ -207,9 +223,9 @@ public class AjouterAnalyses {
         Parent root=loader.load();
         poids.getScene().setRoot(root);}
     public boolean validerSaisies() {
-        boolean p=validerFormat(poids, "[5-9][0-9]|100");
+        boolean p=validerFormat(poids, "([5-9][0-9]|100)(\\.[0-9]+)?");
 
-        boolean t=validerFormat(taille, "1[1-9][0-9]|200");
+        boolean t=validerFormat(taille, "([1-9]|200)(\\.[0-9]+)?");
 
 
         boolean ta=validerFormat(taux, "[3-9][0-9]|100");
