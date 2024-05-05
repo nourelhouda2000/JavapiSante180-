@@ -6,7 +6,6 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -135,7 +134,7 @@
                             <children>
                                 <AnchorPane prefHeight="550.0" prefWidth="898.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                        <AnchorPane fx:id="User_form" layoutX="107.0" layoutY="116.0" prefHeight="554.4" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <AnchorPane fx:id="User_form" layoutX="107.0" layoutY="116.0" prefHeight="554.4" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <children>
                                                 <AnchorPane layoutX="22.0" layoutY="3.0" prefHeight="636.0" prefWidth="1170.0" stylesheets="@java.css">
                                                     <children>
@@ -150,24 +149,27 @@
                                                 <ListView fx:id="Listview_user" layoutX="64.0" layoutY="94.0" prefHeight="494.0" prefWidth="540.0" />
                                                             </children>
                                                         </AnchorPane>
-                                                        <Text layoutX="41.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :" wrappingWidth="79.99558448791504" />
-                                                        <Text layoutX="33.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom :" wrappingWidth="71.4341049194336" />
-                                                        <Text layoutX="42.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age :" wrappingWidth="79.37214088439941" />
-                                                        <TextField fx:id="nom_ajou" layoutX="139.0" layoutY="87.0" prefHeight="29.0" prefWidth="153.0" styleClass="label-info" stylesheets="@java.css" />
-                                                        <TextField fx:id="prenom_ajou" layoutX="138.0" layoutY="131.0" prefHeight="32.0" prefWidth="154.0" styleClass="label-info" stylesheets="@java.css" />
-                                                        <TextField fx:id="age_ajou" layoutX="138.0" layoutY="180.0" prefHeight="30.0" prefWidth="154.0" styleClass="label-info" stylesheets="@java.css" />
-                                                        <Text layoutX="41.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sexe:" wrappingWidth="56.97214698791504" />
-                                                        <Text layoutX="40.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role:" wrappingWidth="56.97214698791504" />
-                                                        <Text layoutX="41.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email :" wrappingWidth="79.99558448791504" />
-                                                        <TextField fx:id="email_ajou" layoutX="138.0" layoutY="304.0" prefHeight="31.0" prefWidth="154.0" styleClass="label-info" stylesheets="@java.css" />
+                                                        <Text layoutX="41.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :" wrappingWidth="79.99558448791504" />
+                                                        <Text layoutX="37.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom :" wrappingWidth="71.4341049194336" />
+                                                        <Text layoutX="41.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age :" wrappingWidth="79.37214088439941" />
+                                                        <TextField fx:id="nom_ajou" layoutX="131.0" layoutY="32.0" prefHeight="29.0" prefWidth="153.0" styleClass="label-info" stylesheets="@java.css" />
+                                                        <TextField fx:id="prenom_ajou" layoutX="130.0" layoutY="76.0" prefHeight="32.0" prefWidth="154.0" styleClass="label-info" stylesheets="@java.css" />
+                                                        <TextField fx:id="age_ajou" layoutX="130.0" layoutY="125.0" prefHeight="30.0" prefWidth="154.0" styleClass="label-info" stylesheets="@java.css" />
+                                                        <Text layoutX="44.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sexe:" wrappingWidth="56.97214698791504" />
+                                                        <Text layoutX="44.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Role:" wrappingWidth="56.97214698791504" />
+                                                        <Text layoutX="41.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email :" wrappingWidth="79.99558448791504" />
+                                                        <TextField fx:id="email_ajou" layoutX="130.0" layoutY="239.0" prefHeight="31.0" prefWidth="158.0" styleClass="label-info" stylesheets="@java.css" />
                                                         <Button fx:id="ADD_user" layoutX="53.0" layoutY="493.0" mnemonicParsing="false" onAction="#addUser" prefHeight="36.0" prefWidth="102.0" styleClass="add-btn" stylesheets="@java.css" text="ADD" textFill="#595757" />
                                                         <Button fx:id="Update_user" layoutX="197.0" layoutY="493.0" mnemonicParsing="false" onAction="#updateUser" prefHeight="36.0" prefWidth="102.0" styleClass="update-btn" stylesheets="@java.css" text="Update" textFill="#595757" />
                                                         <Button fx:id="Delete_user" layoutX="325.0" layoutY="493.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="36.0" prefWidth="102.0" styleClass="delete-btn" stylesheets="@java.css" text="Delete" textFill="#595757" />
                                                         <Button fx:id="Clear_user" layoutX="49.0" layoutY="435.0" mnemonicParsing="false" onAction="#addUserReset" prefHeight="36.0" prefWidth="379.0" styleClass="clear-btn" stylesheets="@java.css" text="Clear" textFill="#595757" />
                                                         <TextField fx:id="ID_user" disable="true" layoutX="62.0" layoutY="32.0" prefHeight="30.0" prefWidth="154.0" styleClass="label-info" stylesheets="@java.css" visible="false" />
                                           <Button fx:id="Select_user" layoutX="49.0" layoutY="554.0" mnemonicParsing="false" onAction="#selectUser" prefHeight="36.0" prefWidth="102.0" styleClass="clear-btn" stylesheets="@java.css" text="Select" textFill="#595757" />
-                                          <ComboBox fx:id="sexeComboBox" layoutX="140.0" layoutY="237.0" prefWidth="150.0" promptText="Choise your Sexe" />
-                                          <ComboBox fx:id="roleComboBox" layoutX="140.0" layoutY="354.0" prefWidth="150.0" promptText="Choise your Role" />
+                                                        <TextField fx:id="sexe_ajou" layoutX="130.0" layoutY="185.0" prefHeight="32.0" prefWidth="154.0" styleClass="label-info" stylesheets="@java.css" />
+                                                        <TextField fx:id="role_ajou" layoutX="127.0" layoutY="302.0" prefHeight="32.0" prefWidth="161.0" styleClass="label-info" stylesheets="@java.css" />
+
+                                                        <Text layoutX="22.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe :" wrappingWidth="80.17218971252441" />
+                                          <TextField fx:id="mdp_ajou" layoutX="129.0" layoutY="359.0" prefHeight="30.0" prefWidth="163.0" styleClass="label-info" stylesheets="@Loginn.css" />
                                                     </children>
                                                     <styleClass>
                                                         <String fx:value="white-bg" />
@@ -363,7 +365,7 @@
                                                 <String fx:value="shadow" />
                                             </styleClass>
                                         </AnchorPane>
-                              <AnchorPane fx:id="Profil_form" layoutX="10.0" layoutY="10.0" prefHeight="554.4" prefWidth="900.0">
+                              <AnchorPane fx:id="Profil_form" layoutX="10.0" layoutY="10.0" prefHeight="554.4" prefWidth="900.0" visible="false">
                                  <children>
                                     <AnchorPane layoutX="22.0" layoutY="3.0" prefHeight="636.0" prefWidth="1170.0" stylesheets="@java.css">
                                        <children>

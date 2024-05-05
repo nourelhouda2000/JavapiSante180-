@@ -69,6 +69,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+
 import utils.MyDB;
 
 
@@ -316,6 +319,9 @@ public class RendezvousControllers implements Initializable {
 
     @FXML
     private PasswordField showpwd_edit;
+
+    @FXML
+    private TextField mdp_ajou;
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private Rendezvous rendezvous;
@@ -806,6 +812,7 @@ public class RendezvousControllers implements Initializable {
         // Clearing the ComboBox values
         role_ajou.setText("");
         sexe_ajou.setText("");
+        mdp_ajou.setText("");
     }
 
 
@@ -822,7 +829,7 @@ public class RendezvousControllers implements Initializable {
             age_ajou.setText(user.getAgeuser());
             sexe_ajou.setText(user.getSexe());
             email_ajou.setText(user.getEmail());
-            // mdp_ajou.setText(user.getMdp());
+            mdp_ajou.setText(user.getMdp());
 
             // Convertir le rôle de l'utilisateur en texte correspondant
             String roleText = "";
@@ -856,7 +863,7 @@ public class RendezvousControllers implements Initializable {
 
     @FXML
     void addUser(ActionEvent event) {
-        if (validateFields()) {
+        //if (validateFields()) {
             // Create a new User object with data from UI fields
             User user = new User();
             user.setNomuser(nom_ajou.getText());
@@ -864,6 +871,7 @@ public class RendezvousControllers implements Initializable {
             user.setAgeuser(age_ajou.getText());
             user.setSexe(sexe_ajou.getText());
             user.setEmail(email_ajou.getText());
+            user.setMdp(mdp_ajou.getText());
 
             // Get the role text from the role_ajou field
             String roleText = role_ajou.getText();
@@ -882,25 +890,28 @@ public class RendezvousControllers implements Initializable {
                     break;
                 default:
                     // Handle invalid role input
-                    showAlert("Rôle invalide", "Le rôle spécifié est invalide.");
+                    System.err.println("Invalid role value: " + roleText);
                     return; // Exit the method as role value is invalid
             }
 
             // Set the role value in the User object
             user.setRole(roleValue);
-            user.setMdp(""); // Assuming you don't handle password input here
+        user.setMdp(""); // Assuming you don't handle password input here
 
-            // Call the service method to add the user
+
+        // Call the service method to add the user
             userServices.addUser(user);
             addUserShowListData();
 
             // Clear input fields after adding user
+            addUserReset();
+            /*
         } else {
             showAlert("Champs vides", "Veuillez remplir tous les champs obligatoires.");
         }
+
+             */
     }
-
-
 
 
     private boolean validateFields() {
@@ -909,7 +920,8 @@ public class RendezvousControllers implements Initializable {
                 !age_ajou.getText().isEmpty() &&
                 !sexe_ajou.getText().isEmpty() &&
                 !email_ajou.getText().isEmpty() &&
-                !role_ajou.getText().isEmpty();
+                !role_ajou.getText().isEmpty() &&
+                !mdp_ajou.getText().isEmpty();
     }
 
     @FXML
@@ -934,7 +946,7 @@ public class RendezvousControllers implements Initializable {
             updatedUser.setAgeuser(age_ajou.getText());
             updatedUser.setSexe(sexe_ajou.getText());
             updatedUser.setEmail(email_ajou.getText());
-            updatedUser.setMdp(""); // Assuming you don't handle password input here
+            updatedUser.setMdp(mdp_ajou.getText()); // Assuming you don't handle password input here
 
             // Parse role string to integer, you might need to change this logic depending on your UI
             int roleValue;
@@ -1242,6 +1254,7 @@ public class RendezvousControllers implements Initializable {
         assert Charts != null : "fx:id=\"Charts\" was not injected: check your FXML file 'Rendezvous.fxml'.";
         assert checkpwd_edit != null : "fx:id=\"checkpwd_edit\" was not injected: check your FXML file 'Rendezvous.fxml'.";
         assert showpwd_edit != null : "fx:id=\"showpwd_edit\" was not injected: check your FXML file 'Rendezvous.fxml'.";
+        assert mdp_ajou != null : "fx:id=\"mdp_ajou\" was not injected: check your FXML file 'Rendezvous.fxml'.";
 
 
         datePicker_RDV.setValue(LocalDate.now());
