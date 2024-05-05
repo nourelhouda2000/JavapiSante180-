@@ -39,7 +39,14 @@
                         </Label>
                      </children>
                   </VBox>
-                  <Pane prefHeight="42.0" prefWidth="316.0" />
+                  <Pane prefHeight="42.0" prefWidth="316.0">
+                     <children>
+                        <TextField fx:id="rpoids" layoutX="195.0" prefHeight="18.0" prefWidth="108.0" promptText="poids" />
+                     </children></Pane>
+                  <TextField fx:id="rtaille" prefHeight="18.0" prefWidth="108.0" promptText="taille" />
+                  <Pane prefHeight="26.0" prefWidth="6.0" />
+                  <TextField fx:id="rimc" prefHeight="26.0" prefWidth="96.0" promptText="IMC" />
+                  <Button fx:id="recherche" mnemonicParsing="false" onAction="#recherche" text="chercher" />
                </children>
             </HBox>
             <HBox prefHeight="530.0" prefWidth="848.0">
@@ -94,7 +101,7 @@
                         <ComboBox fx:id="SanteCombobox" layoutX="12.0" layoutY="304.0" prefHeight="26.0" prefWidth="407.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="387.0" prefWidth="404.0" style="-fx-background-color: #EBDEF0;">
+                  <AnchorPane prefHeight="413.0" prefWidth="412.0" style="-fx-background-color: #EBDEF0;">
                      <children>
                         <GridPane fx:id="santeGrid" prefHeight="409.0" prefWidth="412.0">
                            <rowConstraints>

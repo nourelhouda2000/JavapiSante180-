@@ -92,6 +92,27 @@ public class AfAnalyses {
            return a;
 
        }
+    public List<Analyses> setlistrecherch(int poids,int taille,int imc) throws SQLException {
+
+        ServiceAnalyses ss =new ServiceAnalyses();
+        List<Analyses> analyses = ss.afficher();
+        List<Analyses> a = new ArrayList<>();
+
+        for (Analyses analyse : analyses) {
+
+            {
+                if(analyse.getPoids()==poids || analyse.getTaille()==taille || analyse.getImc()==imc) {
+                    a.add(analyse);
+                    VBox carte = createCard(analyse);
+                    vboxSante.getChildren().add(carte);
+
+
+                }
+
+            }}
+        return a;
+
+    }
         @FXML
 
         public void MyFunction( ) throws IOException, SQLException {

@@ -108,6 +108,14 @@ public class AfficherAnalyses {
 
     @FXML
     private Label tauxa;
+    @FXML
+    private TextField rimc;
+
+    @FXML
+    private TextField rpoids;
+
+    @FXML
+    private TextField rtaille;
 
 
 
@@ -172,6 +180,7 @@ public class AfficherAnalyses {
 
 
         for (Analyses analyse : analyses) {
+            AnalysesCombBox.getItems().add(analyse);
             VBox carte = createCard(analyse);
             AnalysesContainer.getChildren().add(carte);
             int santei = analyse.getSanteid();
@@ -530,5 +539,51 @@ public class AfficherAnalyses {
         stage.show();
 
     }
+    @FXML
+    void recherche(ActionEvent event) throws SQLException, IOException {
+        ServiceAnalyses ss = new ServiceAnalyses();
+        List<Analyses> analyses =ss.afficher();
+        List<Analyses> a= new ArrayList<>();
+       String Spoids=rpoids.getText();
+       int poidsr;
+        if(Spoids.equals("")){
+            poidsr=0;
+        }
+        else {poidsr=Integer.parseInt(Spoids);}
+
+        String STaille=rtaille.getText();
+        int taille;
+        System.out.println(STaille);
+        if(STaille.equals("")) {
+            taille = 0;
+        }
+        else {
+             taille = Integer.parseInt(STaille);
+        }
+
+        String SIMC=rimc.getText();
+        int imc;
+        if(SIMC.equals("")){
+            imc=0;
+        }
+        else {imc=Integer.parseInt(SIMC);}
+
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/afAnalyses.fxml"));
+        Parent root=loader.load();
+        AfAnalyses controller=loader.getController();
+
+
+        controller.setlistrecherch(poidsr,taille,imc);
+        Scene scene=new Scene(root);
+        Stage stage =new Stage();
+        stage.setScene(scene);
+        stage.show();
+
+
+        }
+
+
+
+
 
 }
