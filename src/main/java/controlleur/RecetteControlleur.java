@@ -9,14 +9,10 @@ import entites.Recette;
 import services.*;
 
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 
 import javafx.scene.control.*;
-
-import java.util.List;
 
 import javafx.fxml.FXML;
 
@@ -329,6 +325,33 @@ public class RecetteControlleur implements Initializable {
             showAlert("Champs de recherche vides", "Veuillez entrer au moins un critère de recherche.", Alert.AlertType.WARNING);
             // Recharger toutes les données initiales après la recherche
             refreshAllData();
+        }
+    }
+    @FXML
+    private void search(ActionEvent event) {
+        String searchTerm = search_rect.getText().trim().toLowerCase();
+
+        // Vérifier si le terme de recherche n'est pas vide
+        if (!searchTerm.isEmpty()) {
+            List<Recette> filteredCabinets = new ArrayList<>();
+
+            // Filtrer les réclamations qui correspondent au terme de recherche
+            for (Recette reclamations : listeviewrecette.getItems()) {
+                // Convertir la date en une chaîne de caractères et vérifier si elle contient le terme de recherche
+
+                if (reclamations.getNom().toLowerCase().contains(searchTerm) ||
+                        reclamations.getIngredient().toLowerCase().contains(searchTerm) )
+                        {
+                    filteredCabinets.add(reclamations);
+                }
+            }
+
+            // Mettre à jour les données affichées dans le ListView avec les résultats de la recherche
+            listeviewrecette.getItems().clear();
+            listeviewrecette.getItems().addAll(filteredCabinets);
+        } else {
+            // Si le champ de recherche est vide, afficher toutes les données
+            afficherRecette();
         }
     }
     private void refreshTableVieww(List<Recette> reclamationsList) {

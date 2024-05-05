@@ -44,8 +44,18 @@ and open the template in the editor.
 }
 
 .nav-form{
-    -fx-background-color:linear-gradient(to bottom right, #2F4F4F,#006400,#556B2F,#808000, #008000,#556B2F);
+    -fx-background-color:linear-gradient(to bottom right, #73AA18,#73AA18);
 }
+
+
+
+
+.nav-Select {
+    -fx-font: bold italic 20pt "Arial";
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );
+}
+
+
 
 .nav-btn{
     -fx-background-color:transparent;
@@ -74,6 +84,12 @@ and open the template in the editor.
     -fx-background-radius:8px;
 }
 
+.rose-bg{
+    -fx-background-color:#ECECEC;
+    -fx-background-radius:8px;
+}
+
+
 .card{
     -fx-background-color:linear-gradient(to right, #2b303c, #525968);
     -fx-background-radius:5px;
@@ -89,7 +105,7 @@ and open the template in the editor.
     -fx-alignment:CENTER;
 }
 .table-view .column-header-background{
-    -fx-background-color:linear-gradient(to bottom right, #2F4F4F,#006400,#556B2F,#808000, #008000,#556B2F);
+    -fx-background-color:linear-gradient(to bottom right, #73AA18,#73AA18);
     -fx-background-insets: 0 0 0 0;
     -f-background-radius:8px 8px 0px 0px;
 }
@@ -145,16 +161,20 @@ and open the template in the editor.
     -fx-background-color:#3357a4;
 }
 
-.update-btn{
-    -fx-background-color:#327252;
-    -fx-background-radius:8px;
-    -fx-text-fill:#fff;
-    -fx-font-size:14px;
-    -fx-font-family:"Arial";
-    -fx-cursor:hand;
+.update-btn {
+    -fx-background-color: #73AA18; /* Fond vert pistache */
+    -fx-background-radius: 8px;
+    -fx-text-fill: #FFFFFF; /* Texte blanc */
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+    -fx-cursor: hand;
 }
-.update-btn:hover{
-    -fx-background-color:#309a65;
+
+.update-btn:hover {
+    -fx-background-color: #A5DB7B; /* Fond vert pistache plus clair au survol */
+}
+.tab-btn:hover{
+    -fx-background-color:#73AA18;
 }
 
 
@@ -202,4 +222,61 @@ and open the template in the editor.
     -fx-border-color:linear-gradient(to bottom right, #272b3f, #256b51);
     -fx-border-radius:4px;
     -fx-padding:0px 0px 0px 8px;
+}
+
+
+.list-view{
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+    -fx-font-family:"Arial";
+    -fx-font-size:14px;
+    -fx-text-fill:#fff;
+    -fx-alignment:CENTER-LEFT;
+}
+
+.list-view {
+    -fx-background-color: #f0f0f0; /* Couleur de fond */
+    -fx-padding: 10px; /* Espacement intérieur */
+}
+
+/* styles.css */
+
+.list-cell {
+    -fx-background-color: #f0f0f0; /* couleur de fond */
+    -fx-padding: 10px; /* marge intérieure */
+}
+
+.list-cell:hover {
+    -fx-background-color: #e0e0e0; /* couleur de fond au survol */
+}
+
+.list-cell .date {
+    -fx-font-weight: bold; /* texte en gras */
+    -fx-text-fill: #007bff; /* couleur du texte */
+}
+
+.list-cell .heure {
+    -fx-font-style: italic; /* texte en italique */
+}
+
+.list-cell .nom {
+    -fx-font-weight: bold; /* texte en gras */
+}
+
+.list-cell .email {
+    -fx-text-fill: #28a745; /* couleur du texte */
+}
+
+.list-cell .rapport {
+    -fx-text-fill: #dc3545; /* couleur du texte */
+}
+/* style.css */
+.list-cell {
+    -fx-background-color: #B6D7A8; /* Couleur de fond des cellules */
+    -fx-padding: 10px;
+    -fx-border-radius: 10px;
+}
+
+.list-cell:hover {
+    -fx-background-color: #A3C59E; /* Couleur de fond des cellules au survol */
 }

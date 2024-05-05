@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlleur.RecetteControlleur">
+    <children>
+        <AnchorPane prefHeight="810.0" prefWidth="1036.0">
+            <children>
+                  <AnchorPane layoutY="108.0" prefHeight="660.8" prefWidth="900.0" stylesheets="@java.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <styleClass>
+                          <String fx:value="white-bg" />
+                          <String fx:value="shadow" />
+                      </styleClass>
+                      <children>
+                          <Text fill="#41c741" layoutX="50.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="108.46368408203125">
+                              <font>
+                                  <Font name="System Italic" size="21.0" />
+                              </font>
+                          </Text>
+                          <Text fill="#2d402d" layoutX="12.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter une nouvelle Recette" wrappingWidth="298.8636474609375">
+                              <font>
+                                  <Font size="22.0" />
+                              </font>
+                          </Text>
+                          <AnchorPane layoutX="450.0" layoutY="51.0" prefHeight="649.0" prefWidth="542.0" stylesheets="@java.css">
+                              <children>
+                                  <ListView fx:id="listeviewrecette" layoutX="11.0" layoutY="57.0" prefHeight="484.0" prefWidth="506.0" />
+                                <Button fx:id="selectrecette" layoutX="13.0" layoutY="554.0" minHeight="11.0" mnemonicParsing="false" onAction="#selectRecette" prefHeight="26.0" prefWidth="506.0" styleClass="update-btn" stylesheets="@java.css" text="select">
+                                    <font>
+                                        <Font size="23.0" />
+                                    </font>
+                                </Button>
+                                <TextField fx:id="search_rect" layoutX="32.0" layoutY="14.0" onAction="#search" prefHeight="26.0" prefWidth="375.0" stylesheets="@java.css">
+                                    <styleClass>
+                                        <String fx:value="white-bg" />
+                                        <String fx:value="shadow" />
+                                    </styleClass>
+                                </TextField>
+                        <FontAwesomeIconView glyphName="SEARCH" layoutX="37.0" layoutY="31.0" />
+                              </children>
+                     <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                          </AnchorPane>
+                          <Text fill="#41c741" layoutX="39.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingredient" wrappingWidth="146.86367797851562">
+                              <font>
+                                  <Font name="System Italic" size="21.0" />
+                              </font>
+                          </Text>
+                          <Text fill="#41c741" layoutX="39.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorie" wrappingWidth="146.86367797851562">
+                              <font>
+                                  <Font name="System Italic" size="21.0" />
+                              </font>
+                          </Text>
+                          <Button fx:id="updaterecette" layoutX="39.0" layoutY="498.0" mnemonicParsing="false" onAction="#updateRecette" prefHeight="43.0" prefWidth="355.0" styleClass="update-btn" stylesheets="@java.css" text="update" />
+                          <Text fill="#41c741" layoutX="39.0" layoutY="401.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nutrition" wrappingWidth="146.86367797851562">
+                              <font>
+                                  <Font name="System Italic" size="21.0" />
+                              </font>
+                          </Text>
+                          <TextField fx:id="nomRecette" layoutX="194.0" layoutY="224.0" />
+                          <TextField fx:id="ingRecette" layoutX="194.0" layoutY="277.0" />
+                          <TextField fx:id="categorirecette" layoutX="194.0" layoutY="332.0" />
+                          <TextField fx:id="nutritionrec" layoutX="194.0" layoutY="387.0" />
+                          <Label fx:id="controlenom" layoutX="1.0" layoutY="156.0" prefHeight="16.0" prefWidth="355.0" />
+                          <Label fx:id="controleingre" layoutX="161.0" layoutY="199.0" prefHeight="16.0" prefWidth="194.0" />
+                          <Label fx:id="controlecate" layoutX="14.0" layoutY="266.0" prefHeight="16.0" prefWidth="346.0" />
+                  <AnchorPane prefHeight="43.0" prefWidth="1000.0" styleClass="update-btn" stylesheets="@java.css">
+                     <children>
+                        <ImageView fitHeight="43.0" fitWidth="70.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/logo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                      </children>
+                  </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>

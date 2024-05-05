@@ -1,0 +1,36 @@
+.root {
+    -fx-background-color: #f0f0f0; /* Couleur de fond de la fenêtre */
+}
+
+.menu-bar {
+    -fx-background-color: #333; /* Couleur de fond de la barre de menu */
+}
+
+.menu-bar .menu {
+    -fx-text-fill: white; /* Couleur du texte des menus */
+}
+
+.menu-bar .menu .menu-item {
+    -fx-text-fill: white; /* Couleur du texte des éléments de menu */
+}
+
+.label {
+    -fx-text-fill: #a11313; /* Couleur du texte des étiquettes */
+}
+
+.text-field {
+    -fx-background-color: #fff; /* Couleur de fond des champs de texte */
+}
+
+.combo-box {
+    -fx-background-color: #fff; /* Couleur de fond de la liste déroulante */
+}
+
+.button {
+    -fx-background-color: #a11313; /* Couleur de fond des boutons */
+    -fx-text-fill: white; /* Couleur du texte des boutons */
+}
+
+.button:hover {
+    -fx-background-color: #910d0d; /* Couleur de fond des boutons au survol */
+}

@@ -401,6 +401,7 @@ public class RendezvousControllers implements Initializable {
 
 
     }
+    /////////////pdf////////////////////
     @FXML
     void generatePDFsamar(ActionEvent event) {
         List<Nutritions> reclamationsList = nutritionsServices.getAllData();
@@ -476,7 +477,7 @@ public class RendezvousControllers implements Initializable {
             }
         });
     }
-
+/////////////codeQr/////////////////////////////
     private void afficherCodeQr(Nutritions nutrition) {
 
         String nutritionDetails =
@@ -822,7 +823,7 @@ public class RendezvousControllers implements Initializable {
 
     }
 
-
+/////////////////remplissageauto//////////////////////
     @FXML
     public void chercherNut(ActionEvent actionEvent) {
         System.out.println("Im in AI fn");
@@ -859,7 +860,7 @@ public class RendezvousControllers implements Initializable {
                 double fiber_g=0;
                 double fat_total_g=0;
                 double carbohydrates_total_g=0;
-
+/////////bch taamli calcul////////////////
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     calories=calories+jsonObject.getDouble("calories");

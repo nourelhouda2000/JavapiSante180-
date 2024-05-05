@@ -245,5 +245,50 @@ import java.util.Map;
         // Par exemple, vous pouvez ajouter un timestamp à la fin du nom de fichier
         return fileName + "_" + System.currentTimeMillis();
     }
+    ////////////tri///////////////////////////////////////////
+    public List<Nutritions> nutritionsSorted(String sortBy) {
+        List<Nutritions> nutritionsSorted = new ArrayList<>();
+        String query = "";
 
-}
+        if (sortBy.equals("Calories")) {
+            query = "SELECT * FROM Nutritions ORDER BY calories";
+        } else if (sortBy.equals("Protéines")) {
+            query = "SELECT * FROM Nutritions ORDER BY proteines";
+        } else {
+            // Si le critère de tri n'est ni "Calories" ni "Protéines", renvoyer une liste vide
+            return nutritionsSorted;
+        }
+
+        try {
+            Statement statement = MyDB.getInstance().getConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                // Extract data from each row in the ResultSet
+                int id = resultSet.getInt("id");
+                int calories = resultSet.getInt("calories");
+                int glucides = resultSet.getInt("glucides");
+                int lipides = resultSet.getInt("lipides");
+                int fibres = resultSet.getInt("fibres");
+                int proteines = resultSet.getInt("proteines");
+
+                // Create a new Nutritions object and add it to the list
+                Nutritions nutritions = new Nutritions();
+                nutritions.setId(id);
+                nutritions.setCalories(calories);
+                nutritions.setGlucides(glucides);
+                nutritions.setLipides(lipides);
+                nutritions.setFibres(fibres);
+                nutritions.setProteines(proteines);
+
+                nutritionsSorted.add(nutritions);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return nutritionsSorted;
+    }
+
+ }
+
+
+
