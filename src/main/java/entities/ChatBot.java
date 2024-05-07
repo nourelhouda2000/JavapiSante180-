@@ -33,7 +33,7 @@ public class ChatBot {
 
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
             String model = "gpt-3.5-turbo"; // Initialize the model variable with the correct model name
-            String apiKey = "*****"; // Replace with your actual API key
+            String apiKey = "sk-proj-CeLMFF4t1Zp6BUSw4VAkT3BlbkFJKwR7IX6JjHRmt4khp97Z"; // Replace with your actual API key
             String requestBody = "{\"model\":\"" + model + "\",\"prompt\":\"" + input + "\",\"max_tokens\":150}";
 
             Request request = new Request.Builder()

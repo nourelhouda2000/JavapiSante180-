@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!--
+cascade classifier xml file created by traincascade utility
+-->
+<opencv_storage>
+    <cascade type_id="opencv-cascade-classifier">
+        <stageType>BOOST</stageType>
+        <featureType>HAAR</featureType>
+        <height>24</height>
+        <width>24</width>
+        <stageParams>
+            <boostType>GAB</boostType>
+            <minHitRate>0.995</minHitRate>
+            <maxFalseAlarm>0.5</maxFalseAlarm>
+            <weightTrimRate>0.95</weightTrimRate>
+            <maxDepth>1</maxDepth>
+            <maxWeakCount>100</maxWeakCount>
+        </stageParams>
+        <featureParams>
+            <maxCatCount>0</maxCatCount>
+        </featureParams>
+        <stageNum>25</stageNum>
+        <stages>
+            <!-- stage 0 -->
+            <_>
+                <maxWeakCount>1</maxWeakCount>
+                <stageThreshold>-0.5311050415039062</stageThreshold>
+                <weakClassifiers>
+                    <_>
+                        <internalNodes>
+                            0 -1 6 1.0156710143089294e-02</internalNodes>
+                        <leafValues>
+                            -7.5320658683776855 5.2375760078430176</leafValues></_></weakClassifiers></_>
+            <!-- stage 1 -->
+            <_>
+                <maxWeakCount>1</maxWeakCount>
+                <stageThreshold>-2.7324430942535400e-01</stageThreshold>
+                <weakClassifiers>
+                    <_>
+                        <internalNodes>
+                            0 -1 8 -4.8036679036617279e-03</internalNodes>
+                        <leafValues>
+                            3.5955638885498047 -3.5711810588836670</leafValues></_></weakClassifiers></_>
+            <!-- stage 2 -->
+            <!-- ... more stages here ... -->
+        </stages>
+        <features>
+            <_>
+                <rects>
+                    <_>3 8 18 8 -1.</_>
+                    <_>3 12 18 4 2.</_></rects>
+                <tilted>0</tilted></_>
+            <!-- ... more features here ... -->
+        </features>
+    </cascade>
+</opencv_storage>

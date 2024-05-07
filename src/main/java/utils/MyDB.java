@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyDB {
-    private final String URL = "jdbc:mysql://localhost:3306/projetpi2";
+    private final String URL = "jdbc:mysql://localhost:3306/sprintjava";
     private final String USER = "root";
     private final String PWD = "";
 

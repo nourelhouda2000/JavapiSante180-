@@ -49,6 +49,7 @@
                 </font>
             </Label>
             <TextField fx:id="idlikes" layoutX="199.0" layoutY="209.0" prefHeight="26.0" prefWidth="202.0" />
+
             <Label layoutX="94.0" layoutY="261.0" text="Niveau" textFill="#a6086c">
                 <font>
                     <Font name="Constantia" size="18.0" />

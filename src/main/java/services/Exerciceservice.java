@@ -153,11 +153,13 @@ public class Exerciceservice implements IExercice<Exercice> {
 
 
 
+
+
     public List<Exercice> rechercherExercices(String nom, String description, String niveau) {
         List<Exercice> exercices = new ArrayList<>();
         try {
             // Requête SQL pour rechercher des exercices par nom, description et niveau
-            String requete = "SELECT * FROM exercice WHERE nom LIKE ? AND description LIKE ? AND niveau LIKE ?";
+            String requete = "SELECT * FROM exercice WHERE nom LIKE ? OR description LIKE ? OR niveau LIKE ?";
             PreparedStatement pst = cnx.prepareStatement(requete);
             // Paramétrer les critères de recherche avec des '%' pour rechercher des correspondances partielles
             pst.setString(1, "%" + nom + "%");
@@ -183,7 +185,6 @@ public class Exerciceservice implements IExercice<Exercice> {
         }
         return exercices;
     }
-
     public static void updateLikes(int exerciceId, int newLikesCount) {
         try {
             // Préparer la requête de mise à jour du nombre de likes

@@ -1,12 +1,14 @@
 package controllers;
 
 import entities.Activite;
+import entities.Emoji;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Map;
+import javafx.scene.layout.StackPane;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -77,27 +79,6 @@ public class AfficherActivite {
     }
 
 
-
-   /*@FXML
-    public void initialize() {
-        // Récupérer la liste complète des exercices et l'assigner à exerciceDataList
-        activiteDataList = FXCollections.observableArrayList(Activiteservice.getAllData());
-
-        // Créer un objet Pagination avec le nombre total de pages et une fonction pour générer le contenu de chaque page
-        int itemsPerPage = 1; // Nombre d'exercices par page
-        int pageCount = (int) Math.ceil((double) activiteDataList.size() / itemsPerPage); // Calcul du nombre total de pages
-        pagination = new Pagination(pageCount, 0);
-        pagination.setStyle("-fx-font-size: 16px; -fx-background-color: #f2f2f2;");
-        pagination.setPageFactory(pageIndex -> createPageContent(pageIndex, itemsPerPage, activiteDataList));
-
-        // Ajouter la pagination au conteneur sans supprimer le contenu existant
-        activiteContainer.getChildren().add(pagination);
-
-        // Afficher la liste des exercices initiale
-        // afficherListeExercices();
-
-       //afficherMeteo();
-    }*/
    @FXML
    public void initialize() {
        // Afficher la liste des activités initiale
@@ -157,6 +138,9 @@ public class AfficherActivite {
         // Ajouter les labels à la carte
         card.getChildren().addAll(descriptionLabel, categorieLabel, niveauLabel);
 
+
+
+
         // Créer le bouton Modifier
         Button modifierButton = new Button("Modifier");
         modifierButton.getStyleClass().add("action-button");
@@ -169,15 +153,24 @@ public class AfficherActivite {
         supprimerButton.setStyle("-fx-background-color: #AD1457; -fx-text-fill: white; -fx-font-size: 16px;");
         supprimerButton.setOnAction(event -> handleSupprimer(activite));
 
-        // Ajouter les boutons à la carte
+
+
         HBox buttonsBox = new HBox(modifierButton, supprimerButton);
-        buttonsBox.setAlignment(Pos.CENTER);
+
+        buttonsBox.setPadding(new Insets(10, 40, 0, 0));
+        buttonsBox.setAlignment(Pos.CENTER); // Aligner la VBox à droite
         buttonsBox.setSpacing(10);
+
+// Ajouter la VBox au conteneur parent
         card.getChildren().add(buttonsBox);
 
         //
 
+        // Créer une instance d'EmojiPicker pour cette activité
+        Emoji emojiPicker = new Emoji();
 
+        // Ajouter l'EmojiPicker à la carte
+        card.getChildren().add(emojiPicker);
 
         return card;
     }
@@ -296,28 +289,6 @@ public class AfficherActivite {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    public void afficherrListeActivites() {
-        // Récupérer la liste des exercices depuis le service
-        List<Activite> activites = Activiteservice.getAllData();
-
-        // Parcourir la liste des exercices et les afficher dans le conteneur
-        for (Activite activite : activites) {
-            VBox card = createActiviteCard(activite);
-            activiteContainer.getChildren().add(card);
-        }
-    }
     @FXML
     private void afficherMeteo() {
         try {

@@ -72,7 +72,7 @@ public class AfficherExercice {
     private TextField descriptionExerciceField;
 
     @FXML
-    private TextField niveauExerciceField;
+    private ComboBox<String> niveauExerciceField;
     @FXML
     private VBox resultatsVBox;
     @FXML
@@ -84,6 +84,8 @@ public class AfficherExercice {
 
 
 
+
+
     @FXML
     private Button rechercheButton;
 
@@ -92,6 +94,7 @@ public class AfficherExercice {
     private ObservableList<Exercice> masterData;
 
     private ObservableList<Exercice> exerciceDataList;
+    private final int itemsPerPage = 2;
 
 
 
@@ -111,6 +114,7 @@ public class AfficherExercice {
 
         // Ajouter la pagination au conteneur sans supprimer le contenu existant
         exerciceContainer.getChildren().add(pagination);
+
 
         // Afficher la liste des exercices initiale
         // afficherListeExercices();
@@ -422,36 +426,47 @@ public class AfficherExercice {
 
 
 
+
+
+
     @FXML
     public void rechercherExercices(ActionEvent event) {
         String nom = nomExerciceField.getText();
         String description = descriptionExerciceField.getText();
-        String niveau = niveauExerciceField.getText();
+
+        // Récupérer la valeur sélectionnée dans le ComboBox
+        String niveau = niveauExerciceField.getValue();
 
         // Appeler la méthode de recherche d'exercices dans le service
         List<Exercice> exercices = exerciceService.rechercherExercices(nom, description, niveau);
 
-        // Afficher les résultats dans l'interface utilisateur
-        afficherResultats(exercices);
-
-
+        // Mettre à jour la pagination avec les résultats de la recherche
+        updatePaginationWithResults(exercices);
     }
 
 
-    private void afficherResultats(List<Exercice> exercices) {
+    private void updatePaginationWithResults(List<Exercice> exercices) {
         // Effacer les résultats précédents
         resultatsVBox.getChildren().clear();
 
-        // Afficher les résultats de la recherche
-        for (Exercice exercice : exercices) {
-            // Créer un label pour afficher le nom de l'exercice
-            Label nomLabel = new Label(exercice.getNom());
-            nomLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: purple;"); // Appliquer le style pour le nom de l'exercice
+        // Vérifier si des exercices ont été trouvés
+        if (!exercices.isEmpty()) {
+            // Créer un nouvel objet Pagination avec le nombre total de pages basé sur les résultats de la recherche
+            int pageCount = (int) Math.ceil((double) exercices.size() / itemsPerPage);
+            pagination = new Pagination(pageCount, 0);
+            pagination.setStyle("-fx-font-size: 16px; -fx-background-color: #f2f2f2;");
+            pagination.setPageFactory(pageIndex -> createPageContent(pageIndex, itemsPerPage, exercices));
 
-            resultatsVBox.getChildren().add(nomLabel);
-            // Vous pouvez ajouter d'autres informations de l'exercice si nécessaire
+            // Ajouter la pagination au conteneur des résultats
+            resultatsVBox.getChildren().add(pagination);
+        } else {
+            // Aucun exercice trouvé, afficher un message approprié
+            Label aucunResultatLabel = new Label("Aucun résultat trouvé !");
+            resultatsVBox.getChildren().add(aucunResultatLabel);
         }
     }
+
+
 
 
 

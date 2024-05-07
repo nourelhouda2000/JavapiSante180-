@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -8,7 +11,6 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.Pagination?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherExercice">
     <children>
@@ -18,28 +20,46 @@
                 <AnchorPane>
 
                     <TextField fx:id="nomExerciceField" layoutX="23.0" layoutY="30.0" prefHeight="34.0" prefWidth="114.0" text="Nom.. " />
-                    <TextField fx:id="niveauExerciceField" layoutX="319.0" layoutY="33.0" prefHeight="26.0" prefWidth="121.0" text="Niveau.." />
+                    <ComboBox fx:id="niveauExerciceField" layoutX="319.0" layoutY="33.0" prefHeight="26.0" prefWidth="121.0" promptText="Niveau">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Facile" />
+                                <String fx:value="Modéré" />
+                                <String fx:value="Difficile" />
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
                     <TextField fx:id="descriptionExerciceField" layoutX="145.0" layoutY="31.0" prefHeight="31.0" prefWidth="161.0" text="Description.." />
-                    <Button fx:id="rechercheButton" layoutX="344.0" layoutY="73.0" mnemonicParsing="false" onAction="#rechercherExercices" text="Rechercher" textFill="#fffafa" />
+                    <Button fx:id="rechercheButton" layoutX="482.0" layoutY="38.0" mnemonicParsing="false" onAction="#rechercherExercices" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: #AD1457;" text="Rechercher" textFill="#fffafa">
+                  <font>
+                     <Font name="Constantia Italic" size="18.0" />
+                  </font></Button>
 
-                    <Button fx:id="imprimer" layoutX="627.0" layoutY="4.0" mnemonicParsing="false" onAction="#boutonimrimer" prefHeight="36.0" prefWidth="165.0" text="Imprimer  PDF" textFill="#a6076b">
+                    <Button fx:id="imprimer" layoutX="627.0" layoutY="4.0" mnemonicParsing="false" onAction="#boutonimrimer" prefHeight="36.0" prefWidth="165.0" style="-fx-background-color: #AD1457;" text="Imprimer  PDF" textFill="WHITE">
                         <font>
                             <Font name="Constantia Italic" size="18.0" />
                         </font>
                     </Button>
 
                 </AnchorPane>
-                <Label prefHeight="30.0" prefWidth="232.0" text="Liste des exercices">
-               <font>
-                  <Font name="Century Schoolbook" size="24.0" />
-               </font></Label>
+                <Label prefHeight="46.0" prefWidth="324.0" text="Liste des exercices">
+                    <font>
+                        <Font name="Century Schoolbook" size="36.0" />
+                    </font></Label>
                 <FlowPane hgap="10.0" prefWidth="700.0" vgap="10.0">
                     <!-- Placeholder pour les cartes d'exercices -->
                     <!-- Les cartes d'exercices seront ajoutées dynamiquement depuis le contrôleur -->
                 </FlowPane>
+                <VBox fx:id="resultatsVBox" prefWidth="700.0">
+                    <!-- Placeholder pour les cartes d'exercices -->
+                    <!-- Les cartes d'exercices seront ajoutées dynamiquement depuis le contrôleur -->
+                </VBox>
 
             </VBox>
         </ScrollPane>
+
+
     </children>
+
 
 </AnchorPane>

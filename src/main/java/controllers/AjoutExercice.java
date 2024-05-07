@@ -86,7 +86,7 @@ public class AjoutExercice {
         });
     }
 
-            @FXML
+    @FXML
     void ajouter(ActionEvent event) {
         try {
             String nomExercice = idName.getText();
@@ -237,5 +237,3 @@ public class AjoutExercice {
 
     }
 }
-
-
