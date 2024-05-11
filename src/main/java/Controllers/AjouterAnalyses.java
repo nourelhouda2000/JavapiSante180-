@@ -344,10 +344,12 @@ public class AjouterAnalyses {
                 // Extract weight and height from the recognized text
                 String weight = extractValue(result, "Kg");
                 String height = extractValue(result, "m");
+                String tauxg = extractValue(result, "x");
 
                 // Display the extracted values
                 poids.setText( weight);
                 taille.setText(height);
+                taux.setText(tauxg);
             } catch (TesseractException e) {
                 e.printStackTrace();
             }
@@ -396,7 +398,7 @@ public class AjouterAnalyses {
         if (matcher.find()) {
             return matcher.group(1).replace(",", "."); // Return the matched value, replace ',' with '.'
         } else {
-            return "N/A"; // Return "N/A" if no match is found
+            return "Not Found"; // Return "N/A" if no match is found
         }
     }
 
